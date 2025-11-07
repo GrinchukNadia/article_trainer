@@ -1,0 +1,32 @@
+@use "./variables" as *;
+
+@mixin card {
+  border: 1px solid $color-border;
+  border-radius: $radius-2xl;
+  background: #fff;
+  padding: $spacing-6;
+  box-shadow: $shadow-sm;
+}
+
+@mixin button-base {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-2;
+  padding: 0.5rem 0.9rem;
+  border-radius: $radius-xl;
+  font-size: 0.9rem;
+  line-height: 1.2;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background $transition-fast, border-color $transition-fast,
+    color $transition-fast, opacity $transition-fast;
+  text-decoration: none;
+}
+
+@mixin tabs__btn {
+  @include button-base;
+  background: #f3f4f6;
+  background: black;
+  color: white;
+}

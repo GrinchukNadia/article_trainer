@@ -1,0 +1,33 @@
+// src/styles/_variables.scss
+$font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, "Noto Sans", sans-serif;
+
+$color-bg: #f9fafb;
+$color-text: #111827;
+$color-muted: #6b7280;
+$color-border: #e5e7eb;
+
+$color-primary: #111827;
+$color-primary-contrast: #ffffff;
+
+$color-accent: #111827;
+$color-accent-ghost: #f3f4f6;
+
+$color-success-bg: #ecfdf5;
+$color-success-text: #065f46;
+$color-overlay: rgba(0,0,0,0.3);
+
+$radius-xl: 0.75rem;  // 12px
+$radius-2xl: 1rem;    // 16px
+
+$shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+$shadow-md: 0 4px 10px rgba(0,0,0,0.08);
+
+$spacing-1: 0.25rem;
+$spacing-2: 0.5rem;
+$spacing-3: 0.75rem;
+$spacing-4: 1rem;
+$spacing-6: 1.5rem;
+$spacing-7: 1.75rem;
+$spacing-8: 2rem;
+
+$transition-fast: 150ms ease;

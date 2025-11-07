@@ -1,0 +1,56 @@
+@use "variables" as *;
+@use "mixins" as m;
+
+
+#root {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  max-width: 80rem;
+}
+.app {
+  background: $color-bg;
+  color: $color-text;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+main {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+// Buttons
+.btn {
+  @include m.button-base;
+}
+.btn:disabled,
+.btn[disabled] {
+  cursor: not-allowed;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.btn--primary {
+  background: $color-primary;
+  color: $color-primary-contrast;
+}
+.btn--primary:hover {
+  background: #0f172a;
+}
+
+.btn--ghost {
+  background: #fff;
+  border-color: $color-border;
+}
+.btn--ghost:hover {
+  background: #f9fafb;
+}

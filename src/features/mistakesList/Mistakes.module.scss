@@ -1,0 +1,40 @@
+@use "../../styles/mixins" as m;
+@use "../../styles/variables" as *;
+
+.mistakes{
+  width: 80rem;
+  padding: 0 $spacing-4;
+}
+.card {
+  @include m.card;
+}
+
+.kpi {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.kpi__hint {
+  font-size: 0.85rem;
+  color: $color-muted;
+}
+
+.grid_2 {
+  display: grid;
+  gap: $spacing-6;
+}
+@media (min-width: 768px) {
+  .grid_2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  padding: $spacing-1 $spacing-2;
+  border: 1px solid $color-border;
+  border-radius: $radius-xl;
+  background: #f3f4f6;
+}

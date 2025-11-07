@@ -1,0 +1,75 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as m;
+@use "../../styles/_global" as g;
+
+
+// Modal
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: $color-overlay;
+  }
+  &__dialog {
+    position: relative;
+    width: 100%;
+    max-width: 28rem;
+    @include m.card;
+    box-shadow: $shadow-md;
+  }
+  &__dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+  }
+  &__title {
+    font-weight: 600;
+    margin-bottom: $spacing-4;
+  }
+  &__row {
+    margin-bottom: $spacing-3;
+  }
+  &__label {
+    display: block;
+    font-size: 0.85rem;
+    color: $color-muted;
+    margin-bottom: $spacing-1;
+  }
+  &__input {
+    width: 100%;
+    padding: $spacing-2 $spacing-3;
+    border: 1px solid $color-border;
+    border-radius: $radius-xl;
+  }
+  &__error {
+    margin-top: $spacing-1;
+    font-size: 0.75rem;
+    color: #dc2626;
+  }
+  &__hint {
+    font-size: 0.75rem;
+    color: $color-muted;
+    text-align: center;
+    margin-top: $spacing-2;
+  }
+}
+.modal__close {
+  @extend .btn;
+  @extend .btn--ghost;
+  padding: $spacing-1 $spacing-2;
+}
+
+.alert-success {
+  background: $color-success-bg;
+  border: 1px solid rgba(5, 150, 105, 0.25);
+  color: $color-success-text;
+  border-radius: $radius-xl;
+  padding: $spacing-4;
+}

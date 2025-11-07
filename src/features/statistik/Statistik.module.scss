@@ -1,0 +1,72 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as m;
+
+$chart-bg: #fafafa;
+$bar-color-top: #b8f995;
+$bar-color-bottom: #86ea70;
+$grid-color: #e5e7eb;
+$label-color: #6b7280;
+
+.stats{
+  width: 80rem;
+  padding: 0 $spacing-4;
+}
+.chart {
+  position: relative;
+  height: 240px;
+  padding: 1rem 1rem 2rem;
+  border-radius: 12px;
+  background: $chart-bg;
+  overflow: hidden;
+
+  &__grid {
+    position: absolute;
+    inset: 0 0 2rem 0;
+    background: linear-gradient(#0000 31px, $grid-color 32px) repeat-y,
+      linear-gradient(90deg, #0000 31px, lighten($grid-color, 3%) 32px) repeat-x;
+    background-size: 100% 32px, 32px 100%;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  &__bars {
+    position: absolute;
+    inset: 1rem 1rem 2rem 1rem;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.75rem;
+  }
+
+  &__bar {
+    flex: 1;
+    background: linear-gradient(180deg, $bar-color-top, $bar-color-bottom);
+    border-radius: 8px 8px 0 0;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05) inset,
+      0 8px 14px rgba(37, 99, 235, 0.15);
+  }
+  &__labels {
+    position: absolute;
+    left: 1rem;
+    right: 1rem;
+    bottom: 0.5rem;
+    display: flex;
+    justify-content: space-around; // было space-between
+    text-align: center;
+    color: $label-color;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em; // немного воздуха
+  }
+}
+.kpi {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.kpi__hint {
+  font-size: 0.85rem;
+  color: $color-muted;
+}
+
+.card {
+  @include m.card;
+}

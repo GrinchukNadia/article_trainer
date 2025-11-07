@@ -1,0 +1,221 @@
+
+@keyframes tip {
+  0% {
+    margin: 40px 40px 40px 40px;
+  }
+  33% {
+    margin: 40px 40px 40px 50px;
+  }
+  67% {
+    margin: 40px 40px 40px 30px;
+  }
+  100% {
+    margin: 40px 40px 40px 40px;
+  }
+}
+@media (max-width: 505px) {
+  @keyframes tip {
+    0% {
+      margin: 40px 40px 40px 40px;
+    }
+    33% {
+      margin: 40px 70px 40px 10px;
+    }
+    67% {
+      margin: 40px 10px 40px 70px;
+    }
+    100% {
+      margin: 40px 40px 40px 40px;
+    }
+  }
+}
+
+@keyframes next-card {
+  0% {
+    margin: 40px 40px 40px 40px;
+  }
+  100% {
+    margin: 6000px 40px 40px 40px;
+  }
+}
+
+@keyframes rightR {
+  0% {
+    margin: 40px 40px 40px 40px;
+    background-color: white;
+  }
+  50% {
+    margin: 40px -100px 40px 40px;
+    background-color: rgb(196, 255, 192);
+    border: 1px solid rgb(51, 180, 42);
+  }
+  100% {
+    margin: 40px 40px 40px 40px;
+    background-color: rgb(196, 255, 192);
+    border: 1px solid rgb(51, 180, 42);
+  }
+}
+@keyframes rightL {
+  0% {
+    margin: 40px 40px 40px 40px;
+    background-color: white;
+  }
+  50% {
+    margin: 40px 40px 40px -100px;
+    background-color: rgb(196, 255, 192);
+    border: 1px solid rgb(51, 180, 42);
+  }
+  100% {
+    margin: 40px 40px 40px 40px;
+    background-color: rgb(196, 255, 192);
+    border: 1px solid rgb(51, 180, 42);
+  }
+}
+@keyframes rightT {
+  0% {
+    margin: 40px 40px 40px 40px;
+    background-color: white;
+  }
+  50% {
+    margin: -60px 40px 40px 40px;
+    background-color: rgb(196, 255, 192);
+    border: 1px solid rgb(51, 180, 42);
+  }
+  100% {
+    margin: 40px 40px 40px 40px;
+    background-color: rgb(196, 255, 192);
+    border: 1px solid rgb(51, 180, 42);
+  }
+}
+
+@keyframes wrongR {
+  0% {
+    margin: 40px 40px 40px 40px;
+    background-color: white;
+  }
+  50% {
+    margin: 40px -100px 40px 40px;
+    background-color: pink;
+    border: 1px solid #ff3c3c;
+  }
+  100% {
+    margin: 40px 40px 40px 40px;
+    background-color: white;
+  }
+}
+@keyframes wrongL {
+  0% {
+    margin: 40px 40px 40px 40px;
+    background-color: white;
+  }
+  50% {
+    margin: 40px 40px 40px -100px;
+    background-color: pink;
+    border: 1px solid #ff3c3c;
+  }
+  100% {
+    margin: 40px 40px 40px 40px;
+    background-color: white;
+  }
+}
+@keyframes wrongT {
+  0% {
+    margin: 40px 40px 40px 40px;
+    background-color: white;
+  }
+  50% {
+    margin: -60px 40px 40px 40px;
+    background-color: pink;
+    border: 1px solid #ff3c3c;
+  }
+  100% {
+    margin: 40px 40px 40px 40px;
+    background-color: white;
+  }
+}
+
+
+
+@media (max-width: 505px) {
+  @keyframes tip {
+    0% {
+      margin: 40px 40px 40px 40px;
+    }
+    33% {
+      margin: 40px 70px 40px 10px;
+    }
+    67% {
+      margin: 40px 10px 40px 70px;
+    }
+    100% {
+      margin: 40px 40px 40px 40px;
+    }
+  }
+
+  @keyframes rightR {
+    0% {
+      margin: 40px 40px 40px 40px;
+      background-color: white;
+    }
+    50% {
+      margin: 40px 10px 40px 70px;
+      background-color: rgb(196, 255, 192);
+      border: 1px solid rgb(51, 180, 42);
+    }
+    100% {
+      margin: 40px 40px 40px 40px;
+      background-color: rgb(196, 255, 192);
+      border: 1px solid rgb(51, 180, 42);
+    }
+  }
+  @keyframes rightL {
+    0% {
+      margin: 40px 40px 40px 40px;
+      background-color: white;
+    }
+    50% {
+      margin: 40px 70px 40px 10px;
+      background-color: rgb(196, 255, 192);
+      border: 1px solid rgb(51, 180, 42);
+    }
+    100% {
+      margin: 40px 40px 40px 40px;
+      background-color: rgb(196, 255, 192);
+      border: 1px solid rgb(51, 180, 42);
+    }
+  }
+
+  @keyframes wrongR {
+    0% {
+      margin: 40px 40px 40px 40px;
+      background-color: white;
+    }
+    50% {
+      margin: 40px 10px 40px 70px;
+      background-color: pink;
+      border: 1px solid #ff3c3c;
+    }
+    100% {
+      margin: 40px 40px 40px 40px;
+      background-color: white;
+    }
+  }
+  @keyframes wrongL {
+    0% {
+      margin: 40px 40px 40px 40px;
+      background-color: white;
+    }
+    50% {
+      margin: 40px 70px 40px 10px;
+      background-color: pink;
+      border: 1px solid #ff3c3c;
+    }
+    100% {
+      margin: 40px 40px 40px 40px;
+      background-color: white;
+    }
+  }
+}
+
+
+

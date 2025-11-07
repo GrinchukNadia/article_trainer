@@ -1,0 +1,22 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as m;
+
+.impressum_container {
+  max-width: 60rem;
+  height: fit-content;
+  margin: $spacing-8 auto;
+  padding: $spacing-8;
+  background: $color-primary-contrast;
+  border-radius: $radius-xl;
+  box-shadow: $shadow-md;
+  line-height: 1.6;
+}
+
+.impressum_heading {
+  font-size: 1.8rem;
+  margin-bottom: $spacing-4;
+}
+
+.tabs__btn {
+  @include m.tabs__btn;
+}
