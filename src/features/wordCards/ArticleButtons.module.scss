@@ -7,6 +7,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-size: 24px;
 
   &Arrow {
     width: 0;
@@ -36,21 +37,21 @@
 
   &_der {
     top: 48%;
-    left: -14%;
+    left: -18%;
     @media screen and (max-width: 800px) {
       left: 10px;
     }
   }
   &_die {
     top: 48%;
-    right: -14%;
+    right: -18%;
     @media screen and (max-width: 800px) {
       right: 10px;
     }
   }
 
   &_das {
-    top: -10%;
+    top: -14%;
     left: 42%;
     @media screen and (max-width: 474px) {
       top: 10px;
@@ -58,7 +59,7 @@
   }
 
   &_next {
-    bottom: -10%;
+    bottom: -14%;
     left: 42%;
     @media screen and (max-width: 474px) {
       bottom: 10px;

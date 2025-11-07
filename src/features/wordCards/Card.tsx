@@ -46,7 +46,6 @@ function Card({
   return (
     <div className={styles.card}>
       <div
-        
         onAnimationStart={onAnimationStart}
         onAnimationEnd={onAnimationEnd}
         style={animationStyle}

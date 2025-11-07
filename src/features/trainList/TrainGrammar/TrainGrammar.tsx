@@ -4,9 +4,9 @@ export default function TrainGrammar() {
       style={{
         width: "50%",
         height: "100%",
-        border: "1px solid #e5e5e5",
       }}
     >
+      here will be train grammar block
     </div>
   );
 }

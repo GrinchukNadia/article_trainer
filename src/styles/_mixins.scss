@@ -26,7 +26,6 @@
 
 @mixin tabs__btn {
   @include button-base;
-  background: #f3f4f6;
   background: black;
   color: white;
 }

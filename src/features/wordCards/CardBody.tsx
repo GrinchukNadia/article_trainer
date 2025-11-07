@@ -1,7 +1,8 @@
+import CloseTrain from "../trainList/TrainWords/CloseTrain";
 import Card from "./Card";
 import { useCardTrain } from "./useCardTrain";
 
-export default function Body() {
+export default function Body({close}: {close: () => void}) {
   const { current, state, onAnimationStart, onAnimationEnd, handleAnswer } =
     useCardTrain();
 
@@ -16,7 +17,8 @@ export default function Body() {
   }
 
   return (
-    <>
+    <div style={{height: "100vh", overflow: "hidden"}}>
+      <CloseTrain close={close} />
       <Card
         key={state.index}
         animation={state.animation}
@@ -30,6 +32,6 @@ export default function Body() {
         handleAnswer={handleAnswer}
         current={current}
       />
-    </>
+    </div>
   );
 }

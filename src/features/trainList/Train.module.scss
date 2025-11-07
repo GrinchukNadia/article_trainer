@@ -1,6 +1,23 @@
+@use "../../styles/variables" as *;
 .train {
-    max-width: 80rem;
-    width: 100%;
-    display: flex;
-    gap: 1rem;
+  max-width: 80rem;
+  width: 100%;
+  display: flex;
+  gap: $spacing-4;
+}
+.trainWords {
+  width: 50%;
+  height: 100%;
+  //   border: 1px solid #e5e5e5;
+  display: grid;
+  max-height: 800px;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  grid-template-areas:
+    "a b"
+    "a c"
+    "d f"
+    "e f";
+  gap: 1rem;
+  padding: $spacing-4;
 }

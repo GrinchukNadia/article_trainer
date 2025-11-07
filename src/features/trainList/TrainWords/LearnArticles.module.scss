@@ -1,0 +1,7 @@
+@use "../../../styles/variables" as *;
+.learn {
+    background-color: $color-accent;
+    color: $color-bg;
+    border-radius: $radius-2xl;
+    padding: $spacing-4;
+}
