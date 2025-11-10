@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useReducer } from "react";
-import dataCard from "../data/Data";
+import dataCard from "../../../data/Data";
 
 type Gender = "der" | "die" | "das";
 type GenderDisplay = "der" | "die" | "das" | "___";

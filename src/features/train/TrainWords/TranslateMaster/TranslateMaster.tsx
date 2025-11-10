@@ -1,4 +1,4 @@
-import CloseTrain from "./CloseTrain"
+import CloseTrain from "../CloseTrain"
 
 function TranslateMaster({close}: {close: ()=> void  }) {
   return (

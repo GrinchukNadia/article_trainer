@@ -1,39 +1,21 @@
 import { createBrowserRouter } from "react-router-dom";
 import AppLayout from "../features/AppLayout";
-import Train from "../features/trainList/Train";
-import Mistakes from "../features/mistakesList/Mistakes";
 import Stats from "../features/statistik/Stats";
 import Impressum from "../features/impresum/Impressum";
-import TrainWords from "../features/trainList/TrainWords/TrainWords";
-import TrainGrammar from "../features/trainList/TrainGrammar/TrainGrammar";
-import CardBody from "../features/wordCards/CardBody";
+import TrainWords from "../features/train/TrainWords/TrainWords";
+import TrainGrammar from "../features/TrainGrammar/TrainGrammar";
+import Train from "../features/train/TrainList/Train";
+// import CardBody from "../features/train/TrainWords/wordCards/CardBody";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
     children: [
-      { path: "train", 
-        element: <Train />,
-        children:[
-          { 
-            path: "train_words",
-            element: <TrainWords />,
-            children: [
-              {
-                path: "articles_main",
-                element: <CardBody />
-              }
-            ]
-          },
-          { 
-            path: "train_grammar",
-            element: <TrainGrammar />
-          }
-        ] 
-      },
+      { index: true, element: <Train /> },
+      { path: "train_words", element: <TrainWords /> },
       { path: "impressum", element: <Impressum /> },
-      { path: "mistakes", element: <Mistakes /> },
+      { path: "grammar", element: <TrainGrammar /> },
       { path: "stats", element: <Stats /> },
     ],
   },

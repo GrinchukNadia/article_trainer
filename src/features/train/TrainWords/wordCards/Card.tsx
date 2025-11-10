@@ -1,4 +1,4 @@
-import { memo, useEffect } from "react";
+import { memo, useEffect, useState } from "react";
 import Controls from "./Controls";
 import styles from "./Cards.module.scss";
 import clsx from "clsx";
@@ -43,6 +43,8 @@ function Card({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [current, handleAnswer]);
 
+  const [loaded, setLoaded] = useState(false);
+
   return (
     <div className={styles.card}>
       <div
@@ -55,7 +57,8 @@ function Card({
         <Controls />
         {link && (
           <div className={styles.inner_img}>
-            <img alt="" src={link} />
+            {!loaded && <div className={styles.loader_body}><div className={styles.loader} ></div></div>}
+            <img onLoad={() => setLoaded(true)} className={loaded ? styles.show : styles.hide} loading="lazy" alt="" src={link} />
           </div>
         )}
 

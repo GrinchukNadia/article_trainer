@@ -10,7 +10,7 @@ const HeaderBrand = ({ inCourse }: HeaderBrandProps) => {
   return (
     <div className={styles.header__brand}>
       <button
-        onClick={() => (navigate("/train"))}
+        onClick={() => (navigate("/"), window.scrollTo(0, 0))}
         className={styles['header__brand-button']}
         title={inCourse ? "Вернутся в каталог курсов" : "LiongoStein (MVP)"}
       >

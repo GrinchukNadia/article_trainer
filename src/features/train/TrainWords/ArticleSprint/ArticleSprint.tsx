@@ -1,4 +1,4 @@
-import CloseTrain from "./CloseTrain"
+import CloseTrain from "../CloseTrain"
 
 function ArticleSprint({close}: {close: ()=> void}) {
   return (

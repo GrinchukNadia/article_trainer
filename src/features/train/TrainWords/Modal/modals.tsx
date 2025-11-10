@@ -1,9 +1,10 @@
-import CardBody from "../../wordCards/CardBody";
-import EinEineTrainer from "./EinEineTrainer";
-import ArticleSprint from "./ArticleSprint";
-import MistakeReview from "./MistakeReview";
-import PluralTrainer from "./PluralTrainer";
-import TranslateMaster from "./TranslateMaster";
+import ArticleSprint from "../ArticleSprint/ArticleSprint";
+import EinEineTrainer from "../EinEineTrainer/EinEineTrainer";
+import MistakeReview from "../MistakeReview/MistakeReview";
+import PluralTrainer from "../PluralTrainer/PluralTrainer";
+import TranslateMaster from "../TranslateMaster/TranslateMaster";
+import CardBody from "../wordCards/CardBody";
+
 
 export const modalMap = {
   flashcards:  (props: {close: ()=> void}) => <CardBody {...props}/>,

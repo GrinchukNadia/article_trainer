@@ -26,8 +26,7 @@
   // height: 100%;
   max-height: 550px;
   // margin: 40px 40px 40px 40px;
-  
-  
+
   border: 1px solid #e5e5e5;
   box-shadow: -1px 1px 8px 1px rgb(0 0 0 / 4%);
   border-radius: 2%;
@@ -65,5 +64,33 @@
   }
   & img {
     width: 100%;
+    &.hide {
+      opacity: 0;
+    }
+    &.show {
+      opacity: 1;
+      transition: opasity ease 0.2s;
+    }
+  }
+}
+
+.loader_body {
+  width: 420px;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.loader {
+  width: 60px;
+  aspect-ratio: 4;
+  background: radial-gradient(circle closest-side, #000 90%, #0000) 0 /
+    calc(100% / 3) 100% space;
+  clip-path: inset(0 100% 0 0);
+  animation: l1 1s steps(4) infinite;
+}
+@keyframes l1 {
+  to {
+    clip-path: inset(0 -34% 0 0);
   }
 }

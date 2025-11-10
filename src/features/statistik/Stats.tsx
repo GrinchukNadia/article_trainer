@@ -22,6 +22,7 @@ function Stats() {
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
           gap: "1rem",
+          padding: "1rem 0",
         }}
       >
         <div className={styles.card}>

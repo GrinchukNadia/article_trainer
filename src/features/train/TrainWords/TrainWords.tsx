@@ -1,6 +1,6 @@
-import LearnArticles from "./LearnArticles";
-import styles from "../Train.module.scss";
-import type { ModalKey } from "./modals";
+import LearnArticles from "./LearnArticles/LearnArticles";
+import styles from "../TrainList/Train.module.scss";
+import type { ModalKey } from "./Modal/modals";
 import { useSearchParams } from "react-router-dom";
 
 type TILES_TYPES = {

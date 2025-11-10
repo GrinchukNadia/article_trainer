@@ -1,9 +1,8 @@
-import TrainGrammar from "./TrainGrammar/TrainGrammar";
-import TrainWords from "./TrainWords/TrainWords";
 import styles from "./Train.module.scss";
-import { modalMap } from "./TrainWords/modals";
+import { modalMap } from "../TrainWords/Modal/modals";
 import { useSearchParams } from "react-router-dom";
-import Modal from "./TrainWords/Modal";
+import Modal from "../TrainWords/Modal/Modal";
+import TrainWords from "../TrainWords/TrainWords";
 
 const Train = () => {
   const [params, setParams] = useSearchParams();
@@ -16,7 +15,6 @@ const Train = () => {
   return (
     <div className={styles.train}>
       <TrainWords />
-      <TrainGrammar />
 
       {modalKey && modalKey in modalMap && (
         <Modal>
