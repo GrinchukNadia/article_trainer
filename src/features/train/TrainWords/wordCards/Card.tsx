@@ -2,7 +2,8 @@ import { memo, useEffect, useState } from "react";
 import Controls from "./Controls";
 import styles from "./Cards.module.scss";
 import clsx from "clsx";
-import type { Choice, CardItem } from "./useCardTrain";
+import type { CardBase } from "../../../../shared/types/words";
+import type { Choice } from "./useCardTrain";
 
 type CardProps = {
   animation: string;
@@ -14,7 +15,7 @@ type CardProps = {
   onAnimationStart: () => void;
   onAnimationEnd: () => void;
   handleAnswer: (choice:Choice) => void;
-  current: CardItem;
+  current: CardBase;
 };
 
 function Card({
