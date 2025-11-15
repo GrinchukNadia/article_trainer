@@ -49,6 +49,7 @@ export const srsSlice = createSlice({
             wordId: id,
             box: 0,
             streak: 0,
+            lapses: 0,
             nextDue: nowIso,
             mastered: false,
           };
@@ -61,24 +62,31 @@ export const srsSlice = createSlice({
       state,
       action: PayloadAction<{ dateIso?: string } | undefined>
     ) {
+      
+      let queueAll: string[] = [];
+      const reviwWordsList = [];
+      const newWordsList = [];
+
       const nowIso = action?.payload?.dateIso ?? UtsTimeNow();
       const now = new Date(nowIso);
-
-      const queue: string[] = [];
-
-      for (const id in state.progress.byId) {
+      
+      for (const id in state.words.byId) {
         const progress = state.progress.byId[id];
-
+        const lapses = state.progress.byId[id]?.lapses
         if (!progress) continue;
-
+        
+        // Convert the stored ISO date string into a Date object for comparison
         const nextDue = new Date(progress.nextDue);
 
-        if (now >= nextDue) {
-          queue.push(id);
+        if (now >= nextDue && lapses === 0) {
+          newWordsList.push(id);
+        }
+        if(now >= nextDue && lapses > 0) {
+          reviwWordsList.push(id);
         }
       }
-
-      state.queue.todayIds = queue;
+      queueAll = [...reviwWordsList, ...newWordsList].slice(0, 10);
+      state.queue.todayIds = queueAll;
     },
 
     // lazily update today's queue: add word if due again, remove if not due anymore
@@ -89,13 +97,6 @@ export const srsSlice = createSlice({
       const next = computeProgress(current, action.payload);
       state.progress.byId[wordId] = next;
 
-      const now = action.payload.dateNow ?? UtsTimeNow();
-      const isDue = new Date(next.nextDue) <= new Date(now);
-
-      const index = state.queue.todayIds.indexOf(wordId);
-
-      if (isDue && index === -1) state.queue.todayIds.push(wordId);
-      if (!isDue && index !== -1) state.queue.todayIds.splice(index, 1);
     },
   },
 });
@@ -104,12 +105,12 @@ export const { initWords, initWordsProgressArr, computeQueue, recordAnswer } =
   srsSlice.actions;
 // export default srsSlice.reducer;
 
+
 // persist local storage------------------------------------------------------------------------------
 const srsPersistConfig = {
   key: "srs_all",
   storage,
 }
-
 export default persistReducer(srsPersistConfig, srsSlice.reducer);
 // persist local storage------------------------------------------------------------------------------
 

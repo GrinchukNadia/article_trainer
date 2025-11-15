@@ -1,27 +1,39 @@
+import { useDispatch } from "react-redux";
 import CloseTrain from "../CloseTrain";
 import Card from "./Card";
 import { useCardTrain } from "./useCardTrain";
+import { computeQueue } from "../../../../reduxStore/srsSlice";
 
-export default function CardBody({close}: {close?: () => void}) {
-  const { current, state, onAnimationStart, onAnimationEnd, handleAnswer } =
+export default function CardBody({ close }: { close?: () => void }) {
+  const { current, index, state, onAnimationStart, onAnimationEnd, handleAnswer } =
     useCardTrain();
+
+  const dispatch = useDispatch();
 
   if (!current) {
     return (
       <div className="body">
         <div className="container">
-          <div className="finish">🎉 Fertig! Keine Karten mehr.</div>
+          <button onClick={() => {dispatch(computeQueue())}} className="finish">
+            Noch 10 Wörter lernen
+          </button>
         </div>
       </div>
     );
   }
 
   return (
-    <div style={{height: "100vh", overflow: "hidden", width: "100%", maxWidth: "80rem"}}>
-      
+    <div
+      style={{
+        height: "100vh",
+        overflow: "hidden",
+        width: "100%",
+        maxWidth: "80rem",
+      }}
+    >
       <CloseTrain close={close} />
       <Card
-        key={state.index}
+        key={index}
         animation={state.animation}
         word={current.lemma}
         link={current.media.image}

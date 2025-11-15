@@ -19,6 +19,7 @@ export const rootReducer = combineReducers({
 
 export const store = configureStore({
   reducer: rootReducer,
+
   // persist local storage---------------------------------------------------------------------------
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -28,6 +29,7 @@ export const store = configureStore({
       },
     }),
   // persist local storage---------------------------------------------------------------------------
+  
 });
 
 export type RootState = ReturnType<typeof store.getState>;

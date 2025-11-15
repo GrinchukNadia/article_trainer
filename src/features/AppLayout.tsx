@@ -1,20 +1,24 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import AuthModal from "./registrationModal/AuthModal";
 import AppHeader from "./header/AppHeader";
 import dataCard from "./data/Data";
 import { useDispatch } from "react-redux";
 import { initWords, initWordsProgressArr, computeQueue } from "../reduxStore/srsSlice";
+import { seed, shuffle } from "../shared/utils/shuffle";
+// import type { RootState } from "../reduxStore/store";
 
 export default function AppLayout() {
   const [authOpen, setAuthOpen] = useState(false);
 
   const dispatch = useDispatch();
+  // useSelector((reduxState: RootState) => console.log(reduxState));
 
   useEffect(() => {
     try {
       const cardsArr = Array.isArray(dataCard) ? dataCard : [];
-      dispatch(initWords(cardsArr));
+      const shuffledcardsArr = shuffle(cardsArr, seed)
+      dispatch(initWords(shuffledcardsArr));
       dispatch(initWordsProgressArr());
       dispatch(computeQueue());
     } catch (e) {

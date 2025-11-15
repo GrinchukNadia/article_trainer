@@ -1,5 +1,8 @@
-import { useCallback, useEffect, useMemo, useReducer } from "react";
-import dataCard from "../../../data/Data";
+import { useCallback, useEffect, useReducer, useState } from "react";
+// import dataCard from "../../../data/Data";
+import { useDispatch, useSelector } from "react-redux";
+import type { RootState } from "../../../../reduxStore/store";
+import { recordAnswer } from "../../../../reduxStore/srsSlice";
 
 type Gender = "der" | "die" | "das";
 type GenderDisplay = "der" | "die" | "das" | "___";
@@ -23,7 +26,6 @@ export type CardItem = {
   media: { image: string };
 };
 type State = {
-  index: number;
   translation: string;
   article: GenderDisplay;
   cardClass: string;
@@ -41,17 +43,7 @@ type CardAction =
   | { type: "NEXT_CARD" }
   | { type: "RESET_CARD" };
 
-function shuffle<T>(arr: T[]): T[] {
-  const copy = [...arr];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [copy[i], copy[j]] = [copy[j], copy[i]];
-  }
-  return copy;
-}
-
 const initial: State = {
-  index: 0,
   translation: ". . . . . . . .",
   article: "___" as const,
   cardClass: "",
@@ -74,8 +66,6 @@ function reducer(state: State, action: CardAction) {
       return { ...state, answered: action.value };
     case "SET_ANIMATING":
       return { ...state, animating: action.value };
-    case "NEXT_CARD":
-      return { ...state, index: state.index + 1 };
     case "RESET_CARD":
       return {
         ...state,
@@ -91,9 +81,22 @@ function reducer(state: State, action: CardAction) {
 }
 
 export function useCardTrain() {
-  const data = useMemo<CardItem[]>(() => shuffle(dataCard as CardItem[]), []);
   const [state, dispatch] = useReducer(reducer, initial);
-  const current = data[state.index];
+  const dataIds = useSelector(
+    (reduxState: RootState) => reduxState.srs.queue.todayIds
+  );
+  const [index, setIndex] = useState(0);
+
+  const currentId = dataIds[index];
+
+  const words = useSelector(
+    (reduxState: RootState) => reduxState.srs.words.byId
+  );
+  const current = currentId ? words[currentId] : null;
+
+  useEffect(() => {
+    setIndex(0);
+  }, [dataIds]);
 
   const onAnimationStart = useCallback(() => {
     dispatch({ type: "SET_ANIMATING", value: true });
@@ -102,15 +105,17 @@ export function useCardTrain() {
     dispatch({ type: "SET_ANIMATING", value: false });
   }, []);
 
+  const reduxDispatch = useDispatch();
   const handleAnswer = useCallback(
     (choice: Choice) => {
       if (!current) return;
       if (state.animating) return;
 
       if (choice === "next") {
-        if (state.answered) {
-          dispatch({ type: "SET_ANIM", anim: "next-card" });
+        if (!state.answered) {
+          return;
         }
+        dispatch({ type: "SET_ANIM", anim: "next-card" });
       }
 
       if (choice !== current.gender && !state.answered) {
@@ -120,6 +125,7 @@ export function useCardTrain() {
           das: "wrongT",
         };
         dispatch({ type: "SET_ANIM", anim: "" });
+        reduxDispatch(recordAnswer({ wordId: currentId, correct: false }));
         setTimeout(() => {
           dispatch({
             type: "SET_ANIM",
@@ -140,15 +146,16 @@ export function useCardTrain() {
         dispatch({ type: "SET_CARD_CLASS", name: "card-correct" });
         dispatch({ type: "SET_ANSWERED", value: true });
         dispatch({ type: "SET_TRANSLATION", text: current.translation });
+        reduxDispatch(recordAnswer({ wordId: currentId, correct: true }));
       }
     },
-    [current, state.animating, state.answered]
+    [current, state.animating, state.answered, currentId, reduxDispatch]
   );
 
   useEffect(() => {
     if (state.animation === "next-card") {
       const t = setTimeout(() => {
-        dispatch({ type: "NEXT_CARD" });
+        setIndex((index) => index + 1);
         dispatch({ type: "RESET_CARD" });
       }, 250);
       return () => clearTimeout(t);
@@ -157,6 +164,7 @@ export function useCardTrain() {
 
   return {
     current,
+    index,
     onAnimationEnd,
     onAnimationStart,
     handleAnswer,

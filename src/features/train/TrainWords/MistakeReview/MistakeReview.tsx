@@ -1,13 +1,3 @@
-// function MistakeReview({close}: {close: () => void }) {
-  //   return (
-    //     <div>
-    //       <CloseTrain close={close} />
-    //       MistakeReview
-    //     </div>
-    //   )
-    // }
-    
-    // export default MistakeReview
 import CloseTrain from "../CloseTrain"
 import styles from "./Mistakes.module.scss";
 

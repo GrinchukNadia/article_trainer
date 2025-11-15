@@ -36,27 +36,40 @@ export const computeProgress = (
     wordId: arg.wordId,
     box: 0,
     streak: 0,
+    lapses: 0,
     nextDue: addDaysUtsIso(currentIso, BOX_INTERVALS_DAYS[0]),
     mastered: false,
   };
 
-  let { box, streak } = initialProgress;
+  let { box, streak, lapses } = initialProgress;
 
   if (arg.correct) {
     streak += 1;
     box = limitBoxIndex(box + 1);
+    lapses = prev?.lapses ?? 0;
+    console.log(lapses)
   } else {
     streak = 0;
     box = limitBoxIndex(box - 1);
+    lapses = (prev?.lapses ?? 0) + 1;
+    console.log(lapses)
   }
 
-  const nextRepetition = addDaysUtsIso(currentIso, BOX_INTERVALS_DAYS[box]);
+  let nextRepetition = "";
+
+  if (lapses >=1 && streak === 1) {
+    nextRepetition = currentIso;
+  } else {
+    nextRepetition = addDaysUtsIso(currentIso, BOX_INTERVALS_DAYS[box]);
+  }
+
   const mastered = box === BOX_INTERVALS_DAYS.length - 1;
 
   return {
     ...initialProgress,
     box,
     streak,
+    lapses,
     nextDue: nextRepetition,
     mastered,
   };
