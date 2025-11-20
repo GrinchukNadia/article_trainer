@@ -2,10 +2,10 @@ import CloseTrain from "../CloseTrain"
 
 function ArticleSprint({close}: {close: ()=> void}) {
   return (
-    <div>
+    <>
       <CloseTrain close={close} />
-      ArticleSprint
-    </div>
+      <p>ArticleSprint</p>
+    </>
   )
 }
 

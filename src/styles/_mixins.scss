@@ -9,23 +9,69 @@
 }
 
 @mixin button-base {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: $spacing-2;
-  padding: 0.5rem 0.9rem;
-  border-radius: $radius-xl;
-  font-size: 0.9rem;
-  line-height: 1.2;
-  border: 1px solid transparent;
+  font-size: 14px;
+  padding: 4px 8px;
+  margin: 0 8px 0 0;
+
+  background: #f6f9ff;
+  color: #1a1a1a;
+
+  border: 2px solid #0f101d;
+  box-shadow: 0 0 0 4px #1d1f38, 4px 4px 0 4px #0b0b14; /* имитация толстых пиксельных рамок */
+  border-color: transparent;
+  
+  text-transform: uppercase;
   cursor: pointer;
-  transition: background $transition-fast, border-color $transition-fast,
-    color $transition-fast, opacity $transition-fast;
+
+  image-rendering: pixelated;
   text-decoration: none;
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  &:hover {
+    background: #e3e0ff56; /* чуть светлее */
+    box-shadow: 0 0 0 4px #000, 5px 5px 0 4px #000; /* тень немного вытягивается */
+    transform: translate(-0.5px, -0.5px); /* кнопка слегка поднимается */
+  }
+  
+  &[aria-current="page"] {
+    background: #eeeefd;
+    color: #111826;
+    box-shadow: 0 0 0 4px #0a0a0a, 2px 2px 0 4px #0a0a0a;
+    transform: translate(0.5px, 0.5px);
+  }
 }
 
-@mixin tabs__btn {
-  @include button-base;
-  background: #111827;
-  color: white;
+@mixin button-controls($img: null) {
+  background-color: transparent;
+  border: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+
+  @if $img != null {
+    mask: url(#{$img}) no-repeat center;
+    mask-size: contain;
+    // background-image: url(#{$img});
+  }
 }
+
+// @mixin button-base {
+//   display: inline-flex;
+//   align-items: center;
+//   justify-content: center;
+//   gap: $spacing-2;
+//   padding: 0.5rem 0.9rem;
+//   border-radius: $radius-xl;
+//   font-size: 0.9rem;
+//   line-height: 1.2;
+//   border: 1px solid transparent;
+//   cursor: pointer;
+//   transition: background $transition-fast, border-color $transition-fast,
+//     color $transition-fast, opacity $transition-fast;
+//   text-decoration: none;
+// }
+

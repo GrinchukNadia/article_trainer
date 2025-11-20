@@ -11,4 +11,38 @@
   overflow: auto;
   display: flex;
   justify-content: center;
+
+  background-color: #323241;
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  // .bottom {
+  //   position: absolute;
+  //   inset: 0;
+  //   background-image: url("../../../../assets/footer.png");
+
+  //   background-size: 950px;
+  //   image-rendering: pixelated;
+  //   image-rendering: crisp-edges;
+  //   background-position-y: bottom;
+  //   background-repeat: repeat-x;
+  // }
+   p {
+    z-index: 1;
+    margin: 20% 0 0 0;
+    font-size: 5rem;
+    color: white;
+  }
+  .top {
+    position: absolute;
+    inset: 0;
+    background-image: url("../../../../assets/header.png");
+    background-size: 950px;
+    image-rendering: pixelated;
+    image-rendering: crisp-edges;
+    background-position-y: top;
+    background-repeat: repeat-x;
+    z-index: 1;
+  }
 }

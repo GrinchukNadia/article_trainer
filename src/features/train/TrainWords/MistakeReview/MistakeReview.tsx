@@ -46,7 +46,7 @@ function MistakeReview({close}: {close: () => void }) {
               <button className="btn btn--primary" style={{ flex: 1 }}>
                 Быстрый дрилл →
               </button>
-              <button className="btn btn--ghost">⟵ Каталог</button>
+              <button className="">⟵ Каталог</button>
             </div>
           </div>
         ))}

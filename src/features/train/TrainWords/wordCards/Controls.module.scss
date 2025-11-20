@@ -1,0 +1,98 @@
+@use "../../../../styles/mixins";
+
+.article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  position: relative;
+
+  &Arrow {
+    @include mixins.button-controls("../../../../assets/arrow.png");
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    // border-style: solid;
+
+    &_top {
+      top: -46%;
+      left: 37%;
+      transform: rotate(90deg);
+      background-color: red;
+      // border-width: 0 8px 8px 8px;
+      // border-color: transparent transparent #000000 transparent;
+    }
+
+    &_left {
+      top: 26%;
+      left:8%;
+      background-color: purple;
+      // @include mixins.button-controls("../../../../assets/arrow.png");
+      // width: 20px;
+      // height: 20px;
+      // border-width: 8px 8px 8px 0;
+      // border-color: transparent #000000 transparent transparent;
+    }
+
+    &_right {
+      top: 26%;
+      left: 70%;
+      transform: rotate(180deg);
+      background-color: blue;
+      // @include mixins.button-controls("../../../../assets/arrow.png");
+      // width: 20px;
+      // height: 20px;
+      // border-width: 8px 0 8px 8px;
+      // border-color: transparent transparent transparent #000000;
+    }
+
+    &_bottom {
+      top: 88%;
+      left: 37%;
+      transform: rotate(-90deg);
+      background-color: yellow;
+      // @include mixins.button-controls("../../../../assets/arrow.png");
+      // width: 20px;
+      // height: 20px;
+      // border-width: 8px 8px 0 8px;
+      // border-color: #000000 transparent transparent transparent;
+    }
+  }
+
+  &_der {
+    color: #000;
+    top: 34%;
+    left: -30%;
+    @media screen and (max-width: 800px) {
+      left: 10px;
+    }
+  }
+  &_die {
+    top: 9%;
+    right: -41%;
+    color: #000;
+    @media screen and (max-width: 800px) {
+      right: 10px;
+    }
+  }
+
+  &_das {
+    color: #000;
+    top: -40%;
+    left: 6%;
+    @media screen and (max-width: 474px) {
+      top: 10px;
+    }
+  }
+
+  &_next {
+    color: #000;
+    bottom: 6%;
+    left: 6%;
+
+    @media screen and (max-width: 474px) {
+      bottom: 10px;
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import styles from "./Header.module.scss";
+import fireImg from "../../assets/fire.png";
 
 type HeaderActionsProps = {
   onOpenAuth: () => void;
@@ -8,10 +9,14 @@ type HeaderActionsProps = {
 const HeaderActions = ({ onOpenAuth }: HeaderActionsProps) => {
   return (
     <div className={styles.header__right}>
-      <NavLink className="btn btn--ghost" to="/impressum">
+      <div style={{display: "flex", alignItems: "end"}}>
+        <span style={{ marginRight: " 6px"}}>2 дня</span>
+        <img style={{height: "31px",}} src={fireImg} alt="" />
+      </div>
+      <NavLink className={styles.header__btn} to="/impressum">
         Impressum
       </NavLink>
-      <button className="btn btn--ghost" onClick={() => onOpenAuth()}>
+      <button className={styles.header__btn} onClick={() => onOpenAuth()}>
         Регистрация
       </button>
     </div>

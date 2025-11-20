@@ -22,6 +22,7 @@ type Previous = WordsProgress | undefined;
 export type AnswerUpdate = {
   wordId: string;
   correct: boolean;
+  mistakeInReview: boolean;
   dateNow?: string;
 };
 
@@ -37,22 +38,26 @@ export const computeProgress = (
     box: 0,
     streak: 0,
     lapses: 0,
+    errorScore: 0,
     nextDue: addDaysUtsIso(currentIso, BOX_INTERVALS_DAYS[0]),
     mastered: false,
   };
 
-  let { box, streak, lapses } = initialProgress;
+  let { box, streak, lapses, errorScore } = initialProgress;
 
   if (arg.correct) {
-    streak += 1;
-    box = limitBoxIndex(box + 1);
-    lapses = prev?.lapses ?? 0;
-    console.log(lapses)
+    if(!arg.mistakeInReview) {
+      streak += 1;
+      box = limitBoxIndex(box + 1);
+      errorScore = (prev?.errorScore ?? 0) < 1 ? 0 : errorScore - 1;
+    }
   } else {
-    streak = 0;
+    if(arg.mistakeInReview) {
+      streak = 0;
+    }
     box = limitBoxIndex(box - 1);
     lapses = (prev?.lapses ?? 0) + 1;
-    console.log(lapses)
+    errorScore = (prev?.errorScore ?? 0) + 1;
   }
 
   let nextRepetition = "";
@@ -72,5 +77,6 @@ export const computeProgress = (
     lapses,
     nextDue: nextRepetition,
     mastered,
+    errorScore,
   };
 };

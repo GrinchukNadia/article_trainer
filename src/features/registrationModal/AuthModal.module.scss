@@ -59,11 +59,9 @@
     text-align: center;
     margin-top: $spacing-2;
   }
-}
-.modal__close {
-  @extend .btn;
-  @extend .btn--ghost;
-  padding: $spacing-1 $spacing-2;
+  &__submit {
+    @include m.button-base;
+  }
 }
 
 .alert-success {

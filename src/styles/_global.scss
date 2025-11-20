@@ -28,29 +28,3 @@ main {
   justify-content: center;
 }
 
-// Buttons
-.btn {
-  @include m.button-base;
-}
-.btn:disabled,
-.btn[disabled] {
-  cursor: not-allowed;
-  opacity: 0.8;
-  pointer-events: none;
-}
-
-.btn--primary {
-  background: $color-primary;
-  color: $color-primary-contrast;
-}
-.btn--primary:hover {
-  background: #0f172a;
-}
-
-.btn--ghost {
-  background: #fff;
-  border-color: $color-border;
-}
-.btn--ghost:hover {
-  background: #f9fafb;
-}

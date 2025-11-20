@@ -16,7 +16,6 @@
   font-size: 1.8rem;
   margin-bottom: $spacing-4;
 }
-
-.tabs__btn {
-  @include m.tabs__btn;
+.tabs__btn{
+  @include m.button-base;
 }

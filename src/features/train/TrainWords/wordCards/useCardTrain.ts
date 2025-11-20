@@ -86,6 +86,7 @@ export function useCardTrain() {
     (reduxState: RootState) => reduxState.srs.queue.todayIds
   );
   const [index, setIndex] = useState(0);
+  const [mistakeInReview, setMistakeInReview] = useState(false);
 
   const currentId = dataIds[index];
 
@@ -108,6 +109,7 @@ export function useCardTrain() {
   const reduxDispatch = useDispatch();
   const handleAnswer = useCallback(
     (choice: Choice) => {
+      
       if (!current) return;
       if (state.animating) return;
 
@@ -115,17 +117,18 @@ export function useCardTrain() {
         if (!state.answered) {
           return;
         }
-        dispatch({ type: "SET_ANIM", anim: "next-card" });
+        dispatch({ type: "SET_ANIM", anim: "next-card",});
       }
 
       if (choice !== current.gender && !state.answered) {
+        setMistakeInReview(true);
         const animationNames: Record<Gender, Anim> = {
           der: "wrongL",
           die: "wrongR",
           das: "wrongT",
         };
         dispatch({ type: "SET_ANIM", anim: "" });
-        reduxDispatch(recordAnswer({ wordId: currentId, correct: false }));
+        reduxDispatch(recordAnswer({ wordId: currentId, correct: false, mistakeInReview: mistakeInReview }));
         setTimeout(() => {
           dispatch({
             type: "SET_ANIM",
@@ -136,6 +139,7 @@ export function useCardTrain() {
       }
 
       if (current.gender === choice) {
+        setMistakeInReview(false);
         const animationNames: Record<Gender, Anim> = {
           der: "rightL",
           die: "rightR",
@@ -146,10 +150,10 @@ export function useCardTrain() {
         dispatch({ type: "SET_CARD_CLASS", name: "card-correct" });
         dispatch({ type: "SET_ANSWERED", value: true });
         dispatch({ type: "SET_TRANSLATION", text: current.translation });
-        reduxDispatch(recordAnswer({ wordId: currentId, correct: true }));
+        reduxDispatch(recordAnswer({ wordId: currentId, correct: true, mistakeInReview: mistakeInReview }));
       }
     },
-    [current, state.animating, state.answered, currentId, reduxDispatch]
+    [current, state.animating, state.answered, currentId, reduxDispatch, mistakeInReview]
   );
 
   useEffect(() => {

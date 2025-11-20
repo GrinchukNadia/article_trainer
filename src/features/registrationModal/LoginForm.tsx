@@ -67,7 +67,7 @@ function LoginForm({ setSubmitted }: LoginFormProps) {
 
       <div className={styles.modal__actions}>
         <button
-          className="btn btn--primary"
+          className={styles.modal__submit}
           type="submit"
           disabled={!canSubmit}
         >

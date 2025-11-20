@@ -50,6 +50,7 @@ export const srsSlice = createSlice({
             box: 0,
             streak: 0,
             lapses: 0,
+            errorScore: 0,
             nextDue: nowIso,
             mastered: false,
           };
@@ -72,7 +73,8 @@ export const srsSlice = createSlice({
       
       for (const id in state.words.byId) {
         const progress = state.progress.byId[id];
-        const lapses = state.progress.byId[id]?.lapses
+        const lapses = state.progress.byId[id].lapses
+        const errorScore = state.progress.byId[id].errorScore
         if (!progress) continue;
         
         // Convert the stored ISO date string into a Date object for comparison
@@ -81,7 +83,8 @@ export const srsSlice = createSlice({
         if (now >= nextDue && lapses === 0) {
           newWordsList.push(id);
         }
-        if(now >= nextDue && lapses > 0) {
+        if( errorScore > 0) {
+        // if(now >= nextDue && errorScore > 0) {
           reviwWordsList.push(id);
         }
       }

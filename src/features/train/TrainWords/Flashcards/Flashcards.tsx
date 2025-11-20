@@ -1,10 +1,12 @@
+import CloseTrain from "../CloseTrain";
 
 function Flashcards() {
   return (
-    <div>
-      Flashcards
-    </div>
-  )
+    <>
+      <CloseTrain />
+      <p>Flashcards</p>
+    </>
+  );
 }
 
-export default Flashcards
+export default Flashcards;

@@ -41,6 +41,10 @@
     align-items: center;
     gap: $spacing-3;
   }
+
+  &__btn {
+    @include m.button-base;
+  }
 }
 
 .tabs {
@@ -48,14 +52,9 @@
   margin: 0 0.75rem;
   display: flex;
   gap: $spacing-2;
-
+  
   &__btn {
     @include m.button-base;
-    background: #f3f4f6;
-    border-color: transparent;
   }
-  &__btn[aria-current="page"] {
-    background: #111827;
-    color: white;
-  }
+  
 }

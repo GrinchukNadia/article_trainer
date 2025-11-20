@@ -37,6 +37,7 @@ export type WordsProgress = {
   box: number;
   streak: number;
   lapses: number ;
+  errorScore: number;
   nextDue: string;
   lastReviewed?: string;
   mastered: boolean;
