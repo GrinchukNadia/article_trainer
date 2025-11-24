@@ -5,7 +5,7 @@ type WordsState = {
   allIds: string[];
 };
 type ProgressState = { byId: Record<string, WordsProgress> };
-type QueueState ={ todayIds: string[] };
+type QueueState ={ todayIds: string[], weakIds: string[] };
 
 export type SrsState = {
   words: WordsState;

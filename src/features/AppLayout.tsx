@@ -4,7 +4,7 @@ import AuthModal from "./registrationModal/AuthModal";
 import AppHeader from "./header/AppHeader";
 import dataCard from "./data/Data";
 import { useDispatch } from "react-redux";
-import { initWords, initWordsProgressArr, computeQueue } from "../reduxStore/srsSlice";
+import { initWords, initWordsProgressArr, computeQueue, computeWeakQueue } from "../reduxStore/srsSlice";
 import { seed, shuffle } from "../shared/utils/shuffle";
 // import type { RootState } from "../reduxStore/store";
 
@@ -21,6 +21,7 @@ export default function AppLayout() {
       dispatch(initWords(shuffledcardsArr));
       dispatch(initWordsProgressArr());
       dispatch(computeQueue());
+      dispatch(computeWeakQueue());
     } catch (e) {
       console.log(e);
     }

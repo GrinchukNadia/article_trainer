@@ -5,36 +5,45 @@
   width: 80rem;
   padding: 0 $spacing-4;
 }
-.card {
-  @include m.card;
-}
 
-.kpi {
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1;
-}
-.kpi__hint {
-  font-size: 0.85rem;
-  color: $color-muted;
-}
+// -----------------------------повторение логики из CardBody-----------------------------------------------------------------
 
-.grid_2 {
-  display: grid;
-  gap: $spacing-6;
-}
-@media (min-width: 768px) {
-  .grid_2 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
+.continueLearning {
+  z-index: 1;
+  border: 1px solid;
+  width: 100%;
 
-.badge {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  font-size: 0.75rem;
-  padding: $spacing-1 $spacing-2;
-  border: 1px solid $color-border;
-  border-radius: $radius-xl;
-  background: #f3f4f6;
+  justify-content: center;
+
+  .hint {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+  }
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #5848c4;
+    font-size: 4rem;
+    font-weight: 800;
+    text-shadow: 4px -2px 0px #fff, 11px -4px 17px #000000ba;
+    letter-spacing: 6px;
+    outline: none;
+  }
+
+  span {
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 5px -2px 17px #000000ba;
+  }
+
+  .icon {
+    width: 70px;
+    height: 70px;
+    fill: #ffffff00;
+  }
 }

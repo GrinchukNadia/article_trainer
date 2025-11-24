@@ -3,7 +3,7 @@
 @mixin card {
   border: 1px solid $color-border;
   border-radius: $radius-2xl;
-  background: #fff;
+  background: #F2F3D9;
   padding: $spacing-6;
   box-shadow: $shadow-sm;
 }
@@ -13,7 +13,7 @@
   padding: 4px 8px;
   margin: 0 8px 0 0;
 
-  background: #f6f9ff;
+  background: #F2F3D9;
   color: #1a1a1a;
 
   border: 2px solid #0f101d;
@@ -39,7 +39,7 @@
   }
   
   &[aria-current="page"] {
-    background: #eeeefd;
+    background: #F2F3D9;
     color: #111826;
     box-shadow: 0 0 0 4px #0a0a0a, 2px 2px 0 4px #0a0a0a;
     transform: translate(0.5px, 0.5px);

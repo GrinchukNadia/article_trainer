@@ -1,11 +1,15 @@
 @use "../../../../styles/variables" as *;
+
 .learn {
   background-color: $color-accent;
-//   background-image: url("../../../../assets/background1.1.png");
-  background-position-x: -93px;
-  background-position-y: 25px;
-  background-size: 851px;
-  color: $color-bg;
-  border-radius: $radius-2xl;
+  // background-size: 166px;
+  
+  background-position: bottom right;
+  background-repeat: no-repeat;
+  // background-position-x: -83px;
+  // background-position-y: 0px;
+  // background-size: 851px;
+  box-shadow: 6px 6px 0 0 #000000;
+  color: #f8f8f8;
   padding: $spacing-4;
 }

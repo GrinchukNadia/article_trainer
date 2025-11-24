@@ -1,3 +1,5 @@
+@use '../../../../styles/variables' as *;
+
 .modal_backdrop {
   position: fixed;
   inset: 0;
@@ -17,17 +19,6 @@
   width: 100%;
   height: 100%;
 
-  // .bottom {
-  //   position: absolute;
-  //   inset: 0;
-  //   background-image: url("../../../../assets/footer.png");
-
-  //   background-size: 950px;
-  //   image-rendering: pixelated;
-  //   image-rendering: crisp-edges;
-  //   background-position-y: bottom;
-  //   background-repeat: repeat-x;
-  // }
    p {
     z-index: 1;
     margin: 20% 0 0 0;
@@ -44,5 +35,90 @@
     background-position-y: top;
     background-repeat: repeat-x;
     z-index: 1;
+  }
+}
+
+.learnArticles  {
+  background-color: $color1;
+
+  &::after {
+    content: "Начать изучение";
+    position: absolute;
+    inset: 0;
+    color: rgba(48, 48, 48, 0.404);
+    font-size: 20rem;
+    overflow: hidden;
+  }
+}
+
+.einEineTrainer {
+  background-color: $color2;
+
+  &::after {
+    content: "ein/eine тренажер";
+    position: absolute;
+    inset: 0;
+    color: $color4;
+    opacity: 0.3;
+    font-size: 19rem;
+    overflow: hidden;
+  }
+}
+
+.articleSprint {
+  background-color: $color3;
+
+    &::after {
+    content: "Cпринт по артиклям";
+    position: absolute;
+    inset: 0;
+    color: $color1;
+    opacity: 0.3;
+    font-size: 18.7rem;
+    overflow: hidden;
+  }
+}
+
+.mistakeReview {
+  background-color: $color5;
+  &::after {
+    content: "Мои ошибки";
+    position: absolute;
+    inset: 0;
+    color: $color3;
+    opacity: 0.3;
+    font-size: 20rem;
+    overflow: hidden;
+  }
+
+  > .top {
+    display: none;
+  }
+}
+.pluralTrainer {
+background-color: $color4;
+color: $color1;
+
+  &::after {
+    content: "Множественное число";
+    position: absolute;
+    inset: 0;
+    color: $color2;
+    opacity: 0.4;
+    font-size: 20rem;
+    overflow: hidden;
+  }
+}
+.translateMaster {
+  background-color: $color5;
+
+    &::after {
+    content: "Мастер перевода";
+    position: absolute;
+    inset: 0;
+    color: $color1;
+    opacity: 0.3;
+    font-size:20rem;
+    overflow: hidden;
   }
 }

@@ -19,7 +19,7 @@
       top: -46%;
       left: 37%;
       transform: rotate(90deg);
-      background-color: red;
+      background-color: #222222;
       // border-width: 0 8px 8px 8px;
       // border-color: transparent transparent #000000 transparent;
     }
@@ -27,7 +27,7 @@
     &_left {
       top: 26%;
       left:8%;
-      background-color: purple;
+      background-color: #222222;
       // @include mixins.button-controls("../../../../assets/arrow.png");
       // width: 20px;
       // height: 20px;
@@ -39,7 +39,7 @@
       top: 26%;
       left: 70%;
       transform: rotate(180deg);
-      background-color: blue;
+      background-color: #222222;
       // @include mixins.button-controls("../../../../assets/arrow.png");
       // width: 20px;
       // height: 20px;
@@ -51,7 +51,7 @@
       top: 88%;
       left: 37%;
       transform: rotate(-90deg);
-      background-color: yellow;
+      background-color: #222222;
       // @include mixins.button-controls("../../../../assets/arrow.png");
       // width: 20px;
       // height: 20px;

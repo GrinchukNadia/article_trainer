@@ -24,12 +24,10 @@
   min-height: 650px;
 
   box-shadow: 0 0 0 6px #1d1f38, 6px 6px 0 6px #0b0b14;;
-  // border-radius: 11px 11px 0 0;
   padding: 20px;
   background-color: #e1e1e1;
   z-index: 2;
 
-  // overflow: hidden;
 
   display: flex;
   flex-direction: column;
@@ -64,7 +62,7 @@
     max-height: 320px;
     overflow: hidden;
     margin: 20px;
-    box-shadow: 0 0 0 5px rgb(34, 32, 48), 0 0 0 10px black;
+    box-shadow: 0 0 0 5px rgb(34, 32, 48);
   }
   & img {
     width: 100%;
@@ -97,23 +95,4 @@
   to {
     clip-path: inset(0 -34% 0 0);
   }
-}
-.controls {
-  // clip-path: polygon(
-  //   0 35%,
-  //   38% 35%,
-  //   38% 0,
-  //   64% 0,
-  //   64% 35%,
-  //   100% 35%,
-  //   100% 64%,
-  //   64% 64%,
-  //   64% 100%,
-  //   35% 100%,
-  //   35% 64%,
-  //   0 64%
-  // );
-  // width: 45%;
-  // background-color: #4f4d4d;
-  // padding: 8px;
 }

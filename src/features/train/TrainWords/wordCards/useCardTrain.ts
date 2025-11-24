@@ -1,5 +1,4 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
-// import dataCard from "../../../data/Data";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../../reduxStore/store";
 import { recordAnswer } from "../../../../reduxStore/srsSlice";
@@ -80,15 +79,23 @@ function reducer(state: State, action: CardAction) {
   }
 }
 
-export function useCardTrain() {
+export function useCardTrain(status: "train" | "weakReview") {
   const [state, dispatch] = useReducer(reducer, initial);
+
   const dataIds = useSelector(
-    (reduxState: RootState) => reduxState.srs.queue.todayIds
+    (reduxState: RootState) => {
+      if (status === "train") {
+        return reduxState.srs.queue.todayIds;
+      } else if (status === "weakReview") {
+        return reduxState.srs.queue.weakIds;
+      }
+    }
   );
+
   const [index, setIndex] = useState(0);
   const [mistakeInReview, setMistakeInReview] = useState(false);
 
-  const currentId = dataIds[index];
+  const currentId = dataIds ? dataIds[index] : '';
 
   const words = useSelector(
     (reduxState: RootState) => reduxState.srs.words.byId

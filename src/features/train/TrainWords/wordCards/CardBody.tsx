@@ -13,7 +13,7 @@ export default function CardBody({ close }: { close?: () => void }) {
     onAnimationStart,
     onAnimationEnd,
     handleAnswer,
-  } = useCardTrain();
+  } = useCardTrain("train");
 
   const dispatch = useDispatch();
 
@@ -48,8 +48,19 @@ export default function CardBody({ close }: { close?: () => void }) {
           </button>
           <div className={styles.hint}>
             <span>Нажми </span>
-            <svg width="34" height="34" fill="#ffffff00" viewBox="0 0 24 24" className="icon">
-              <path  stroke="#ffffffff" stroke-linecap="round" stroke-linejoin="round" d="M15.5 9.00001V15H8.5M8.5 15L9.5 14M8.5 15L9.5 16M13 5H17.5C18.0523 5 18.5 5.44772 18.5 6V18C18.5 18.5523 18.0523 19 17.5 19H6.5C5.94772 19 5.5 18.5523 5.5 18V12C5.5 11.4477 5.94772 11 6.5 11H12V6C12 5.44771 12.4477 5 13 5Z" />
+            <svg
+              width="34"
+              height="34"
+              fill="#ffffff00"
+              viewBox="0 0 24 24"
+              className="icon"
+            >
+              <path
+                stroke="#ffffffff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15.5 9.00001V15H8.5M8.5 15L9.5 14M8.5 15L9.5 16M13 5H17.5C18.0523 5 18.5 5.44772 18.5 6V18C18.5 18.5523 18.0523 19 17.5 19H6.5C5.94772 19 5.5 18.5523 5.5 18V12C5.5 11.4477 5.94772 11 6.5 11H12V6C12 5.44771 12.4477 5 13 5Z"
+              />
             </svg>
             <span> что бы продолжить</span>
           </div>

@@ -1,12 +1,17 @@
-import LearnArticles from "./LearnArticles/LearnArticles";
-import styles from "../TrainList/Train.module.scss";
-import type { ModalKey } from "./Modal/modals";
+import LearnArticles from "./LearnArticles";
+import styles from "./TrainWords.module.scss";
+import type { ModalKey } from "../Modal/modals";
 import { useSearchParams } from "react-router-dom";
-import background1 from "../../../assets/background1.1.png"
-import background2 from "../../../assets/background2.png"
-import background3 from "../../../assets/background3.png"
-import background4 from "../../../assets/background4.png"
-import background5 from "../../../assets/background5.png"
+
+import brocken_tab from "../../../../assets/18_00_07.png"
+import w from "../../../../assets/19_48_58.png"
+import wings from "../../../../assets/16_58_19.png"
+import r from "../../../../assets/21_06_33.png"
+import candles from "../../../../assets/16_51_57.png"
+
+// import brocken_jar from "../../../../assets/13_42_19.png"
+// import z from "../../../../assets/14_23_43.png"
+// import u from "../../../../assets/14_30_53.png"
 
 type TILES_TYPES = {
   key: ModalKey;
@@ -14,51 +19,58 @@ type TILES_TYPES = {
   title: string;
   description: string;
   url: string;
+  size: string
 }[];
 export default function TrainWords() {
   const [, setSearchParams] = useSearchParams();
   const tiles: TILES_TYPES = [
     {
-      key: "flashcards",
+      key: "learnArticles",
       area: "a",
       title: "Начать изучение ",
       description: "Слова + артикли Der / Die / Das",
-      url: background1,
+      url: r,
+      size: "big"
     },
     {
-      key: "brainstorm",
+      key: "einEineTrainer",
       area: "b",
       title: "Ein / Eine",
       description: "Тренировка неопределённых артиклей",
-      url: background2,
+      url: w,
+      size: "small"
     },
     {
-      key: "translate",
+      key: "articleSprint",
       area: "c",
       title: "Спринт",
       description: "Быстрое повторение и закрепление выученных слов",
-      url: background3,
+      url: wings,
+      size: "small"
     },
     {
-      key: "repeat",
+      key: "mistakeReview",
       area: "d",
       title: "Мои ошибки",
       description: "Фокус на ошибках - тренируй слабые слова",
-      url: background4,
+      url: brocken_tab,
+      size: "small"
     },
     {
-      key: "constructor",
+      key: "pluralTrainer",
       area: "e",
       title: "Множественное число",
       description: "Изучи и запомини plural-формы",
-      url: background5,
+      url: candles,
+      size: "small"
     },
     {
-      key: "sprint",
+      key: "translateMaster",
       area: "f",
       title: "Мастер перевода ",
       description: "Проверка знания смысла слов",
-      url: background1,
+      url: "",
+      size: "big"
     },
   ];
   return (
@@ -71,6 +83,7 @@ export default function TrainWords() {
           title={t.title}
           description={t.description}
           url={t.url}
+          size={t.size}
         />
       ))}
     </div>
