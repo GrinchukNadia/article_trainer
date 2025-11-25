@@ -1,15 +1,12 @@
 @use "../../../../styles/variables" as *;
+@use "../../../../styles/mixins" as m;
 
 .learn {
-  background-color: $color-accent;
-  // background-size: 166px;
+  @include m.card;
   
+  background-color: $color3;
+  cursor: pointer;
   background-position: bottom right;
   background-repeat: no-repeat;
-  // background-position-x: -83px;
-  // background-position-y: 0px;
-  // background-size: 851px;
-  box-shadow: 6px 6px 0 0 #000000;
-  color: #f8f8f8;
-  padding: $spacing-4;
+
 }

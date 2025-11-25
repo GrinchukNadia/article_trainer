@@ -20,9 +20,7 @@ function LearnArticles({
     <div
       style={{
         gridArea: area,
-        cursor: "pointer",
         backgroundImage: "url(" + url + ")",
-        backgroundColor: "#708D81",
         backgroundSize: size === "big" ? "360px" : "166px",
       }}
       className={styles.learn}

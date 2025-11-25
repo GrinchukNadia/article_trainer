@@ -1,11 +1,10 @@
 @use "./variables" as *;
 
 @mixin card {
-  border: 1px solid $color-border;
-  border-radius: $radius-2xl;
-  background: #F2F3D9;
-  padding: $spacing-6;
-  box-shadow: $shadow-sm;
+  box-shadow: 6px 6px 0 0 #000000;
+  color: #f8f8f8;
+  padding: $spacing-4;
+  background-color: $color5;
 }
 
 @mixin button-base {
@@ -13,33 +12,32 @@
   padding: 4px 8px;
   margin: 0 8px 0 0;
 
-  background: #F2F3D9;
+  background: $color5;
   color: #1a1a1a;
 
   border: 2px solid #0f101d;
   box-shadow: 0 0 0 4px #1d1f38, 4px 4px 0 4px #0b0b14; /* имитация толстых пиксельных рамок */
   border-color: transparent;
-  
+
   text-transform: uppercase;
   cursor: pointer;
 
   image-rendering: pixelated;
   text-decoration: none;
-  
+
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
     pointer-events: none;
   }
-  
+
   &:hover {
-    background: #e3e0ff56; /* чуть светлее */
-    box-shadow: 0 0 0 4px #000, 5px 5px 0 4px #000; /* тень немного вытягивается */
+    background: $color5;
     transform: translate(-0.5px, -0.5px); /* кнопка слегка поднимается */
   }
-  
+
   &[aria-current="page"] {
-    background: #F2F3D9;
+    background: $color5;
     color: #111826;
     box-shadow: 0 0 0 4px #0a0a0a, 2px 2px 0 4px #0a0a0a;
     transform: translate(0.5px, 0.5px);
@@ -55,7 +53,6 @@
   @if $img != null {
     mask: url(#{$img}) no-repeat center;
     mask-size: contain;
-    // background-image: url(#{$img});
   }
 }
 
@@ -74,4 +71,3 @@
 //     color $transition-fast, opacity $transition-fast;
 //   text-decoration: none;
 // }
-

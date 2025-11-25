@@ -117,7 +117,7 @@ export const srsSlice = createSlice({
         if(a.box !== b.box) return a.box - b.box;
         return b.lapses - a.lapses;
       })
-      if(weakIds.length < 10) weakIds = [];
+      if(weakIds.length < 8) weakIds = [];
       state.queue.weakIds= weakIds;
     },
 
