@@ -5,13 +5,10 @@ import { useSearchParams } from "react-router-dom";
 
 import brocken_tab from "../../../../assets/18_00_07.png"
 import w from "../../../../assets/19_48_58.png"
-import wings from "../../../../assets/16_58_19.png"
-import r from "../../../../assets/21_06_33.png"
+import wings from "../../../../assets/p16_58_19.png"
+import r from "../../../../assets/кот4056415.png"
 import candles from "../../../../assets/16_51_57.png"
 
-// import brocken_jar from "../../../../assets/13_42_19.png"
-// import z from "../../../../assets/14_23_43.png"
-// import u from "../../../../assets/14_30_53.png"
 
 type TILES_TYPES = {
   key: ModalKey;

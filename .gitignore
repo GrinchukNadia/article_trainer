@@ -15,6 +15,10 @@ dist-ssr
 
 img
 pixel_art
+
+src/features/data/Data_lesson01.tsx
+src/features/data/Data_v1.ts
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

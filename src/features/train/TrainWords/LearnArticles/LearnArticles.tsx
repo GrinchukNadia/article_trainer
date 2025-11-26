@@ -21,7 +21,7 @@ function LearnArticles({
       style={{
         gridArea: area,
         backgroundImage: "url(" + url + ")",
-        backgroundSize: size === "big" ? "360px" : "166px",
+        backgroundSize: size === "big" ? "260px" : "166px",
       }}
       className={styles.learn}
       onClick={onClick}
