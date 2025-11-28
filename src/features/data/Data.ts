@@ -3409,6 +3409,1553 @@ export default [
     lapses: 0,
   },
 },
+{
+  id: "absender",
+  gender: "der",
+  lemma: "Absender",
+  plural: "Absender",
+  translation: "Отправитель",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "adresse",
+  gender: "die",
+  lemma: "Adresse",
+  plural: "Adressen",
+  translation: "Адрес",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "alphabet",
+  gender: "das",
+  lemma: "Alphabet",
+  plural: "Alphabete",
+  translation: "Алфавит",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "alternative",
+  gender: "die",
+  lemma: "Alternative",
+  plural: "Alternativen",
+  translation: "Альтернатива",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "amt",
+  gender: "das",
+  lemma: "Amt",
+  plural: "Ämter",
+  translation: "Учреждение",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "angabe",
+  gender: "die",
+  lemma: "Angabe",
+  plural: "Angaben",
+  translation: "Указание, данные",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "angst",
+  gender: "die",
+  lemma: "Angst",
+  plural: null,
+  translation: "Страх",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "anmeldung",
+  gender: "die",
+  lemma: "Anmeldung",
+  plural: "Anmeldungen",
+  translation: "Регистрация",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "anrede",
+  gender: "die",
+  lemma: "Anrede",
+  plural: "Anreden",
+  translation: "Обращение",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "ansage",
+  gender: "die",
+  lemma: "Ansage",
+  plural: "Ansagen",
+  translation: "Объявление",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "anzeige",
+  gender: "die",
+  lemma: "Anzeige",
+  plural: "Anzeigen",
+  translation: "Объявление, уведомление",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "arm",
+  gender: "der",
+  lemma: "Arm",
+  plural: "Arme",
+  translation: "Рука",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
 
+
+
+
+{
+  id: "benutzername",
+  gender: "der",
+  lemma: "Benutzername",
+  plural: "Benutzernamen",
+  translation: "Имя пользователя",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "berg",
+  gender: "der",
+  lemma: "Berg",
+  plural: "Berge",
+  translation: "Гора",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "berufsausbildung",
+  gender: "die",
+  lemma: "Berufsausbildung",
+  plural: "Berufsausbildungen",
+  translation: "Профессиональное образование",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "berufsbezeichnung",
+  gender: "die",
+  lemma: "Berufsbezeichnung",
+  plural: "Berufsbezeichnungen",
+  translation: "Название профессии",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "beruf",
+  gender: "der",
+  lemma: "Beruf",
+  plural: "Berufe",
+  translation: "Профессия",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "beschwerde",
+  gender: "die",
+  lemma: "Beschwerde",
+  plural: "Beschwerden",
+  translation: "Жалоба",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "besucher",
+  gender: "der",
+  lemma: "Besucher",
+  plural: "Besucher",
+  translation: "Посетитель",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "besucherin",
+  gender: "die",
+  lemma: "Besucherin",
+  plural: "Besucherinnen",
+  translation: "Посетительница",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "bett",
+  gender: "das",
+  lemma: "Bett",
+  plural: "Betten",
+  translation: "Кровать",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "betreuer",
+  gender: "der",
+  lemma: "Betreuer",
+  plural: "Betreuer",
+  translation: "Воспитатель, куратор",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "betreuerin",
+  gender: "die",
+  lemma: "Betreuerin",
+  plural: "Betreuerinnen",
+  translation: "Воспитательница, куратор (жен.)",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "bier",
+  gender: "das",
+  lemma: "Bier",
+  plural: "Biere",
+  translation: "Пиво",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "bild",
+  gender: "das",
+  lemma: "Bild",
+  plural: "Bilder",
+  translation: "Картинка, изображение",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "blut",
+  gender: "das",
+  lemma: "Blut",
+  plural: null,
+  translation: "Кровь",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "butter",
+  gender: "die",
+  lemma: "Butter",
+  plural: null,
+  translation: "Масло сливочное",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "brille",
+  gender: "die",
+  lemma: "Brille",
+  plural: "Brillen",
+  translation: "Очки",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "brot",
+  gender: "das",
+  lemma: "Brot",
+  plural: "Brote",
+  translation: "Хлеб",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "brucke",
+  gender: "die",
+  lemma: "Brücke",
+  plural: "Brücken",
+  translation: "Мост",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "buch",
+  gender: "das",
+  lemma: "Buch",
+  plural: "Bücher",
+  translation: "Книга",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "buchhandlung",
+  gender: "die",
+  lemma: "Buchhandlung",
+  plural: "Buchhandlungen",
+  translation: "Книжный магазин",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "buero",
+  gender: "das",
+  lemma: "Büro",
+  plural: "Büros",
+  translation: "Офис",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "cafeteria",
+  gender: "die",
+  lemma: "Cafeteria",
+  plural: "Cafeterias",
+  translation: "Кафетерий, столовая",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "chef",
+  gender: "der",
+  lemma: "Chef",
+  plural: "Chefs",
+  translation: "Шеф, начальник",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "chefin",
+  gender: "die",
+  lemma: "Chefin",
+  plural: "Chefinnen",
+  translation: "Шеф, начальница",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "cd",
+  gender: "die",
+  lemma: "CD",
+  plural: "CDs",
+  translation: "CD-диск",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "chance",
+  gender: "die",
+  lemma: "Chance",
+  plural: "Chancen",
+  translation: "Шанс",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "computer",
+  gender: "der",
+  lemma: "Computer",
+  plural: "Computer",
+  translation: "Компьютер",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "cousin",
+  gender: "der",
+  lemma: "Cousin",
+  plural: "Cousins",
+  translation: "Кузен",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "cousine",
+  gender: "die",
+  lemma: "Cousine",
+  plural: "Cousinen",
+  translation: "Кузина",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "dezemberabend",
+  gender: "der",
+  lemma: "Dezemberabend",
+  plural: "Dezemberabende",
+  translation: "Декабрьский вечер",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "deutsch",
+  gender: "das",
+  lemma: "Deutsch",
+  plural: null,
+  translation: "Немецкий язык",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "dialog",
+  gender: "der",
+  lemma: "Dialog",
+  plural: "Dialoge",
+  translation: "Диалог",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "diagnose",
+  gender: "die",
+  lemma: "Diagnose",
+  plural: "Diagnosen",
+  translation: "Диагноз",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "ding",
+  gender: "das",
+  lemma: "Ding",
+  plural: "Dinge",
+  translation: "Вещь",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "direktor",
+  gender: "der",
+  lemma: "Direktor",
+  plural: "Direktoren",
+  translation: "Директор",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "direktorin",
+  gender: "die",
+  lemma: "Direktorin",
+  plural: "Direktorinnen",
+  translation: "Директор (жен.)",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "doktor",
+  gender: "der",
+  lemma: "Doktor",
+  plural: "Doktoren",
+  translation: "Доктор",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "doktorin",
+  gender: "die",
+  lemma: "Doktorin",
+  plural: "Doktorinnen",
+  translation: "Доктор (жен.)",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "durchsage",
+  gender: "die",
+  lemma: "Durchsage",
+  plural: "Durchsagen",
+  translation: "Объявление (по громкой связи)",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "drucker",
+  gender: "der",
+  lemma: "Drucker",
+  plural: "Drucker",
+  translation: "Принтер",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "dienstagabend",
+  gender: "der",
+  lemma: "Dienstagabend",
+  plural: "Dienstagabende",
+  translation: "Вечер вторника",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "dusche",
+  gender: "die",
+  lemma: "Dusche",
+  plural: "Duschen",
+  translation: "Душ",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "ei",
+  gender: "das",
+  lemma: "Ei",
+  plural: "Eier",
+  translation: "Яйцо",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "eisenbahnnetz",
+  gender: "das",
+  lemma: "Eisenbahnnetz",
+  plural: "Eisenbahnnetze",
+  translation: "Железнодорожная сеть",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "elternteil",
+  gender: "das",
+  lemma: "Elternteil",
+  plural: "Elternteile",
+  translation: "Один из родителей",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "enkel",
+  gender: "der",
+  lemma: "Enkel",
+  plural: "Enkel",
+  translation: "Внук",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "enkelin",
+  gender: "die",
+  lemma: "Enkelin",
+  plural: "Enkelinnen",
+  translation: "Внучка",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "einkaufszettel",
+  gender: "der",
+  lemma: "Einkaufszettel",
+  plural: "Einkaufszettel",
+  translation: "Список покупок",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "einkaufszentrum",
+  gender: "das",
+  lemma: "Einkaufszentrum",
+  plural: "Einkaufszentren",
+  translation: "Торговый центр",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+{
+  id: "eingang",
+  gender: "der",
+  lemma: "Eingang",
+  plural: "Eingänge",
+  translation: "Вход",
+  level: 1,
+  media: {
+    image: "",
+  },
+  srs: {
+    status: "new",
+    streak: 0,
+    intervalDays: 0,
+    dueAt: null,
+    reps: 0,
+    lapses: 0,
+  },
+},
+
+
+
+
+/*
+
+der Absender
+die Adresse
+das Alphabet
+die Alternative
+das Amt
+die Angabe
+die Angst
+die Anmeldung
+die Anrede
+die Ansage
+die Anzeige
+der Aprilkuchen
+der Arm
+der Arzt
+die Ärztin
+der Augusttag
+die Auskunft
+die Ausländerin
+die Ausnahme
+der Ausgang
+der Ausweis
+die Auswahl
+der Babysitter
+der Balkon
+der Basketball
+der Bauch
+der Beamte
+die Beamtin
+das Beispiel
+das Bein
+
+
+
+der Benutzername
+der Berg
+die Berufsausbildung
+die Berufsbezeichnung
+der Beruf
+die Beschwerde
+der Besucher
+die Besucherin
+das Bett
+der Betreuer
+die Betreuerin
+das Bier
+das Bild
+das Blut
+die Butter
+die Brille
+das Brot
+die Brücke
+das Buch
+die Buchhandlung
+das Büro
+die Cafeteria
+der Chef
+die Chefin
+die CD
+die Chance
+der Computer
+der Cousin
+die Cousine
+der Dezemberabend
+das Deutsch
+der Dialog
+die Diagnose
+das Ding
+der Direktor
+die Direktorin
+der Doktor
+die Doktorin
+die Durchsage
+der Drucker
+der Dienstagabend
+die Dusche
+das Ei
+das Eisenbahnnetz
+das Elternteil
+der Enkel
+die Enkelin
+der Einkaufszettel
+das Einkaufszentrum
+der Eingang
+
+
+
+der Eintritt
+das Eis
+der Elefant
+der Empfänger
+die Erdkunde
+die Erlaubnis
+die Ermäßigung
+das Etikett
+der Euro
+die Fabrik
+die Fähre
+der Fall
+der Familienname
+das Fax
+das Fest
+das Fieber
+die Firma
+die Form
+das Formular
+der Freitagabend
+die Freizeit
+die Freundin
+die Frist
+die Führung
+die Garage
+der Garten
+das Geld
+das Gerät
+das Gericht
+das Gespräch
+das Geschenk
+der Geschmack
+der Geburtstag
+das Gebäude
+der Geburtsort
+die Geburt
+der Gegenstand
+das Gegenteil
+die Geige
+die Gelegenheit
+die Geschichte
+die Geschwindigkeit
+die Gesundheit
+das Getränk
+der Gewinn
+das Gramm
+die Grenze
+das Haar
+der Hals
+der Hammer
+
+
+
+
+die Hand
+der Handschuh
+der Hafen
+der Haken
+das Hemd
+der Herd
+der Himmel
+der Hinweis
+das Hobby
+die Idee
+das Interesse
+der Ingenieur
+die Ingenieurin
+der Job
+das Jahrbuch
+die Jacke
+die Jeans
+das Kind
+die Kette
+das Kino
+die Kirche
+die Küche
+die Klasse
+das Kleid
+das Kleidungsstück
+der Kunde
+die Kundin
+die Kugel
+der Kugelschreiber
+die Kultur
+der Kurs
+der Kuchen
+die Lampe
+der Laden
+das Landhaus
+die Landschaft
+der Laptop
+die Lehrerin
+der Lehrer
+das Lehrbuch
+die Lehre
+der Leiter
+die Leiterin
+das Licht
+das Lied
+die Liebe
+der Lift
+die Liste
+der Löffel
+die Luft
+
+
+
+
+das Medikament
+das Meerwasser
+die Meinung
+die Menge
+das Menü
+der Mensch
+die Milch
+der Mittwochabend
+der Mond
+der Montagmorgen
+das Museum
+der Nachbar
+die Nachbarin
+der Nachname
+der Nachmittagstermin
+der Name
+die Nachricht
+das Nahrungsmittel
+die Natur
+die Nähe
+der Nutzer
+die Nutzerin
+der Onkel
+das Paar
+die Papiere
+der Pass
+die Pause
+die Person
+das Plastik
+der Preis
+die Praxis
+das Problem
+das Produkt
+der Prospekt
+der Pullover
+der Punkt
+die Qualität
+die Quittung
+der Rabatt
+der Raum
+der Rat
+das Rätsel
+die Rechnung
+das Recht
+der Reis
+die Reinigung
+die Richtung
+die Rose
+der Rücken
+das Salz
+
+
+
+
+die Sache
+der Saft
+die Sahne
+der Samstagabend
+der Satz
+die Schere
+der Schlüssel
+die Schule
+der Schüler
+die Schülerin
+der Schuh
+das Schwein
+das Schwimmbad
+die Schwierigkeit
+das Segelboot
+der Sessel
+die Seite
+der Service
+die Serviette
+das Shirt
+die Sozialversicherung
+der Spaß
+die Sprache
+der Spaziergang
+die Sprachschule
+der Sport
+das Stadtzentrum
+das Stadion
+der Start
+der Staat
+die Steckdose
+der Stift
+die Stimme
+der Stock
+der Strand
+der Stress
+der Student
+die Studentin
+der Stuhl
+die Stundeplan
+die Suppe
+die Tasche
+die Tasse
+der Tee
+die Telefonnummer
+der Tisch
+die Torte
+die Toilette
+der Tourist
+die Touristin
+
+
+
+
+die Tram
+das Training
+die Treppe
+das Trinkgeld
+die Tür
+die Unterhaltung
+die Umgebung
+der Unfall
+die Universität
+die Unterschrift
+die Unterlagen
+die Unterkunft
+die Uhr
+die Uhrzeit
+der Urlaub
+der Unterricht
+die Übung
+die Vase
+das Verbot
+der Verkehr
+der Verkäufer
+die Verkäuferin
+die Versicherung
+die Verspätung
+der Vertrag
+das Video
+das Viertel
+die Visitenkarte
+die Verwaltung
+das Wasser
+die Wärme
+der Weg
+der Wein
+das Wiederhören
+das Wiedersehen
+die Wocheplanung
+die Wohnung
+das Wort
+das Wörterbuch
+die Wirtschaft
+der Wunsch
+das Zeichen
+die Zeitungsseite
+die Zeitung
+die Zitrone
+der Zucker
+die Zukunft
+die Zunge
+der Zugang
+der Zuschauer
+
+
+die Zuschauerin
+der Zustand
+die Zusammenarbeit
+das Zimmer
+
+*/
 
 ]
