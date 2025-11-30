@@ -7,7 +7,7 @@ import type { Choice } from "./useCardTrain";
 import { selectProgressById } from "../../../../reduxStore/srsSlice";
 import { useSelector } from "react-redux";
 import type { RootState } from "../../../../reduxStore/store";
-import styles from "./Cards.module.scss";
+import styles from "./Card.module.scss";
 
 type CardProps = {
   animation: string;
@@ -81,28 +81,31 @@ function Card({
           <div>lapses: {lapses}</div>
           <div> mistakes: {mistakes} </div>
         </div>
-        {link && (
-          <div className={styles.inner_img}>
-            {!loaded && (
-              <div className={styles.loader_body}>
-                <div className={styles.loader}></div>
-              </div>
-            )}
-            <img
-              onLoad={() => setLoaded(true)}
-              className={loaded ? styles.show : styles.hide}
-              loading="lazy"
-              alt=""
-              src={link}
-            />
-          </div>
-        )}
+
+        <div className={styles.img}>
+          {link && (
+            <div className={styles.inner_img}>
+              {!loaded && (
+                <div className={styles.loader_body}>
+                  <div className={styles.loader}></div>
+                </div>
+              )}
+              <img
+                onLoad={() => setLoaded(true)}
+                className={loaded ? styles.show : styles.hide}
+                loading="lazy"
+                alt=""
+                src={link}
+              />
+            </div>
+          )}
+        </div>
 
         <span className={styles.line}></span>
+
+        <Controls />
+
         <div className={styles.inner_text}>
-          <div className={styles.controls}>
-            <Controls />
-          </div>
           <div className={styles.card_word}>
             <div>
               <span className={styles.cardArticle}>{article}</span> {word}

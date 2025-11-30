@@ -27,7 +27,7 @@ export default function CardBody({ close }: { close?: () => void }) {
         dispatch(computeQueue());
         return;
       }
-      if ("key" in e && e.key === "Enter") {
+      if ("key" in e && e.key === "ArrowDown") {
         dispatch(computeQueue());
       }
     };
@@ -49,18 +49,19 @@ export default function CardBody({ close }: { close?: () => void }) {
           <div className={styles.hint}>
             <span>Нажми </span>
             <svg
-              width="34"
-              height="34"
-              fill="#ffffff00"
-              viewBox="0 0 24 24"
-              className="icon"
+              xmlns="http://www.w3.org/2000/svg"
+              version="1.1"
+              width="36"
+              height="36"
+              viewBox="0 0 256 256"
             >
-              <path
-                stroke="#ffffffff"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                d="M15.5 9.00001V15H8.5M8.5 15L9.5 14M8.5 15L9.5 16M13 5H17.5C18.0523 5 18.5 5.44772 18.5 6V18C18.5 18.5523 18.0523 19 17.5 19H6.5C5.94772 19 5.5 18.5523 5.5 18V12C5.5 11.4477 5.94772 11 6.5 11H12V6C12 5.44771 12.4477 5 13 5Z"
-              />
+              <g transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                <path
+                  d="M 90 24.25 c 0 -0.896 -0.342 -1.792 -1.025 -2.475 c -1.366 -1.367 -3.583 -1.367 -4.949 0 L 45 60.8 L 5.975 21.775 c -1.367 -1.367 -3.583 -1.367 -4.95 0 c -1.366 1.367 -1.366 3.583 0 4.95 l 41.5 41.5 c 1.366 1.367 3.583 1.367 4.949 0 l 41.5 -41.5 C 89.658 26.042 90 25.146 90 24.25 z"
+                  transform=" matrix(1 0 0 1 0 0) "
+                  stroke-linecap="round"
+                />
+              </g>
             </svg>
             <span> что бы продолжить</span>
           </div>

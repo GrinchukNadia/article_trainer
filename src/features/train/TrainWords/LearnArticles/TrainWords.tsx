@@ -6,8 +6,9 @@ import { useSearchParams } from "react-router-dom";
 import brocken_tab from "../../../../assets/18_00_07.png"
 import w from "../../../../assets/19_48_58.png"
 import wings from "../../../../assets/p16_58_19.png"
-import r from "../../../../assets/кот4056415.png"
+import r from "../../../../assets/19_13_13.png"
 import candles from "../../../../assets/16_51_57.png"
+import cats from "../../../../assets/12_24_07.png"
 
 
 type TILES_TYPES = {
@@ -66,8 +67,8 @@ export default function TrainWords() {
       area: "f",
       title: "Мастер перевода ",
       description: "Проверка знания смысла слов",
-      url: "",
-      size: "big"
+      url: cats,
+      size: "x-big"
     },
   ];
   return (

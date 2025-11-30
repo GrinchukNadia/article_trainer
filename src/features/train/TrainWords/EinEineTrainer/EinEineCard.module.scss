@@ -42,9 +42,10 @@
   }
 
   &_answered {
-    @include m.card-deck($border: 2px);
+    @include m.card-deck($border: 2px, $before-transform: translatey(6%) rotate(0deg) translatex(4%), $after-transform: translatey(2%) rotate(0deg) translatex(2%));
+
     padding: 1rem;
-    border: 1px solid;
+    border: 2px solid;
     background-color: $color5;
     width: 200px;
 

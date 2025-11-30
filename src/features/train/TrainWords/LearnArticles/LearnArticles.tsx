@@ -16,12 +16,20 @@ function LearnArticles({
   url,
   size,
 }: LEARN_ARTICLES_TYPES) {
+  let sizePx = "";
+  if (size === "x-big") {
+    sizePx = "410px";
+  } else if (size === "big") {
+    sizePx = "346px";
+  } else {
+    sizePx = "166px";
+  }
   return (
     <div
       style={{
         gridArea: area,
         backgroundImage: "url(" + url + ")",
-        backgroundSize: size === "big" ? "260px" : "166px",
+        backgroundSize: sizePx
       }}
       className={styles.learn}
       onClick={onClick}
