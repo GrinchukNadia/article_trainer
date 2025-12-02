@@ -114,11 +114,11 @@ export const srsSlice = createSlice({
       weakIds.sort((aId, bId) => {
         const a = state.progress.byId[aId]!;
         const b = state.progress.byId[bId]!;
-        if(a.box !== b.box) return a.box - b.box;
+        if (a.box !== b.box) return a.box - b.box;
         return b.lapses - a.lapses;
-      })
-      if(weakIds.length < 8) weakIds = [];
-      state.queue.weakIds= weakIds;
+      });
+      if (weakIds.length < 8) weakIds = [];
+      state.queue.weakIds = weakIds;
     },
 
     // lazily update today's queue: add word if due again, remove if not due anymore
@@ -132,8 +132,13 @@ export const srsSlice = createSlice({
   },
 });
 
-export const { initWords, initWordsProgressArr, computeQueue, computeWeakQueue, recordAnswer } =
-  srsSlice.actions;
+export const {
+  initWords,
+  initWordsProgressArr,
+  computeQueue,
+  computeWeakQueue,
+  recordAnswer,
+} = srsSlice.actions;
 // export default srsSlice.reducer;
 
 // persist local storage------------------------------------------------------------------------------

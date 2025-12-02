@@ -16,7 +16,7 @@ $label-color: #6b7280;
   height: 240px;
   padding: 1rem 1rem 2rem;
   border-radius: 12px;
-  background: $chart-bg;
+  background: $color5;
   overflow: hidden;
 
   &__grid {
@@ -39,7 +39,7 @@ $label-color: #6b7280;
 
   &__bar {
     flex: 1;
-    background: linear-gradient(180deg, $bar-color-top, $bar-color-bottom);
+    background: linear-gradient(180deg, rgb(29, 29, 29), rgb(69, 69, 69));
     border-radius: 8px 8px 0 0;
     box-shadow: 0 2px 0 rgba(0, 0, 0, 0.05) inset,
       0 8px 14px rgba(37, 99, 235, 0.15);
@@ -64,9 +64,10 @@ $label-color: #6b7280;
 }
 .kpi__hint {
   font-size: 0.85rem;
-  color: $color-muted;
+  color: $color1;
 }
 
 .card {
   @include m.card;
+  background-color: $color3;
 }

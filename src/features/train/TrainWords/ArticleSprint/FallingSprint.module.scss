@@ -1,0 +1,38 @@
+.sprint {
+  height: 100%;
+
+  &_field {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  &_word {
+    font-size: 4rem;
+    width: fit-content;
+    flex-grow: 2;
+  }
+  &_bottom {
+    display: flex;
+    border: 1px solid;
+    font-size: 2rem;
+  }
+  &_cell {
+    padding: 30px;
+    border: 1px solid;
+    flex-grow: 2;
+    text-align: center;
+    background-color: #fff;
+    z-index: 2;
+    
+    &.correct {
+      background-color: green;
+    }
+    &.wrong {
+      background-color: red;
+    }
+  }
+  &_hint {
+    font-size: 1.2rem;
+  }
+}

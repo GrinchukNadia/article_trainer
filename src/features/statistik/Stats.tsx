@@ -3,7 +3,7 @@ import styles from "./Statistik.module.scss";
 function Stats() {
   return (
     <section className={styles.stats}>
-      <h2 style={{ marginBottom: ".5rem" }}>
+      <h2 style={{ marginBottom: ".5rem", color: "white" }}>
         ⚠️ Dies ist ein Demonstrationsprototyp.
       </h2>
 
