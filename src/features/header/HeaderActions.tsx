@@ -10,7 +10,7 @@ const HeaderActions = ({ onOpenAuth }: HeaderActionsProps) => {
   return (
     <div className={styles.header__right}>
       <div style={{display: "flex", alignItems: "end"}}>
-        <span style={{ marginRight: " 6px"}}>2 дня</span>
+        <span style={{ marginRight: " 6px"}}>3 дня</span>
         <img style={{height: "31px",}} src={fireImg} alt="" />
       </div>
       <NavLink className={styles.header__btn} to="/impressum">
