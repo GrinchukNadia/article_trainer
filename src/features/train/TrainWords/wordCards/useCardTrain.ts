@@ -82,20 +82,18 @@ function reducer(state: State, action: CardAction) {
 export function useCardTrain(status: "train" | "weakReview") {
   const [state, dispatch] = useReducer(reducer, initial);
 
-  const dataIds = useSelector(
-    (reduxState: RootState) => {
-      if (status === "train") {
-        return reduxState.srs.queue.todayIds;
-      } else if (status === "weakReview") {
-        return reduxState.srs.queue.weakIds;
-      }
+  const dataIds = useSelector((reduxState: RootState) => {
+    if (status === "train") {
+      return reduxState.srs.queue.todayIds;
+    } else if (status === "weakReview") {
+      return reduxState.srs.queue.weakIds;
     }
-  );
+  });
 
   const [index, setIndex] = useState(0);
   const [mistakeInReview, setMistakeInReview] = useState(false);
 
-  const currentId = dataIds ? dataIds[index] : '';
+  const currentId = dataIds ? dataIds[index] : "";
 
   const words = useSelector(
     (reduxState: RootState) => reduxState.srs.words.byId
@@ -116,7 +114,6 @@ export function useCardTrain(status: "train" | "weakReview") {
   const reduxDispatch = useDispatch();
   const handleAnswer = useCallback(
     (choice: Choice) => {
-      
       if (!current) return;
       if (state.animating) return;
 
@@ -124,7 +121,7 @@ export function useCardTrain(status: "train" | "weakReview") {
         if (!state.answered) {
           return;
         }
-        dispatch({ type: "SET_ANIM", anim: "next-card",});
+        dispatch({ type: "SET_ANIM", anim: "next-card" });
       }
 
       if (choice !== current.gender && !state.answered) {
@@ -135,7 +132,13 @@ export function useCardTrain(status: "train" | "weakReview") {
           das: "wrongT",
         };
         dispatch({ type: "SET_ANIM", anim: "" });
-        reduxDispatch(recordAnswer({ wordId: currentId, correct: false, mistakeInReview: mistakeInReview }));
+        reduxDispatch(
+          recordAnswer({
+            wordId: currentId,
+            correct: false,
+            mistakeInReview: mistakeInReview,
+          })
+        );
         setTimeout(() => {
           dispatch({
             type: "SET_ANIM",
@@ -157,10 +160,25 @@ export function useCardTrain(status: "train" | "weakReview") {
         dispatch({ type: "SET_CARD_CLASS", name: "card-correct" });
         dispatch({ type: "SET_ANSWERED", value: true });
         dispatch({ type: "SET_TRANSLATION", text: current.translation });
-        reduxDispatch(recordAnswer({ wordId: currentId, correct: true, mistakeInReview: mistakeInReview }));
+        if (!state.answered) {
+          reduxDispatch(
+            recordAnswer({
+              wordId: currentId,
+              correct: true,
+              mistakeInReview: mistakeInReview,
+            })
+          );
+        }
       }
     },
-    [current, state.animating, state.answered, currentId, reduxDispatch, mistakeInReview]
+    [
+      current,
+      state.animating,
+      state.answered,
+      currentId,
+      reduxDispatch,
+      mistakeInReview,
+    ]
   );
 
   useEffect(() => {

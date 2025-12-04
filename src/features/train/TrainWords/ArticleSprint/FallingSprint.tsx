@@ -14,7 +14,8 @@ import clsx from "clsx";
 
 type Column = "der" | "die" | "das";
 
-const ROWS = 18; // сколько "ступенек" по высоте
+let ROWS = 0; // сколько "ступенек" по высоте
+const STEP = 40; // высота одного "шага" в пикселях
 const NORMAL_SPEED = 600; // мс между "шагами" падения
 const FAST_SPEED = 40; // ускорение при стрелке вниз
 
@@ -33,6 +34,8 @@ export function FallingSprint() {
   const [column, setColumn] = useState<Column>("die");
   const [row, setRow] = useState(0); // 0 = верх, ROWS-1 = низ
   const [speed, setSpeed] = useState(NORMAL_SPEED);
+  // когда слово "приземлилось"
+  const [result, setResult] = useState<"correct" | "wrong" | null>(null);
 
   // когда меняется слово — сбрасываем позицию
   useEffect(() => {
@@ -83,9 +86,6 @@ export function FallingSprint() {
     };
   }, [currentWord]);
 
-  // когда слово "приземлилось"
-  const [result, setResult] = useState<"correct" | "wrong" | null>(null);
-
   const handleLand = useCallback(() => {
     if (!currentWord) return;
     const correctArticle = currentWord.gender as Column;
@@ -98,24 +98,6 @@ export function FallingSprint() {
     }, 900);
   }, [column, currentWord, dispatch]);
 
-  // падение "ступеньками" через setInterval
-  useEffect(() => {
-    if (!currentWord) return;
-
-    const id = window.setInterval(() => {
-      setRow((prev) => {
-        if (prev >= ROWS - 1) {
-          if(result === null){
-            handleLand();
-          }
-        }
-        return prev + 1;
-      });
-    }, speed);
-
-    return () => window.clearInterval(id);
-  }, [currentWord, speed, handleLand, result]); // speed меняется при ArrowDown
-
   const fieldRef = useRef<HTMLDivElement | null>(null);
   const [columnWidth, setColumnWidth] = useState(0);
 
@@ -124,9 +106,14 @@ export function FallingSprint() {
       const el = fieldRef.current;
       if (!el) return;
 
+      const children = el.children;
+      const second = children[1];
+      const third = children[2];
+      const secondHeight = second.getBoundingClientRect().height;
+      const thirdHeight = third.getBoundingClientRect().height;
       const rect = el.getBoundingClientRect();
       const fieldWidth = rect.width / 3;
-
+      ROWS = (rect.height - secondHeight - thirdHeight) / STEP;
       if (fieldWidth > 0) {
         setColumnWidth(fieldWidth);
       }
@@ -142,6 +129,25 @@ export function FallingSprint() {
     };
   }, []);
 
+  // падение "ступеньками" через setInterval
+  useEffect(() => {
+    if (!currentWord) return;
+
+    const id = window.setInterval(() => {
+      setRow((prev) => {
+        if (prev >= ROWS - 1) {
+          if (result === null) {
+            handleLand();
+          }
+          return prev;
+        }
+        return prev + 1;
+      });
+    }, speed);
+
+    return () => window.clearInterval(id);
+  }, [currentWord, speed, handleLand, result]); // speed меняется при ArrowDown
+
   const columnIndex = column === "der" ? 0 : column === "die" ? 1 : 2;
   const columnX = columnIndex * columnWidth;
 
@@ -149,16 +155,14 @@ export function FallingSprint() {
     return <div>Нет слов для спринта</div>;
   }
 
-
-
   const correctArticle = currentWord.gender as Column;
   const getCellClass = (cell: Column) => {
     return clsx(styles.sprint_cell, {
       [styles.correct]: result !== null && cell === correctArticle,
-      [styles.wrong]: result === "wrong" && cell === column  && column !== correctArticle
-    })
-  }
-
+      [styles.wrong]:
+        result === "wrong" && cell === column && column !== correctArticle,
+    });
+  };
 
   return (
     <div className={styles.sprint}>
@@ -166,7 +170,7 @@ export function FallingSprint() {
         <div
           className={styles.sprint_word}
           style={{
-            transform: `translate(${columnX}px, ${row * 40}px)`,
+            transform: `translate(${columnX}px, ${row * STEP}px)`,
           }}
         >
           {currentWord.lemma}
