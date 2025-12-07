@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { SptintPhase } from "../features/train/TrainWords/ArticleSprint/useRunningPhase";
 import { shuffle } from "../shared/utils/shuffle";
+import { persistReducer } from "redux-persist";
+import storage from "redux-persist/es/storage";
 
 type SprintAnswer = {
   wordId: string;
@@ -104,4 +106,12 @@ export const sprintSlice = createSlice({
 
 export const { startSprint, timerSprint, recordAnswerSprint, finishSprint, resetSprint } =
   sprintSlice.actions;
-export default sprintSlice.reducer;
+// export default sprintSlice.reducer;
+
+// persist local storage------------------------------------------------------------------------------
+const srsPersistConfig = {
+  key: "sprint_all",
+  storage,
+};
+export default persistReducer(srsPersistConfig, sprintSlice.reducer);
+// persist local storage------------------------------------------------------------------------------

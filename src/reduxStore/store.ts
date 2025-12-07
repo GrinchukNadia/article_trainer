@@ -1,6 +1,7 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import srsReduser from "./srsSlice";
 import sprintReduser from "./sprintSlice";
+import activityReducer from "./activitySlice";
 
 // persist local storage---------------------------------------------------------------------------
 import {
@@ -17,6 +18,7 @@ import {
 export const rootReducer = combineReducers({
   srs: srsReduser,
   sprint: sprintReduser,
+  activity: activityReducer,
 });
 
 export const store = configureStore({

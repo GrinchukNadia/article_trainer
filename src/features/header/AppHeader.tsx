@@ -1,4 +1,3 @@
-import { useLocation } from "react-router-dom";
 import HeaderBrand from "./HeaderBrand";
 import HeaderActions from "./HeaderActions";
 import CourseTabs from "./CourseTabs";
@@ -9,13 +8,11 @@ type Props = {
 };
 
 const AppHeader = ({ onOpenAuth }: Props) => {
-  const { pathname } = useLocation();
-  const inCourse = /^\/test(\/|$)/.test(pathname);
 
   return (
     <header className={styles.header}>
       <div className={styles.header__inner}>
-        <HeaderBrand inCourse={inCourse} />
+        <HeaderBrand />
 
         <CourseTabs />
 
