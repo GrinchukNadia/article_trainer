@@ -6,6 +6,7 @@ import dataCard from "./data/Data";
 import { useDispatch } from "react-redux";
 import { initWords, initWordsProgressArr, computeQueue, computeWeakQueue } from "../reduxStore/srsSlice";
 import { seed, shuffle } from "../shared/utils/shuffle";
+import { startActiveSession, stopActiveSession } from "../reduxStore/activitySlice";
 // import type { RootState } from "../reduxStore/store";
 
 export default function AppLayout() {
@@ -26,6 +27,29 @@ export default function AppLayout() {
       console.log(e);
     }
   }, [dispatch]);
+
+    useEffect(() => {
+    const onFocus = () => dispatch(startActiveSession());
+    const onBlur = () => dispatch(stopActiveSession());
+
+    const onVisibilityChange = () => {
+      if (document.hidden) dispatch(stopActiveSession());
+      else dispatch(startActiveSession());
+    };
+
+    window.addEventListener("focus", onFocus);
+    window.addEventListener("blur", onBlur);
+    document.addEventListener("visibilitychange", onVisibilityChange);
+
+    // при монтировании сразу запускаем
+    dispatch(startActiveSession());
+
+    return () => {
+      window.removeEventListener("focus", onFocus);
+      window.removeEventListener("blur", onBlur);
+      document.removeEventListener("visibilitychange", onVisibilityChange);
+    };
+  }, []);
 
   return (
     <div className="app">

@@ -11,6 +11,7 @@ import {
 } from "../shared/utils/srsUtils";
 import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
+import type { RootState } from "./store";
 
 const initialState: SrsState = {
   words: {
@@ -168,4 +169,26 @@ export const selectQueueWithData = createSelector(
       word: selectWordById(s, id)!,
       prog: selectProgressById(s, id)!,
     }))
+);
+
+export const selectTopWeakWords = createSelector(
+  [
+    (state: RootState) => state.srs.progress.byId,
+    (state: RootState) => state.srs.words.byId,
+  ],
+  (progressById, wordsById) => {
+    return Object.values(progressById)
+      .filter((progress) => progress.lapses > 0)
+      .sort((a, b) => b.lapses - a.lapses)
+      .slice(0, 5)
+      .map((progress) => {
+        const word = wordsById[progress.wordId];
+        return {
+          lemma: word.lemma,
+          article: word.gender,
+          translation: word.translation,
+          lapses: progress.lapses,
+        };
+      });
+  }
 );
