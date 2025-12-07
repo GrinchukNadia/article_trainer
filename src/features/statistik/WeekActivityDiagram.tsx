@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import styles from "./weekActivityDiagram.module.scss";
+import styles from "./WeekActivityDiagram.module.scss";
 import type { RootState } from "../../reduxStore/store";
 import { format, subDays } from "date-fns";
 import { createSelector } from "@reduxjs/toolkit";

@@ -3,7 +3,7 @@ import styles from "./Statistik.module.scss";
 import type { RootState } from "../../reduxStore/store";
 import { selectBoxWords } from "../../shared/utils/selectBoxWords";
 import { selectTopWeakWords } from "../../reduxStore/srsSlice";
-import WeekActivityDiagram from "./weekActivityDiagram";
+import WeekActivityDiagram from "./WeekActivityDiagram";
 
 function Stats() {
   const learnedWords = useSelector((state: RootState) =>
