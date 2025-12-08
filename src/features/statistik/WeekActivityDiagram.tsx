@@ -51,7 +51,7 @@ function WeekActivityDiagram() {
   return (
     <section style={{ display: "grid", gap: "1.8rem" }}>
       <div className={styles.card}>
-        <h2 style={{ marginBottom: ".5rem" }}>Fortschritt (Demo-Diagramm)</h2>
+        <h2 style={{ marginBottom: ".5rem" }}>Fortschritt Diagramm</h2>
 
         <div className={styles.chart}>
           <div className={styles.chart__grid} />
@@ -75,8 +75,8 @@ function WeekActivityDiagram() {
         </div>
 
         <p className={styles.kpi__hint} style={{ marginTop: ".5rem" }}>
-          Demo-Visualisierung mit festen Werten zur Darstellung des
-          Interface-Layouts.
+          Dieses Diagramm zeigt dir, wie viel Zeit du an jedem Tag der Woche im
+          Vergleich zum jeweils aktivsten Tag genutzt hast.
         </p>
       </div>
     </section>

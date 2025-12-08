@@ -9,12 +9,14 @@ function Stats() {
   const learnedWords = useSelector((state: RootState) =>
     selectBoxWords(state, 5)
   ).length;
+
   const topWeakWords = useSelector(selectTopWeakWords);
+
   const bestSreak = useSelector(
     (state: RootState) => state.activity.bestStreak
   );
   const todayRepeatWords = useSelector(
-    (state: RootState) => state.srs.queue.todayIds.length
+    (state: RootState) => state.srs.queue.weakIds.length
   );
   return (
     <section className={styles.stats}>
@@ -33,6 +35,9 @@ function Stats() {
             <div
               key={word.lemma}
               style={{
+                backgroundColor: "#ffffff33",
+                borderRadius: "2px",
+                padding: "1rem",
                 color: "black",
                 display: "flex",
                 flexDirection: "column",
