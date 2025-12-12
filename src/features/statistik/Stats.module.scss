@@ -1,0 +1,50 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as m;
+
+.stats {
+  width: 80rem;
+  padding: $spacing-4;
+}
+
+.kpi {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+
+  &_word {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+}
+
+.card {
+  @include m.card;
+  background-color: $color3;
+
+  &_header {
+    margin: 0.5rem 0;
+    font-weight: 600;
+    font-size: 1.4rem;
+  }
+
+  &_words_container {
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  &_words {
+    background-color: #ffffff33;
+    border-radius: 2px;
+    padding: 1rem;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    min-width: 220px;
+    max-width: 266px;
+  }
+}

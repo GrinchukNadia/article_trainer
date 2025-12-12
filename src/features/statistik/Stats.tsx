@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import styles from "./Statistik.module.scss";
+import styles from "./Stats.module.scss";
 import type { RootState } from "../../reduxStore/store";
 import { selectBoxWords } from "../../shared/utils/selectBoxWords";
 import { selectTopWeakWords } from "../../reduxStore/srsSlice";
@@ -21,30 +21,16 @@ function Stats() {
   return (
     <section className={styles.stats}>
       <div className={styles.card}>
-        <div style={{ margin: ".5rem 0", fontWeight: 600, fontSize: "1.4rem" }}>
+        <div className={styles.card__title}>
           Top-5-Fehlerwörter
         </div>
         <div
-          style={{
-            display: "flex",
-            gap: "1rem",
-            justifyContent: "space-between",
-            flexWrap: "wrap",
-          }}
+          className={styles.card_words_container}
         >
           {topWeakWords.map((word) => (
             <div
               key={word.lemma}
-              style={{
-                backgroundColor: "#ffffff33",
-                borderRadius: "2px",
-                padding: "1rem",
-                color: "black",
-                display: "flex",
-                flexDirection: "column",
-                gap: ".5rem",
-                minWidth: "220px",
-              }}
+              className={styles.card_words}
             >
               <div>
                 {word.article} {word.lemma} - {word.translation}
@@ -56,24 +42,19 @@ function Stats() {
       </div>
 
       <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-          gap: "1rem",
-          padding: "1rem 0",
-        }}
+        className={styles.kpi}
       >
         <div className={styles.card}>
-          <div className={styles.kpi}>{learnedWords}</div>
-          <div className={styles.kpi__hint}>Gelernte Wörter</div>
+          <div className={styles.kpi_word}>{learnedWords}</div>
+          <div>Gelernte Wörter</div>
         </div>
         <div className={styles.card}>
-          <div className={styles.kpi}>{bestSreak}</div>
-          <div className={styles.kpi__hint}>Längste Tagesserie</div>
+          <div className={styles.kpi_word}>{bestSreak}</div>
+          <div>Längste Tagesserie</div>
         </div>
         <div className={styles.card}>
-          <div className={styles.kpi}>{todayRepeatWords}</div>
-          <div className={styles.kpi__hint}>Wiederholungswörter heute</div>
+          <div className={styles.kpi_word}>{todayRepeatWords}</div>
+          <div>Wiederholungswörter heute</div>
         </div>
       </div>
 
