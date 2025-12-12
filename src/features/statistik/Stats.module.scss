@@ -43,8 +43,8 @@
     color: black;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     gap: 0.5rem;
-    min-width: 220px;
-    max-width: 266px;
+    flex: 1;
   }
 }
