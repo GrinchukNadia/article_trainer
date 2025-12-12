@@ -29,6 +29,7 @@ function Stats() {
             display: "flex",
             gap: "1rem",
             justifyContent: "space-between",
+            flexWrap: "wrap",
           }}
         >
           {topWeakWords.map((word) => (
@@ -42,6 +43,7 @@ function Stats() {
                 display: "flex",
                 flexDirection: "column",
                 gap: ".5rem",
+                minWidth: "220px",
               }}
             >
               <div>
