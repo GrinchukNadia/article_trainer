@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { differenceInDays, format } from "date-fns";
+import { differenceInCalendarDays, format } from "date-fns";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/es/storage";
 import { cleanupOldDays, ensureDay } from "../shared/utils/activityGraph";
@@ -49,12 +49,9 @@ export const activitySlice = createSlice({
         cleanupOldDays(state);
         return;
       }
-      const lastActiveDate = format(
-        new Date(state.lastActiveDate),
-        "yyyy-MM-dd"
-      );
+      const lastActiveDate = state.lastActiveDate;
       const wasActiveYesterday =
-        differenceInDays(new Date(today), new Date(lastActiveDate ?? today)) ===
+        differenceInCalendarDays(new Date(today), new Date(lastActiveDate ?? today)) ===
         1;
 
       if (lastActiveDate === today) {
