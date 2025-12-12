@@ -13,7 +13,6 @@ export default function AppLayout() {
   const [authOpen, setAuthOpen] = useState(false);
 
   const dispatch = useDispatch();
-  // useSelector((reduxState: RootState) => console.log(reduxState));
 
   useEffect(() => {
     try {

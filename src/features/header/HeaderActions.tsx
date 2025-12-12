@@ -17,7 +17,7 @@ const HeaderActions = ({ onOpenAuth }: HeaderActionsProps) => {
     dispatch(registrateActivity());
   }, [dispatch]);
 
-  const activeDays = useSelector((state: RootState) => state.activity.totalActiveDays);
+  const activeDays = useSelector((state: RootState) => state.activity.currentStreak);
 
   return (
     <div className={styles.header__right}>

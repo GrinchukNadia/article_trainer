@@ -37,7 +37,7 @@ function WeekActivityDiagram() {
       const key = format(d, "yyyy-MM-dd");
 
       const day = byDay[key];
-      const minutes = day ? Math.round(day.activeMs / 60000) : 0;
+      const minutes = day ? Math.round((day.activeMs < 60000 ? 60000 : day.activeMs ) / 60000) : 0;
 
       result.push(minutes);
     }
