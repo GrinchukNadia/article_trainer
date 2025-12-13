@@ -10,6 +10,12 @@ html {
     font-size: 22px;
   }
 }
+h3 {
+  @media  screen and (min-width: 800px) and (max-width: 1000px) {
+    font-size: 2.3rem;
+    margin: 0;
+  }
+}
 body {
   margin: 0;
   font-family: $font-family;
