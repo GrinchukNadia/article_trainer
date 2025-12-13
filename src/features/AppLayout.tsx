@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
-import AuthModal from "./registrationModal/AuthModal";
+import AuthModal from "./header/Actions/registrationModal/AuthModal";
 import AppHeader from "./header/AppHeader";
 import dataCard from "./data/Data";
 import { useDispatch } from "react-redux";

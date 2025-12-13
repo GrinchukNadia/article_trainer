@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import AppLayout from "../features/AppLayout";
 import Stats from "../features/statistik/Stats";
-import Impressum from "../features/impressum/Impressum";
+import Impressum from "../features/header/Actions/impressum/Impressum";
 import TrainGrammar from "../features/TrainGrammar/TrainGrammar";
 import Train from "../features/train/TrainList/Train";
 // import CardBody from "../features/train/TrainWords/wordCards/CardBody";
