@@ -6,12 +6,12 @@ html, body, #root { height: 100%; }
 html {
   font-size: 16px;
 
-  @media  screen and (min-width: 800px) and (max-width: 1000px) {
+  @media  screen and (min-width: 800px) and (max-width: 988px) {
     font-size: 22px;
   }
 }
 h3 {
-  @media  screen and (min-width: 800px) and (max-width: 1000px) {
+  @media  screen and (min-width: 800px) and (max-width: 988px) {
     font-size: 2.3rem;
     margin: 0;
   }

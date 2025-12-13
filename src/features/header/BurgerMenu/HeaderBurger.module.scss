@@ -1,32 +1,38 @@
 .burger {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  @media screen and (min-width: 988px) {
+    display: none;
+  }
 
+  &_icon {
+    width: 43px;
+    height: 30px;
     display: flex;
-    gap: 20px;
     align-items: center;
-    @media  screen and (min-width: 981px) {
-        display: none;
-        
-    }
+    cursor: pointer;
+  }
 
-    &_line {
-        width: 30px;
-        height: 2px;
-        background-color: black;
-    }
-    &_line::before {
-        content: "";
-        position: absolute;
-        width: 30px;
-        height: 2px;
-        background-color: black;
-        margin-top: -8px;
-    }
-    &_line::after {
-        content: "";
-        position: absolute;
-        width: 30px;
-        height: 2px;
-        background-color: black;
-        margin-top: 8px;
-    }
+  &_line {
+    width: 30px;
+    height: 2px;
+    background-color: black;
+  }
+  &_line::before {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: black;
+    margin-top: -8px;
+  }
+  &_line::after {
+    content: "";
+    position: absolute;
+    width: 30px;
+    height: 2px;
+    background-color: black;
+    margin-top: 8px;
+  }
 }
