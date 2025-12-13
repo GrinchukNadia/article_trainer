@@ -35,7 +35,7 @@ function Stats() {
               <div>
                 {word.article} {word.lemma} - {word.translation}
               </div>
-              <div>Gesamtfehler: {word.lapses}</div>
+              <div style={{whiteSpace: "nowrap"}}>Gesamtfehler: {word.lapses}</div>
             </div>
           ))}
         </div>

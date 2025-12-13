@@ -1,0 +1,32 @@
+.burger {
+
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    @media  screen and (min-width: 981px) {
+        display: none;
+        
+    }
+
+    &_line {
+        width: 30px;
+        height: 2px;
+        background-color: black;
+    }
+    &_line::before {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background-color: black;
+        margin-top: -8px;
+    }
+    &_line::after {
+        content: "";
+        position: absolute;
+        width: 30px;
+        height: 2px;
+        background-color: black;
+        margin-top: 8px;
+    }
+}

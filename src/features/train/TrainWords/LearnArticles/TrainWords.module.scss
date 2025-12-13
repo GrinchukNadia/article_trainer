@@ -14,4 +14,28 @@
     "e f";
   gap: 1rem;
   padding: $spacing-4;
+
+  @media screen and (max-width: 870px) {
+    margin: 28px 0 0 0;
+    max-height: unset;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(8, minmax(152px, 1fr));
+    grid-template-areas: 
+    "a"
+    "a"
+    "d"
+    "c"
+    "f"
+    "f"
+    "b"
+    "e"
+    ;
+  }
+  
+  @media screen and (max-width: 638px) {
+    margin: 28px 0 0 0;
+    max-height: unset;
+    grid-template-rows: repeat(6, minmax(150px, 1fr));
+    grid-template-areas: "a" "d" "c" "b" "e" "f";
+  }
 }

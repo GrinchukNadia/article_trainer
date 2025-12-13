@@ -1,7 +1,8 @@
-import HeaderBrand from "./HeaderBrand";
-import HeaderActions from "./HeaderActions";
-import CourseTabs from "./CourseTabs";
-import styles from "./Header.module.scss";
+import HeaderBrand from "./Logo/HeaderBrand";
+import HeaderActions from "./Actions/HeaderActions";
+import CourseTabs from "./CourseTabs/CourseTabs";
+import HeaderBurger from "./BurgerMenu/HeaderBurger";
+import styles from "./AppHeader.module.scss";
 
 type Props = {
   onOpenAuth: () => void;
@@ -17,6 +18,8 @@ const AppHeader = ({ onOpenAuth }: Props) => {
         <CourseTabs />
 
         <HeaderActions onOpenAuth={onOpenAuth} />
+
+        <HeaderBurger />
       </div>
     </header>
   );

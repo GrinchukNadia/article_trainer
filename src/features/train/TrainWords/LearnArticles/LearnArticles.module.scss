@@ -9,4 +9,7 @@
   background-position: bottom right;
   background-repeat: no-repeat;
 
+  @media screen and (max-width: 638px) {
+    background-image: unset !important;
+  }
 }

@@ -1,0 +1,18 @@
+@use "../../../styles/variables" as *;
+@use "../../../styles/mixins" as m;
+
+.tabs {
+  max-width: 80rem;
+  margin: 0 0.75rem;
+  display: flex;
+  gap: $spacing-2;
+
+  @media screen and (max-width: 980px) {
+   display: none; 
+  }
+  
+  &__btn {
+    @include m.button-base;
+  }
+  
+}

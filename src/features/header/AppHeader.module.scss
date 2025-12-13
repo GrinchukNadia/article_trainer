@@ -1,0 +1,21 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as m;
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(6px);
+  background: #f2f3d9;
+  border-bottom: 1px solid $color-border;
+  width: 100%;
+
+  &__inner {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: $spacing-3 $spacing-4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
