@@ -1,11 +1,9 @@
 import { useState } from "react";
-import AuthModal from "../Actions/registrationModal/AuthModal";
 import styles from "./Burger.module.scss";
 import { NavLink } from "react-router-dom";
 
 type onClose = () => void;
 function Burger({ onClose }: { onClose: onClose }) {
-  const [authOpen, setAuthOpen] = useState(false);
   return (
     <div className={styles.container}>
       <button onClick={onClose}>X</button>
