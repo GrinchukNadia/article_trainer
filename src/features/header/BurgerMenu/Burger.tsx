@@ -1,4 +1,3 @@
-import { useState } from "react";
 import styles from "./Burger.module.scss";
 import { NavLink } from "react-router-dom";
 
