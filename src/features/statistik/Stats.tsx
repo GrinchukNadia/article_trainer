@@ -54,7 +54,7 @@ function Stats() {
         </div>
         <div className={styles.card}>
           <div className={styles.kpi_word}>{todayRepeatWords}</div>
-          <div>Wiederholungswörter heute</div>
+          <div className={styles.kpi_title}>Wiederholungswörter heute</div>
         </div>
       </div>
 

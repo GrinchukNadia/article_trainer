@@ -2,7 +2,6 @@ import { memo, useEffect, useState } from "react";
 import Controls from "./Controls";
 import clsx from "clsx";
 import type { CardItem } from "./useCardTrain";
-// import type { CardItem } from "../../../../shared/types/words";
 import type { Choice } from "./useCardTrain";
 import { selectProgressById } from "../../../../reduxStore/srsSlice";
 import { useSelector } from "react-redux";
@@ -103,7 +102,7 @@ function Card({
 
         <span className={styles.line}></span>
 
-        <Controls />
+        <Controls handleAnswer={handleAnswer} />
 
         <div className={styles.inner_text}>
           <div className={styles.card_word}>

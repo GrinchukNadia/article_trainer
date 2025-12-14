@@ -50,7 +50,8 @@
     top: 54%;
     left: -20%;
     @media screen and (max-width: 800px) {
-      left: 10px;
+      top: 101%;
+      left: 0%;
     }
   }
   &_die {
@@ -58,7 +59,10 @@
     right: -20%;
     color: #000;
     @media screen and (max-width: 800px) {
-      right: 10px;
+      top: 101%;
+      right: unset;
+      left: 45%;
+      z-index: 1;
     }
   }
 
@@ -66,8 +70,9 @@
     color: #000;
     top: -15%;
     left: 44%;
-    @media screen and (max-width: 474px) {
-      top: 10px;
+    @media screen and (max-width: 800px) {
+      top: 101%;
+      left: 22%;
     }
   }
 
@@ -76,8 +81,11 @@
     bottom: -16%;
     left: 38%;
 
-    @media screen and (max-width: 474px) {
-      bottom: 10px;
+    @media screen and (max-width: 800px) {
+      bottom: unset;
+      top: 101%;
+      left: 66%;
+      z-index: 1;
     }
   }
 }

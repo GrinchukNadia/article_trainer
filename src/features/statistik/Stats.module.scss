@@ -12,10 +12,20 @@
   gap: 1rem;
   padding: 1rem 0;
 
+  @media screen and (max-width: 804px) {
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+  }
+
   &_word {
     font-size: 3rem;
     font-weight: 700;
     line-height: 1;
+  }
+  &_title {
+     @media screen and (max-width: 882px) {
+      font-size: 0.9rem;
+     }
   }
 }
 

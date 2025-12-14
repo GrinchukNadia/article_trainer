@@ -1,9 +1,15 @@
 @use "../../../../styles/variables" as *;
 @use "../../../../styles/mixins" as m;
 
-.mistakes{
+.mistakes {
   width: 80rem;
   padding: 0 $spacing-4;
+}
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
 }
 
 // -----------------------------повторение логики из CardBody-----------------------------------------------------------------
@@ -33,17 +39,29 @@
     text-shadow: 4px -2px 0px #fff, 11px -4px 17px #000000ba;
     letter-spacing: 6px;
     outline: none;
+    
+    @media screen and (max-width: 998px) {
+      font-size: 2rem;
+    }
   }
-
+  
   span {
     font-size: 2rem;
-    color: #fff;
+    color: #5848c4;
+    text-shadow: 2px -2px 0px #fff, 11px -4px 17px #000000ba;
     text-shadow: 5px -2px 17px #000000ba;
-  }
 
+    @media screen and (max-width: 998px) {
+      display: none;
+    }
+  }
+  
   .icon {
     width: 70px;
     height: 70px;
-    fill: #ffffff00;
+    fill: #00000000;
+    @media screen and (max-width: 998px) {
+      display: none;
+    }
   }
 }
