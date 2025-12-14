@@ -1,4 +1,4 @@
-import CloseTrain from "../CloseTrain"
+import CloseTrain from "../../shared/CloseTrain"
 import EinEineCard from "./EinEineCard"
 
 function EinEineTrainer({close}: {close: () => void}) {

@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import CloseTrain from "../CloseTrain";
+import CloseTrain from "../../shared/CloseTrain";
 import Card from "./Card";
 import { useCardTrain } from "./useCardTrain";
 import { computeQueue } from "../../../../reduxStore/srsSlice";

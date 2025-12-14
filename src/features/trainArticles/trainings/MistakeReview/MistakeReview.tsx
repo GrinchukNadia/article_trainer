@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import CloseTrain from "../CloseTrain";
+import CloseTrain from "../../../trainArticles/shared/CloseTrain";
 import Card from "../wordCards/Card";
 import { useCardTrain } from "../wordCards/useCardTrain";
 import styles from "./Mistakes.module.scss";

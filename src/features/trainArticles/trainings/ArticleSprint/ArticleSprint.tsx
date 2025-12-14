@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import CloseTrain from "../CloseTrain";
+import CloseTrain from "../../shared/CloseTrain";
 import Timer from "./Timer";
 import { useRunningPhase } from "./useRunningPhase";
 import type { RootState } from "../../../../reduxStore/store";

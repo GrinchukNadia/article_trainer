@@ -1,4 +1,4 @@
-import styles from "./LearnArticles.module.scss";
+import styles from "./Tile.module.scss";
 
 type LEARN_ARTICLES_TYPES = {
   area: string;
@@ -8,7 +8,7 @@ type LEARN_ARTICLES_TYPES = {
   url: string;
   size: string;
 };
-function LearnArticles({
+function Tile({
   area,
   onClick,
   title,
@@ -40,4 +40,4 @@ function LearnArticles({
   );
 }
 
-export default LearnArticles;
+export default Tile;

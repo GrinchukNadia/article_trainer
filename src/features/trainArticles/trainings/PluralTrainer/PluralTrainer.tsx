@@ -1,4 +1,4 @@
-import CloseTrain from "../CloseTrain"
+import CloseTrain from "../../shared/CloseTrain"
 
 function PluralTrainer({close}: {close: ()=> void}) {
   return (

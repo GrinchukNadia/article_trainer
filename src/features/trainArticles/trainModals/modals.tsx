@@ -1,9 +1,9 @@
-import ArticleSprint from "../ArticleSprint/ArticleSprint";
-import EinEineTrainer from "../EinEineTrainer/EinEineTrainer";
-import MistakeReview from "../MistakeReview/MistakeReview";
-import PluralTrainer from "../PluralTrainer/PluralTrainer";
-import TranslateMaster from "../TranslateMaster/TranslateMaster";
-import CardBody from "../wordCards/CardBody";
+import ArticleSprint from "../trainings/ArticleSprint/ArticleSprint";
+import EinEineTrainer from "../trainings/EinEineTrainer/EinEineTrainer";
+import MistakeReview from "../trainings/MistakeReview/MistakeReview";
+import PluralTrainer from "../trainings/PluralTrainer/PluralTrainer";
+import TranslateMaster from "../trainings/TranslateMaster/TranslateMaster";
+import CardBody from "../trainings/wordCards/CardBody";
 
 export const modalMap = {
   learnArticles:  (props: {close: ()=> void}) => <CardBody {...props}/>,
