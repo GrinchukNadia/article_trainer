@@ -3,7 +3,7 @@ import AppLayout from "../features/AppLayout";
 import Stats from "../features/statistik/Stats";
 import Impressum from "../features/header/Actions/impressum/Impressum";
 import Train from "../features/trainArticles/Train";
-import TrainGrammar from "../features/trainGrammar/TrainGrammar";
+import TrainGrammar from "../features/trainGrammar/GrammarContainer";
 
 export const router = createBrowserRouter(
   [
