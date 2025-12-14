@@ -2,9 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import AppLayout from "../features/AppLayout";
 import Stats from "../features/statistik/Stats";
 import Impressum from "../features/header/Actions/impressum/Impressum";
-import TrainGrammar from "../features/trainGrammar/TrainGrammar";
 import Train from "../features/trainArticles/Train";
-// import CardBody from "../features/train/TrainWords/wordCards/CardBody";
+import TrainGrammar from "../features/trainGrammar/TrainGrammar";
 
 export const router = createBrowserRouter(
   [
