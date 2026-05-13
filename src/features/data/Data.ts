@@ -8901,9 +8901,11 @@ export default [
     },
   },
 
-  /*
 
-der Absender
+];
+
+
+/*der Absender
 die Adresse
 das Alphabet
 die Alternative
@@ -9261,6 +9263,5 @@ die Zuschauerin
 der Zustand
 die Zusammenarbeit
 das Zimmer
-
 */
-];
+

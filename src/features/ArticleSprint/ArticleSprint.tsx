@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import CloseTrain from "../../shared/CloseTrain";
+import CloseTrain from "../trainArticles/shared/CloseTrain";
 import Timer from "./Timer";
 import { useRunningPhase } from "./useRunningPhase";
-import type { RootState } from "../../../../reduxStore/store";
+import type { RootState } from "../../reduxStore/store";
 import { useEffect } from "react";
-import { startSprint } from "../../../../reduxStore/sprintSlice";
+import { startSprint } from "../../reduxStore/sprintSlice";
 import { FallingSprint } from "./FallingSprint";
 import styles from "./ArticleSprint.module.scss";
 
-function ArticleSprint({ close }: { close: () => void }) {
+function ArticleSprint({close}: any) {
   const dispatch = useDispatch();
   const sprintWordsIds = useSelector(
     (state: RootState) => state.srs.words.allIds

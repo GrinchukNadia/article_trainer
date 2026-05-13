@@ -1,49 +1,45 @@
-import { useDispatch } from "react-redux";
 import CloseTrain from "../../shared/CloseTrain";
 import Card from "./Card";
 import { useCardTrain } from "./useCardTrain";
-import { computeQueue } from "../../../../reduxStore/srsSlice";
 import styles from "./CardBody.module.scss";
+import { useEffect } from "react";
 
 export default function CardBody({ close }: { close?: () => void }) {
   const {
     current,
     index,
     state,
+    loadNext,
     onAnimationStart,
     onAnimationEnd,
     handleAnswer,
   } = useCardTrain("train");
 
-  const dispatch = useDispatch();
+  
+  useEffect(() => {
+    if (current) return;
 
-  if (!current) {
-    const moreWordsHandler = (
-      e:
-        | React.KeyboardEvent<HTMLButtonElement>
-        | React.MouseEvent<HTMLButtonElement>
-    ) => {
-      if (e.type === "click") {
-        dispatch(computeQueue());
-        return;
-      }
-      if ("key" in e && e.key === "ArrowDown") {
-        dispatch(computeQueue());
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "ArrowDown") {
+        loadNext();
       }
     };
 
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [current, loadNext]);
+
+  if (!current) {
     return (
       <div className={styles.continueLearning}>
         <div className="container">
           <div>
             <CloseTrain close={close} />
           </div>
-          <button
-            autoFocus
-            onClick={(e) => moreWordsHandler(e)}
-            onKeyDown={(e) => moreWordsHandler(e)}
-            className="finish"
-          >
+          <button autoFocus onClick={loadNext} className="finish">
             Noch 10 Wörter lernen
           </button>
           <div className={styles.hint}>
@@ -77,8 +73,6 @@ export default function CardBody({ close }: { close?: () => void }) {
         key={index}
         animation={state.animation}
         word={current.lemma}
-        id={current.id}
-        link={current.media.image}
         translation={state.translation}
         article={state.article}
         className={state.cardClass}

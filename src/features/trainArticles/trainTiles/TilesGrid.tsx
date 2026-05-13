@@ -17,7 +17,8 @@ type TILES_TYPES = {
   title: string;
   description: string;
   url: string;
-  size: string
+  size: string;
+  disabled: boolean;
 }[];
 export default function TilesGrid() {
   const [, setSearchParams] = useSearchParams();
@@ -28,7 +29,8 @@ export default function TilesGrid() {
       title: "Начать изучение ",
       description: "Слова + артикли Der / Die / Das",
       url: r,
-      size: "big"
+      size: "big",
+      disabled: false,
     },
     {
       key: "einEineTrainer",
@@ -36,15 +38,17 @@ export default function TilesGrid() {
       title: "Ein / Eine",
       description: "Тренировка неопределённых артиклей",
       url: w,
-      size: "small"
+      size: "small",
+      disabled: false,
     },
     {
-      key: "articleSprint",
+      key: "grammar",
       area: "c",
-      title: "Спринт",
-      description: "Быстрое повторение и закрепление выученных слов",
+      title: "Грамматика",
+      description: "Изучай грамматику с уже знакомыми словами",
       url: wings,
-      size: "small"
+      size: "small",
+      disabled: false,
     },
     {
       key: "mistakeReview",
@@ -52,7 +56,8 @@ export default function TilesGrid() {
       title: "Мои ошибки",
       description: "Фокус на ошибках - тренируй слабые слова",
       url: brocken_tab,
-      size: "small"
+      size: "small",
+      disabled: true,
     },
     {
       key: "pluralTrainer",
@@ -60,7 +65,8 @@ export default function TilesGrid() {
       title: "Множественное число",
       description: "Изучи и запомини plural-формы",
       url: candles,
-      size: "small"
+      size: "small",
+      disabled: true,
     },
     {
       key: "translateMaster",
@@ -68,20 +74,22 @@ export default function TilesGrid() {
       title: "Мастер перевода ",
       description: "Проверка знания смысла слов",
       url: cats,
-      size: "x-big"
+      size: "x-big",
+      disabled: true,
     },
   ];
   return (
     <div className={styles.trainWords}>
-      {tiles.map((t) => (
+      {tiles.sort().map((t) => (
         <Tile
           key={t.key}
           area={t.area}
-          onClick={() => setSearchParams({ modal: t.key })}
+          onClick={t.disabled ? ()=>{} : () => setSearchParams({ modal: t.key } )}
           title={t.title}
           description={t.description}
           url={t.url}
           size={t.size}
+          disabled={t.disabled}
         />
       ))}
     </div>

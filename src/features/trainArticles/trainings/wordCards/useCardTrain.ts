@@ -1,46 +1,15 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import type { RootState } from "../../../../reduxStore/store";
-import { recordAnswer } from "../../../../reduxStore/srsSlice";
-
-type Gender = "der" | "die" | "das";
-type GenderDisplay = "der" | "die" | "das" | "___";
-type NextKey = "next";
-export type Choice = Gender | NextKey;
-type Anim =
-  | ""
-  | "tip"
-  | "wrongL"
-  | "wrongR"
-  | "wrongT"
-  | "rightL"
-  | "rightR"
-  | "rightT"
-  | "next-card";
-
-export type CardItem = {
-  lemma: string;
-  gender: Gender;
-  translation: string;
-  media: { image: string };
-};
-type State = {
-  translation: string;
-  article: GenderDisplay;
-  cardClass: string;
-  animation: Anim;
-  answered: boolean;
-  animating: boolean;
-};
-type CardAction =
-  | { type: "SET_ANIM"; anim: Anim }
-  | { type: "SET_TRANSLATION"; text: string }
-  | { type: "SET_ARTICLE"; text: GenderDisplay }
-  | { type: "SET_CARD_CLASS"; name: string }
-  | { type: "SET_ANSWERED"; value: boolean }
-  | { type: "SET_ANIMATING"; value: boolean }
-  | { type: "NEXT_CARD" }
-  | { type: "RESET_CARD" };
+import { handleAnswerArticle, load } from "../../../api/srs/wordsToLearn";
+import type {
+  Anim,
+  CardAction,
+  CardItem,
+  Choice,
+  Gender,
+  State,
+} from "./cardTrain.types";
 
 const initial: State = {
   translation: ". . . . . . . .",
@@ -49,6 +18,7 @@ const initial: State = {
   animation: "tip" as const,
   answered: false,
   animating: false,
+  selectedArticles: [],
 };
 
 function reducer(state: State, action: CardAction) {
@@ -65,44 +35,45 @@ function reducer(state: State, action: CardAction) {
       return { ...state, answered: action.value };
     case "SET_ANIMATING":
       return { ...state, animating: action.value };
-    case "RESET_CARD":
+    case "SET_SELECTED_ARTICLES":
       return {
         ...state,
-        translation: ". . . . . . . .",
-        article: "___" as const,
-        cardClass: "",
-        animation: "tip" as const,
-        answered: false,
+        selectedArticles: [...state.selectedArticles, action.answer],
+      };
+    case "RESET_CARD":
+      return {
+        ...initial,
       };
     default:
       return state;
   }
 }
 
-export function useCardTrain(status: "train" | "weakReview") {
+export function useCardTrain() {
   const [state, dispatch] = useReducer(reducer, initial);
-
-  const dataIds = useSelector((reduxState: RootState) => {
-    if (status === "train") {
-      return reduxState.srs.queue.todayIds;
-    } else if (status === "weakReview") {
-      return reduxState.srs.queue.weakIds;
-    }
+  const [words, setWords] = useState<CardItem[]>([]);
+  const [index, setIndex] = useState(0);
+  const token = useSelector((reduxState: RootState) => {
+    return reduxState.auth.token;
   });
 
-  const [index, setIndex] = useState(0);
-  const [mistakeInReview, setMistakeInReview] = useState(false);
+  // Load a new batch of words(10) from the backend and restart the card session.
+  const loadNext = useCallback(async () => {
+    if (!token) return;
 
-  const currentId = dataIds ? dataIds[index] : "";
+    const words = await load(token);
+    setWords(words);
 
-  const words = useSelector(
-    (reduxState: RootState) => reduxState.srs.words.byId
-  );
-  const current = currentId ? words[currentId] : null;
+    // Reset UI state when a new batch is loaded.
+    dispatch({ type: "RESET_CARD" });
+    setIndex(0);
+  }, [token]);
 
   useEffect(() => {
-    setIndex(0);
-  }, [dataIds]);
+    loadNext();
+  }, [loadNext]);
+
+  // console.log(words);
 
   const onAnimationStart = useCallback(() => {
     dispatch({ type: "SET_ANIMATING", value: true });
@@ -111,76 +82,9 @@ export function useCardTrain(status: "train" | "weakReview") {
     dispatch({ type: "SET_ANIMATING", value: false });
   }, []);
 
-  const reduxDispatch = useDispatch();
-  const handleAnswer = useCallback(
-    (choice: Choice) => {
-      if (!current) return;
-      if (state.animating) return;
+  const current = words[index] ?? null;
 
-      if (choice === "next") {
-        if (!state.answered) {
-          return;
-        }
-        dispatch({ type: "SET_ANIM", anim: "next-card" });
-      }
-
-      if (choice !== current.gender && !state.answered) {
-        setMistakeInReview(true);
-        const animationNames: Record<Gender, Anim> = {
-          der: "wrongL",
-          die: "wrongR",
-          das: "wrongT",
-        };
-        dispatch({ type: "SET_ANIM", anim: "" });
-        reduxDispatch(
-          recordAnswer({
-            wordId: currentId,
-            correct: false,
-            mistakeInReview: mistakeInReview,
-          })
-        );
-        setTimeout(() => {
-          dispatch({
-            type: "SET_ANIM",
-            anim: animationNames[choice as Gender],
-          });
-        }, 0);
-        return;
-      }
-
-      if (current.gender === choice) {
-        setMistakeInReview(false);
-        const animationNames: Record<Gender, Anim> = {
-          der: "rightL",
-          die: "rightR",
-          das: "rightT",
-        };
-        dispatch({ type: "SET_ANIM", anim: animationNames[choice as Gender] });
-        dispatch({ type: "SET_ARTICLE", text: current.gender });
-        dispatch({ type: "SET_CARD_CLASS", name: "card-correct" });
-        dispatch({ type: "SET_ANSWERED", value: true });
-        dispatch({ type: "SET_TRANSLATION", text: current.translation });
-        if (!state.answered) {
-          reduxDispatch(
-            recordAnswer({
-              wordId: currentId,
-              correct: true,
-              mistakeInReview: mistakeInReview,
-            })
-          );
-        }
-      }
-    },
-    [
-      current,
-      state.animating,
-      state.answered,
-      currentId,
-      reduxDispatch,
-      mistakeInReview,
-    ]
-  );
-
+  // After the exit animation finishes, move to the next card and reset visual state.
   useEffect(() => {
     if (state.animation === "next-card") {
       const t = setTimeout(() => {
@@ -191,12 +95,72 @@ export function useCardTrain(status: "train" | "weakReview") {
     }
   }, [state.animation]);
 
+  const handleAnswer = useCallback(
+    async (choice: Choice) => {
+      if (!current) return;
+      if (state.animating) return;
+
+      if (choice === "next") {
+        if (!state.answered) {
+          return;
+        }
+        dispatch({ type: "SET_ANIM", anim: "next-card" });
+        return;
+      }
+
+      //  Prevent requests after the correct answer was selected.
+      if(state.answered) return;
+
+      
+      // Prevent multiple requests to the backend.
+      if (state.selectedArticles.includes(choice)) return;
+      console.log(state.selectedArticles, choice);
+      
+      // Send the selected article to the backend.
+      // The backend checks the answer and updates the user's progress.
+      const result = await handleAnswerArticle(token, choice, current.wordId);
+      dispatch({ type: "SET_SELECTED_ARTICLES", answer: choice });
+
+
+      if (!result.correct && !state.answered) {
+        const animationNames: Record<Gender, Anim> = {
+          der: "wrongL",
+          die: "wrongR",
+          das: "wrongT",
+        };
+
+        dispatch({ type: "SET_ANIM", anim: "" });
+        setTimeout(() => {
+          dispatch({
+            type: "SET_ANIM",
+            anim: animationNames[choice as Gender],
+          });
+        }, 0);
+        return;
+      }
+      if (result.correct && !state.answered) {
+        const animationNames: Record<Gender, Anim> = {
+          der: "rightL",
+          die: "rightR",
+          das: "rightT",
+        };
+        dispatch({ type: "SET_ANIM", anim: animationNames[choice as Gender] });
+        dispatch({ type: "SET_ARTICLE", text: result.gender[0] });
+        dispatch({ type: "SET_CARD_CLASS", name: "card-correct" });
+        dispatch({ type: "SET_ANSWERED", value: true });
+        dispatch({ type: "SET_TRANSLATION", text: current.translation });
+      }
+    },
+    [current, state.animating, state.answered, state.selectedArticles, token],
+  );
+
   return {
     current,
     index,
+    state,
+    loadNext,
     onAnimationEnd,
     onAnimationStart,
     handleAnswer,
-    state: state,
   };
 }

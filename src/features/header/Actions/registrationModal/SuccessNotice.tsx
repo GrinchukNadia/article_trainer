@@ -5,10 +5,10 @@ function SuccessNotice() {
   return (
     <div className={styles["alert-success"]}>
       <div style={inlineStyles}>
-        Konto erstellt ✔
+        Erfolgreich eingeloggt ✔
       </div>
       <div>
-        In Zukunft ist eine echte Anmeldung und Fortschrittsspeicherung geplant.
+        Starte jetzt dein Training!
       </div>
     </div>
   );

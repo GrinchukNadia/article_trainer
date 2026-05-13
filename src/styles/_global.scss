@@ -21,6 +21,11 @@
   width: 100vw;
   height: 100vh;
 
+  @media screen and (max-height: 790px) {
+    height: unset;
+    width: 100%;
+  }
+
   @media screen and (max-width: 999px) {
     height: unset;
     width: 100%;

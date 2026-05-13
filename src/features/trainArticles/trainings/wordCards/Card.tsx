@@ -1,19 +1,13 @@
 import { memo, useEffect, useState } from "react";
 import Controls from "./Controls";
 import clsx from "clsx";
-import type { CardItem } from "./useCardTrain";
-import type { Choice } from "./useCardTrain";
-import { selectProgressById } from "../../../../reduxStore/srsSlice";
-import { useSelector } from "react-redux";
-import type { RootState } from "../../../../reduxStore/store";
 import styles from "./Card.module.scss";
+import type { CardItem, Choice } from "./cardTrain.types";
 
 type CardProps = {
   animation: string;
   className: string;
   word: string;
-  id: string;
-  link: string;
   translation: string;
   article: string;
   onAnimationStart: () => void;
@@ -24,25 +18,15 @@ type CardProps = {
 
 function Card({
   animation,
-  className: className = "",
   word,
-  id,
-  link,
   translation = ". . . . . . . .",
+  className: className = "",
   article = "___",
   onAnimationStart,
   onAnimationEnd,
   handleAnswer,
-  current,
+  current
 }: CardProps) {
-  const lapses = useSelector((reduxState: RootState) => {
-    const progress = selectProgressById(reduxState, id);
-    return progress?.lapses ?? 0;
-  });
-  const mistakes = useSelector((reduxState: RootState) => {
-    const progress = selectProgressById(reduxState, id);
-    return progress?.errorScore ?? 0;
-  });
   const animationStyle = { animationName: animation };
 
   useEffect(() => {
@@ -57,7 +41,7 @@ function Card({
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [current, handleAnswer]);
 
-  const [loaded, setLoaded] = useState(false);
+  // const [loaded, setLoaded] = useState(false);
 
   return (
     <div className={styles.card}>
@@ -68,7 +52,7 @@ function Card({
         className={clsx(styles.inner, className)}
         tabIndex={0}
       >
-        <div
+        {/* <div
           style={{
             display: "flex",
             width: "100%",
@@ -77,27 +61,25 @@ function Card({
             borderRadius: "6px 6px 0 0",
           }}
         >
-          <div>lapses: {lapses}</div>
-          <div> mistakes: {mistakes} </div>
-        </div>
+          <div>lapses: {0}</div>
+          <div> mistakes: {0} </div>
+        </div> */}
 
         <div className={styles.img}>
-          {link && (
-            <div className={styles.inner_img}>
-              {!loaded && (
-                <div className={styles.loader_body}>
-                  <div className={styles.loader}></div>
-                </div>
-              )}
-              <img
-                onLoad={() => setLoaded(true)}
-                className={loaded ? styles.show : styles.hide}
-                loading="lazy"
-                alt=""
-                src={link}
-              />
-            </div>
-          )}
+          <div className={styles.inner_img}>
+            {/* {!loaded && ( */}
+              {/* <div className={styles.loader_body}>
+                <div className={styles.loader}></div>
+              </div> */}
+            {/* )} */}
+            <img
+              // onLoad={() => setLoaded(true)}
+              // className={loaded ? styles.show : styles.hide}
+              className={styles.hide}
+              // loading="lazy"
+              alt=""
+            />
+          </div>
         </div>
 
         <span className={styles.line}></span>

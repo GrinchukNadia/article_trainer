@@ -15,12 +15,13 @@ import {
   startActiveSession,
   stopActiveSession,
 } from "../reduxStore/activitySlice";
-// import type { RootState } from "../reduxStore/store";
+
 
 export default function AppLayout() {
   const [authOpen, setAuthOpen] = useState(false);
 
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     try {
@@ -67,7 +68,7 @@ export default function AppLayout() {
 
   return (
     <div className="app">
-      <AppHeader onOpenAuth={() => setAuthOpen(true)} />
+      <AppHeader onOpenAuth={setAuthOpen}  />
       <main>
         <Outlet />
       </main>

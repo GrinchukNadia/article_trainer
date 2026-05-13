@@ -8,8 +8,8 @@ const CourseTabs = () => {
         <NavLink to="" className={styles.tabs__btn}>
           Лексика
         </NavLink>
-        <NavLink to="grammar" className={styles.tabs__btn}>
-          Грамматика
+        <NavLink to="practice" className={styles.tabs__btn}>
+          Практика
         </NavLink>
         <NavLink to="stats" className={styles.tabs__btn}>
           Статистика

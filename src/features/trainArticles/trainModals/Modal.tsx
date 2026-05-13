@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 type ModalProps = {
   children: React.ReactNode,
-  variant: "learnArticles" | "einEineTrainer" | "articleSprint" | "mistakeReview"  | "pluralTrainer" | "translateMaster"
+  variant: "learnArticles" | "einEineTrainer" | "grammar" | "mistakeReview"  | "pluralTrainer" | "translateMaster" | "sprint"
 };
 export default function Modal({ children, variant }: ModalProps) {
   const el = (

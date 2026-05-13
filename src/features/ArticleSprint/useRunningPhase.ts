@@ -1,7 +1,7 @@
 import { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../../../../reduxStore/store";
-import { timerSprint } from "../../../../reduxStore/sprintSlice";
+import type { RootState } from "../../reduxStore/store";
+import { timerSprint } from "../../reduxStore/sprintSlice";
 
 export type SptintPhase = "idle" | "running" | "finished";
 

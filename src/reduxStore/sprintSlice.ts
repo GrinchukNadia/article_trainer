@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import type { SptintPhase } from "../features/trainArticles/trainings/ArticleSprint/useRunningPhase";
+import type { SptintPhase } from "../features/ArticleSprint/useRunningPhase";
 import { shuffle } from "../shared/utils/shuffle";
 import { persistReducer } from "redux-persist";
 import storage from "redux-persist/es/storage";

@@ -1,4 +1,6 @@
-export default function GrammarContainer() {
+import CloseTrain from "../../shared/CloseTrain"
+
+export default function GrammarContainer({close}:any) {
   return (
     <div
       style={{
@@ -8,6 +10,7 @@ export default function GrammarContainer() {
         textAlign: "center",
       }}
     >
+      <CloseTrain close={close}/>
       <h3>
         🔧 Dieser Bereich befindet sich noch in Entwicklung.
       </h3>

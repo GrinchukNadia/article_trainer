@@ -5,11 +5,10 @@ import HeaderBurger from "./BurgerMenu/HeaderBurger";
 import styles from "./AppHeader.module.scss";
 
 type Props = {
-  onOpenAuth: () => void;
+  onOpenAuth: (value:boolean) => void;
 };
 
 const AppHeader = ({ onOpenAuth }: Props) => {
-
   return (
     <header className={styles.header}>
       <div className={styles.header__inner}>
@@ -19,7 +18,7 @@ const AppHeader = ({ onOpenAuth }: Props) => {
 
         <HeaderActions onOpenAuth={onOpenAuth} />
 
-        <HeaderBurger />
+        <HeaderBurger onOpenAuth={onOpenAuth} />
       </div>
     </header>
   );

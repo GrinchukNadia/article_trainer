@@ -7,8 +7,8 @@ import {
   useState,
 } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../../../../reduxStore/store";
-import { recordAnswerSprint } from "../../../../reduxStore/sprintSlice";
+import type { RootState } from "../../reduxStore/store";
+import { recordAnswerSprint } from "../../reduxStore/sprintSlice";
 import styles from "./FallingSprint.module.scss";
 import clsx from "clsx";
 

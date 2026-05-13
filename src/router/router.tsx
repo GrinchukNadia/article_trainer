@@ -3,7 +3,8 @@ import AppLayout from "../features/AppLayout";
 import Stats from "../features/statistik/Stats";
 import Impressum from "../features/header/Actions/impressum/Impressum";
 import Train from "../features/trainArticles/Train";
-import TrainGrammar from "../features/trainGrammar/GrammarContainer";
+import Practice from "../features/ArticleSprint/Practice";
+//import SqlPreview from "../scripts/create_sql";
 
 export const router = createBrowserRouter(
   [
@@ -12,7 +13,8 @@ export const router = createBrowserRouter(
       element: <AppLayout />,
       children: [
         { index: true, element: <Train /> },
-        { path: "grammar", element: <TrainGrammar /> },
+        // { path: "grammar", element: <TrainGrammar /> },
+        { path: "practice", element: <Practice /> },
         { path: "stats", element: <Stats /> },
         { path: "impressum", element: <Impressum /> },
       ],

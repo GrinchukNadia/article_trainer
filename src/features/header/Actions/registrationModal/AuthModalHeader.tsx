@@ -1,11 +1,11 @@
 import styles from "./AuthModal.module.scss";
-import type { AuthModalProps } from "./AuthModal";
+import type { HeaderProps } from "./AuthModal";
 
-function AuthModalHeader({onClose}: Pick<AuthModalProps, 'onClose'>) {
+function AuthModalHeader({onClose, header}: HeaderProps) {
   return (
     <div className={styles["modal__dialog-header"]}>
-      <div className={styles.modal__title}>Registrierung (Testmodus)</div>
-      <button className={styles.modal__close} onClick={onClose}>
+      <div className={styles.modal__title}>{header}</div>
+      <button className={styles.modal__close} style={{color: "black"}} onClick={onClose}>
         ✕
       </button>
     </div>

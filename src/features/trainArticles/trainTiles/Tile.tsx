@@ -1,4 +1,5 @@
 import styles from "./Tile.module.scss";
+import clsx from "clsx";
 
 type LEARN_ARTICLES_TYPES = {
   area: string;
@@ -7,6 +8,7 @@ type LEARN_ARTICLES_TYPES = {
   description: string;
   url: string;
   size: string;
+  disabled: boolean;
 };
 function Tile({
   area,
@@ -15,6 +17,7 @@ function Tile({
   description,
   url,
   size,
+  disabled
 }: LEARN_ARTICLES_TYPES) {
   let sizePx = "";
   if (size === "x-big") {
@@ -31,7 +34,8 @@ function Tile({
         backgroundImage: "url(" + url + ")",
         backgroundSize: sizePx
       }}
-      className={styles.learn}
+      className={clsx(styles.learn, {
+        [styles.disabled]: disabled})}
       onClick={onClick}
     >
       <h3>{title}</h3>

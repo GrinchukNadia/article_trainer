@@ -1,4 +1,4 @@
-export const words = [
+/*export const words = [
   [
     'der',
     'Jugendliche',
@@ -1040,3 +1040,4 @@ export const words = [
     'https://i.pinimg.com/564x/78/e5/d7/78e5d70ae50ee5fb8361bc3f76f25c29.jpg',
   ],
 ];
+*/

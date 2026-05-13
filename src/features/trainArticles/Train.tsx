@@ -35,7 +35,7 @@ const Train = () => {
             modalKey as
               | "learnArticles"
               | "einEineTrainer"
-              | "articleSprint"
+              | "grammar"
               | "mistakeReview"
               | "pluralTrainer"
               | "translateMaster"
