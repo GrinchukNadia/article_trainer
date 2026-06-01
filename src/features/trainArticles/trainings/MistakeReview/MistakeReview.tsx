@@ -1,10 +1,10 @@
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 import CloseTrain from "../../../trainArticles/shared/CloseTrain";
 import Card from "../wordCards/Card";
 import { useCardTrain } from "../wordCards/useCardTrain";
 import styles from "./Mistakes.module.scss";
-import { computeWeakQueue } from "../../../../reduxStore/srsSlice";
-import type { RootState } from "../../../../reduxStore/store";
+// import { computeWeakQueue } from "../../../../reduxStore/srsSlice";
+// import type { RootState } from "../../../../reduxStore/store";
 
 function MistakeReview({ close }: { close?: () => void }) {
   const {
@@ -14,17 +14,19 @@ function MistakeReview({ close }: { close?: () => void }) {
     onAnimationStart,
     onAnimationEnd,
     handleAnswer,
-  } = useCardTrain("weakReview");
+  } = useCardTrain();
 
   // -----------------------------повторение логики из CardBody-----------------------------------------------------------------
 
-  const dispatch = useDispatch();
-  const weakWords = useSelector((state: RootState) => state.srs.queue.weakIds);
+  // const dispatch = useDispatch();
+  // const weakWords = useSelector((state: RootState) => state.srs.queue.weakIds);
 
 
   if (!current) {
 
-    if( weakWords.length === 0 ) {
+    if( false
+      // weakWords.length === 0 
+    ) {
       return (<div className={styles.noMistakes}>
         <div className="container">
           <div>
@@ -41,11 +43,11 @@ function MistakeReview({ close }: { close?: () => void }) {
         | React.MouseEvent<HTMLButtonElement>
     ) => {
       if (e.type === "click") {
-        dispatch(computeWeakQueue());
+        // dispatch(computeWeakQueue());
         return;
       }
       if ("key" in e && e.key === "Enter") {
-        dispatch(computeWeakQueue());
+        // dispatch(computeWeakQueue());
       }
     };
 
@@ -94,8 +96,8 @@ function MistakeReview({ close }: { close?: () => void }) {
         key={index}
         animation={state.animation}
         word={current.lemma}
-        id={current.id}
-        link={current.media.image}
+        // id={"hund"}
+        // link={current.media.image}
         translation={state.translation}
         article={state.article}
         className={state.cardClass}

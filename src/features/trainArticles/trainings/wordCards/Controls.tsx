@@ -10,6 +10,8 @@ type ControlItem = {
 };
 type ControlsProps = {
   handleAnswer: (choice: Choice) => void;
+  selectedArticles: string[];
+  answered: boolean;
 };
 const controls: ControlItem[] = [
   { key: "der", className: "article_der", label: "der", arrow: "left" },
@@ -18,14 +20,30 @@ const controls: ControlItem[] = [
   { key: "next", className: "article_next", label: "nächste", arrow: "bottom" },
 ];
 
-export default function Controls({ handleAnswer }: ControlsProps) {
+
+export default function Controls({ handleAnswer, selectedArticles, answered }: ControlsProps) {
+  console.log(answered)
   return (
     <>
       {controls.map((c) => (
         <div
           onClick={() => handleAnswer(c.key)}
           key={c.key}
-          className={clsx(styles.article, styles[c.className])}
+              
+          className={clsx(
+            styles.article, 
+            styles[c.className], 
+            selectedArticles.includes(c.key) &&
+             (answered
+              ? c.key === selectedArticles[selectedArticles.length -1]
+                ? "correct"
+                : "wrong"
+              :"wrong"
+             ),
+             answered && !selectedArticles.includes(c.key) && c.key !== "next" && "blocked",
+             !answered && c.key === "next" && "blocked",
+            
+          )}
         >
           <button
             type="button"

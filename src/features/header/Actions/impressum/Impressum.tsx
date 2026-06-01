@@ -20,18 +20,19 @@ const Impressum = () => {
         <strong>Kontakt:</strong> info@lingostein.example
       </p>
       <p>
-        <strong>Verantwortlich für den Inhalt:</strong> Nadezda Grinchuk
+        <strong>Projektbeschreibung:</strong> Dies ist ein nichtkommerzielles Lernprojekt 
+        zum Üben und Lernen deutscher Artikel. Die Inhalte dienen ausschließlich Bildungs- und Übungszwecken.
       </p>
       <p>
-        <strong>Zweck des Projekts:</strong> Dies ist ein nichtkommerzielles
-        Lernprojekt zum Erlernen der deutschen Sprache. Die Inhalte dienen
-        ausschließlich zu Bildungszwecken.
+        <strong>Hinweis:</strong> Dieses Projekt wird als persönliches Freizeitprojekt entwickelt. Trotz großer Sorgfalt 
+        können Fehler oder technische Probleme nicht vollständig ausgeschlossen werden.
       </p>
       <p>
-        <strong>Haftungsausschluss:</strong> Trotz sorgfältiger inhaltlicher
-        Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links.
-        Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber
-        verantwortlich.
+        <strong>Feedback:</strong>Bei entdeckten Fehlern sowie Vorschlägen oder Wünschen kann gerne per E-Mail Kontakt aufgenommen werden.
+      </p>
+      <p>
+        <strong>Haftungsausschluss:</strong> Trotz sorgfältiger inhaltlicher Kontrolle übernehme ich keine Haftung für die Inhalte 
+        externer Links. Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
       </p>
 
       <div style={{ marginTop: "2rem" }}>

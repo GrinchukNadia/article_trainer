@@ -1,32 +1,24 @@
-import { useDispatch, useSelector } from "react-redux";
 import CloseTrain from "../trainArticles/shared/CloseTrain";
 import Timer from "./Timer";
-import { useRunningPhase } from "./useRunningPhase";
-import type { RootState } from "../../reduxStore/store";
 import { useEffect } from "react";
-import { startSprint } from "../../reduxStore/sprintSlice";
 import { FallingSprint } from "./FallingSprint";
 import styles from "./ArticleSprint.module.scss";
+import { useState } from "react";
 
 function ArticleSprint({close}: any) {
-  const dispatch = useDispatch();
-  const sprintWordsIds = useSelector(
-    (state: RootState) => state.srs.words.allIds
-  );
-  const sprint = useSelector((state: RootState) => state.sprint);
-  const { phase, answered, correct, wrong } = sprint;
+
+  const [phase, setPhase] = useState("idle");
+  const [answered, setAnswered] = useState(0);
+  const [correct, setCorrect] = useState(0);
+  const [wrong, setWrong] = useState(0);
+
 
   useEffect(() => {
     if (phase !== "idle") return;
-    if (sprintWordsIds.length === 0) return;
-    dispatch(startSprint({ queue: sprintWordsIds, duration: 60 }));
-  }, [dispatch, phase, sprintWordsIds]);
-
-  const { value, max } = useRunningPhase();
+  }, [phase ]);
 
   const handleRestart = () => {
-    if (sprintWordsIds.length === 0) return;
-    dispatch(startSprint({ queue: sprintWordsIds, duration: 60 }));
+    setPhase("running");
   };
 
   if (phase === "finished") {
@@ -48,8 +40,8 @@ function ArticleSprint({close}: any) {
   return (
     <div style={{ width: "80rem",height: "100%"}}>
       <CloseTrain close={close} />
-      <Timer value={value} max={max} />
-      <FallingSprint />
+      <Timer value={0} max={60} setPhase={setPhase} />
+      <FallingSprint setAnswered={setAnswered} setCorrect={setCorrect} setWrong={setWrong} />
     </div>
   );
 }

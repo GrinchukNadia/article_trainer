@@ -1,0 +1,17 @@
+.loop{
+    width: max-content;
+    display: flex; 
+    gap: 140px;
+    // justify-content: space-around;
+    align-items: center; 
+    animation: moveLoop 20s linear infinite;
+}
+// @keyframes moveLoop {
+//   from {
+//     transform: translateX(-50%);
+//   }
+
+//   to {
+//     transform: translateX(0%);
+//   }
+// }

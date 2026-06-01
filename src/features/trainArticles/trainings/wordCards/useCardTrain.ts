@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../../reduxStore/store";
 import { handleAnswerArticle, load } from "../../../api/srs/wordsToLearn";
 import type {
@@ -10,6 +10,8 @@ import type {
   Gender,
   State,
 } from "./cardTrain.types";
+import { registrateActivity } from "../../../../reduxStore/activitySlice";
+import { getStreak } from "../../../api/stats/stats";
 
 const initial: State = {
   translation: ". . . . . . . .",
@@ -56,6 +58,14 @@ export function useCardTrain() {
   const token = useSelector((reduxState: RootState) => {
     return reduxState.auth.token;
   });
+  const reduxDispatch = useDispatch();
+
+  // const loadStreak = useCallback(async() => {
+  //   if(!token) return;
+
+  //   const newStreak = await getStreak(token);
+  //   reduxDispatch(registrateActivity(newStreak));
+  // }, [token, reduxDispatch])
 
   // Load a new batch of words(10) from the backend and restart the card session.
   const loadNext = useCallback(async () => {
@@ -73,7 +83,6 @@ export function useCardTrain() {
     loadNext();
   }, [loadNext]);
 
-  // console.log(words);
 
   const onAnimationStart = useCallback(() => {
     dispatch({ type: "SET_ANIMATING", value: true });
@@ -109,17 +118,21 @@ export function useCardTrain() {
       }
 
       //  Prevent requests after the correct answer was selected.
-      if(state.answered) return;
+      if (state.answered) return;
 
-      
+
       // Prevent multiple requests to the backend.
       if (state.selectedArticles.includes(choice)) return;
-      console.log(state.selectedArticles, choice);
-      
+      // console.log(state.selectedArticles, choice);
+
       // Send the selected article to the backend.
       // The backend checks the answer and updates the user's progress.
       const result = await handleAnswerArticle(token, choice, current.wordId);
       dispatch({ type: "SET_SELECTED_ARTICLES", answer: choice });
+
+      //get streak updated
+      const newStreak = await getStreak(token);
+      reduxDispatch(registrateActivity(newStreak));
 
 
       if (!result.correct && !state.answered) {
@@ -146,7 +159,7 @@ export function useCardTrain() {
         };
         dispatch({ type: "SET_ANIM", anim: animationNames[choice as Gender] });
         dispatch({ type: "SET_ARTICLE", text: result.gender[0] });
-        dispatch({ type: "SET_CARD_CLASS", name: "card-correct" });
+        dispatch({ type: "SET_CARD_CLASS", name: "card-correct card" });
         dispatch({ type: "SET_ANSWERED", value: true });
         dispatch({ type: "SET_TRANSLATION", text: current.translation });
       }
@@ -162,5 +175,6 @@ export function useCardTrain() {
     onAnimationEnd,
     onAnimationStart,
     handleAnswer,
+    token
   };
 }

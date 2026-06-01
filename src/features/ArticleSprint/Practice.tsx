@@ -3,6 +3,8 @@ import { useEffect } from "react";
 
 import { useSearchParams } from "react-router-dom";
 import ArticleSprint from "./ArticleSprint";
+import AnotherGame from "./Another";
+import Test from "./Test";
 
 const Practice = () => {
   const [params, setSearchParams] = useSearchParams();
@@ -35,49 +37,64 @@ const Practice = () => {
         paddingTop: "40px",
       }}
     >
-      {modalKey && (
+      {modalKey == "sprint" && (
         <Modal variant="sprint">
           <ArticleSprint close={close} />
         </Modal>
       )}
-        <div
-          style={{
-            color: "wheat",
-            cursor: "pointer",
-            padding: "20px 60px",
-            border: "1px solid white",
-            width: "max-content",
-            height: "max-content",
-            margin: "6px",
-          }}
-          onClick={() => setSearchParams({ modal: "sprint" })}
-        >
-          Sprint
-        </div>
-
       <div
         style={{
           color: "wheat",
-          cursor: "not-allowed",
+          cursor: "pointer",
           padding: "20px 60px",
           border: "1px solid white",
           width: "max-content",
           height: "max-content",
           margin: "6px",
         }}
+        onClick={() => setSearchParams({ modal: "sprint" })}
+      >
+        Sprint
+      </div>
+
+      {modalKey == "another" && (
+        <Modal variant="another">
+          <AnotherGame close={close} />
+        </Modal>
+      )}
+      <div
+        style={{
+          color: "wheat",
+          cursor: "pointer",
+          // cursor: "not-allowed",
+          padding: "20px 60px",
+          border: "1px solid white",
+          width: "max-content",
+          height: "max-content",
+          margin: "6px",
+        }}
+        onClick={() => setSearchParams({modal: "another"})}
       >
         Game 2
       </div>
+
+      {modalKey == "test" && (
+        <Modal variant="test">
+          <Test/>
+        </Modal>
+      )}
       <div
         style={{
           color: "wheat",
-          cursor: "not-allowed",
+          cursor: "pinter",
+          // cursor: "not-allowed",
           padding: "20px 60px",
           border: "1px solid white",
           width: "max-content",
           height: "max-content",
           margin: "6px",
         }}
+        onClick={() => setSearchParams({modal: "test"})}
       >
         Game 3
       </div>

@@ -1,31 +1,39 @@
 import { useState } from "react";
 import styles from "./AuthModal.module.scss";
 import LoginForm from "./LoginForm";
-import SuccessNotice from "./SuccessNotice";
+// import SuccessNotice from "./SuccessNotice";
 import RegisterForm from "./RegisterForm";
+import ChangePass from "./ChangePass";
+import SuccessNotice from "./SuccessNotice";
+import SafeCheck from "./SafeCheck";
 export interface AuthModalProps {
   onClose: () => void;
 }
 
-export type Status = "register" | "login" | "code" | "success";
+export type Status = "register" | "login" | "check" | "code" | "success" | "changePass";
 export type HeaderProps = Pick<AuthModalProps, "onClose"> & {
   header: string;
 };
 
 function AuthModal({ onClose }: AuthModalProps) {
   const [status, setStatus] = useState<Status>("login");
+  const [changePassIsSuccess, setChangePassIsSuccess] = useState(false);
+  const [username, setUsername] = useState("");
+  const [hash, setHash] = useState("");
 
 
   function modal(status: Status) {
     switch (status) {
-      case "register": return <RegisterForm onClose={onClose} setStatus={setStatus} />;
-      case "code": return <RegisterForm onClose={onClose} setStatus={setStatus} />;
-      case "login": return <LoginForm onClose={onClose} setStatus={setStatus} />;
+      case "register": return <RegisterForm onClose={onClose} setStatus={setStatus} username= {username} setUsername={setUsername} hash={hash} setHash={setHash} />;
+      case "code": return <RegisterForm onClose={onClose} setStatus={setStatus} username= {username} setUsername={setUsername} hash={hash} setHash={setHash} />;
+      case "check": return <SafeCheck setStatus={setStatus}  />;
+      case "login": return <LoginForm onClose={onClose} setStatus={setStatus} changePassIsSuccess={changePassIsSuccess}  setChangePassIsSuccess={setChangePassIsSuccess}/>;
       case "success": return <SuccessNotice />;
+      case "changePass": return <ChangePass onClose={onClose} setStatus={setStatus} setChangePassIsSuccess={setChangePassIsSuccess} />;
       default: return null;
     }
   }
-  function renderButtenAction(status: Status) {
+  function renderButtonAction(status: Status) {
     switch (status) {
       case "register":
         return (
@@ -39,6 +47,10 @@ function AuthModal({ onClose }: AuthModalProps) {
             Registrieren
           </button>
         );
+        case "check":
+          return (
+            <></>
+          );
       case "success":
         return (
           <button className={styles.modal__actions} type="button" onClick={onClose}>
@@ -47,7 +59,7 @@ function AuthModal({ onClose }: AuthModalProps) {
         );
       case "code":
         return (
-          <button className={styles.modal__actions} type="button" onClick={onClose}>
+          <button className={styles.modal__actions} type="button" onClick={() => setStatus("check")}>
             Lernen 
           </button>
         );
@@ -63,7 +75,7 @@ function AuthModal({ onClose }: AuthModalProps) {
         <div className={styles.modal__dialog}>
           {modal(status)}
         </div>
-        {renderButtenAction(status)}
+        {renderButtonAction(status)}
       </div>
 
     </div>

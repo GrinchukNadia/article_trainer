@@ -1,0 +1,20 @@
+.wrong {
+    filter: opacity(0.3);
+    background-color: #fac8bb9c;
+    transition: linear 0.5s;
+    transition: "transform 0.05s linear",
+}
+.card-correct {
+    .correct {
+        filter: opacity(0.3);
+        background-color: #adffa29c;
+        transition: linear 0.5s;
+        transition: "transform 0.05s linear",
+    }
+    
+}
+.blocked {
+    filter: opacity(0.3);
+    transition: linear 0.5s;
+    transition: "transform 0.05s linear",
+}

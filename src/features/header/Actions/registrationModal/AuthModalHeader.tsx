@@ -5,7 +5,7 @@ function AuthModalHeader({onClose, header}: HeaderProps) {
   return (
     <div className={styles["modal__dialog-header"]}>
       <div className={styles.modal__title}>{header}</div>
-      <button className={styles.modal__close} style={{color: "black"}} onClick={onClose}>
+      <button className={styles.modal__close} style={{color: "black", cursor: "pointer"}} onClick={onClose}>
         ✕
       </button>
     </div>

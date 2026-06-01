@@ -1,55 +1,80 @@
-// FallingSprint.tsx
 import {
   useCallback,
   useEffect,
   useLayoutEffect,
   useRef,
   useState,
+  type Dispatch,
+  type SetStateAction,
 } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import type { RootState } from "../../reduxStore/store";
-import { recordAnswerSprint } from "../../reduxStore/sprintSlice";
 import styles from "./FallingSprint.module.scss";
 import clsx from "clsx";
+import { getWordsSprint } from "../api/games/sprint";
 
 type Column = "der" | "die" | "das";
+
+type SprintWord = {
+  word: string;
+  article: string;
+};
+
+type setStatistic = {
+  setAnswered: Dispatch<SetStateAction<number>>;
+  setCorrect: Dispatch<SetStateAction<number>>;
+  setWrong: Dispatch<SetStateAction<number>>;
+}
 
 let ROWS = 0; // сколько "ступенек" по высоте
 const STEP = 40; // высота одного "шага" в пикселях
 const NORMAL_SPEED = 600; // мс между "шагами" падения
 const FAST_SPEED = 40; // ускорение при стрелке вниз
 
-export function FallingSprint() {
-  const dispatch = useDispatch();
+export function FallingSprint({setAnswered, setCorrect, setWrong}: setStatistic) {
+  const [words, setWords] = useState<SprintWord[]>([]);
 
-  // берём текущее слово из sprintSlice
-  const { queue, index } = useSelector((state: RootState) => state.sprint);
-
-  const currentWord = useSelector((state: RootState) => {
-    const currentId = queue[index];
-    return currentId ? state.srs.words.byId[currentId] : undefined;
+  const token = useSelector((reduxState: RootState) => {
+    return reduxState.auth.token;
   });
 
+
+  const loadSprint = useCallback(async () => {
+    if (!token) return;
+
+    const words = await getWordsSprint(token);
+
+    setWords(words);
+    console.log(words);
+
+  }, [token]);
+
+  useEffect(() => {
+    loadSprint()
+  }, [token])
+
+  
   // 👇 Локальное состояние для "тетрис-движения"
   const [column, setColumn] = useState<Column>("die");
   const [row, setRow] = useState(0); // 0 = верх, ROWS-1 = низ
   const [speed, setSpeed] = useState(NORMAL_SPEED);
-  // когда слово "приземлилось"
-  const [result, setResult] = useState<"correct" | "wrong" | null>(null);
-
+  const [index, setIndex] = useState(0);
+  
+  const currentWord = words[index];
+  
   // когда меняется слово — сбрасываем позицию
   useEffect(() => {
     setResult(null);
     setColumn("die");
     setRow(0);
     setSpeed(NORMAL_SPEED);
-  }, [currentWord?.id]);
-
+  }, [index]);
+  
   // обработка клавиатуры: ← → ↓
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!currentWord) return;
-
+      
       if (e.key === "ArrowLeft") {
         setColumn((prev) => {
           if (prev === "die") return "der";
@@ -57,7 +82,7 @@ export function FallingSprint() {
           return prev;
         });
       }
-
+      
       if (e.key === "ArrowRight") {
         setColumn((prev) => {
           if (prev === "der") return "die";
@@ -65,18 +90,18 @@ export function FallingSprint() {
           return prev;
         });
       }
-
+      
       if (e.key === "ArrowDown") {
         setSpeed(FAST_SPEED);
       }
     };
-
+    
     const handleKeyUp = (e: KeyboardEvent) => {
       if (e.key === "ArrowDown") {
         setSpeed(NORMAL_SPEED);
       }
     };
-
+    
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleKeyUp);
 
@@ -85,27 +110,31 @@ export function FallingSprint() {
       window.removeEventListener("keyup", handleKeyUp);
     };
   }, [currentWord]);
-
+  
   const handleLand = useCallback(() => {
     if (!currentWord) return;
-    const correctArticle = currentWord.gender as Column;
+    const correctArticle = currentWord.article as Column;
     const isCorrect = column === correctArticle;
 
+    setAnswered(prev=> prev + 1);
+    
     setResult(isCorrect ? "correct" : "wrong");
 
+    isCorrect ? setCorrect(prev => prev+1) : setWrong(prev=> prev + 1);
+    
     setTimeout(() => {
-      dispatch(recordAnswerSprint({ isCorrect: isCorrect }));
+      setIndex((prev) => prev + 1);
     }, 900);
-  }, [column, currentWord, dispatch]);
-
+  }, [column, currentWord]);
+  
   const fieldRef = useRef<HTMLDivElement | null>(null);
   const [columnWidth, setColumnWidth] = useState(0);
-
+  
   useLayoutEffect(() => {
     const updatedWidth = () => {
       const el = fieldRef.current;
       if (!el) return;
-
+      
       const children = el.children;
       const second = children[1];
       const third = children[2];
@@ -118,17 +147,21 @@ export function FallingSprint() {
         setColumnWidth(fieldWidth);
       }
     };
-
+    
     updatedWidth();
-
+    
     const rafId = requestAnimationFrame(updatedWidth);
     window.addEventListener("resize", updatedWidth);
     return () => {
       cancelAnimationFrame(rafId);
       window.removeEventListener("resize", updatedWidth);
     };
-  }, []);
+  }, [currentWord]);
 
+
+  // когда слово "приземлилось"
+  const [result, setResult] = useState<"correct" | "wrong" | null>(null);
+  
   // падение "ступеньками" через setInterval
   useEffect(() => {
     if (!currentWord) return;
@@ -155,7 +188,7 @@ export function FallingSprint() {
     return <div>Нет слов для спринта</div>;
   }
 
-  const correctArticle = currentWord.gender as Column;
+  const correctArticle = currentWord.article as Column;
   const getCellClass = (cell: Column) => {
     return clsx(styles.sprint_cell, {
       [styles.correct]: result !== null && cell === correctArticle,
@@ -173,7 +206,7 @@ export function FallingSprint() {
             transform: `translate(${columnX}px, ${row * STEP}px)`,
           }}
         >
-          {currentWord.lemma}
+          {currentWord.word}
         </div>
         <div className={styles.sprint_bottom}>
           <div className={getCellClass("der")}>der</div>

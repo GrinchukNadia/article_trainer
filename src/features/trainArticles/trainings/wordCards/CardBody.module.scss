@@ -1,3 +1,6 @@
+@use "../../../../styles/mixins" as m;
+@use "../../../../styles/variables" as *;
+
 .cardBody {
   height: 100vh;
   overflow: hidden;
@@ -10,6 +13,13 @@
 //   image-rendering: pixelated;
 //   image-rendering: crisp-edges;
 //   background-position: 313px 5px;
+}
+.beforRegistration{
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: center;
+  max-width: 70%;
 }
 
 .continueLearning {
@@ -30,6 +40,14 @@
     @media screen and (max-width: 998px) {
       display: none;
     }
+  }
+  .registrate {
+    @include m.button-base;
+    font-family: $font-family;
+    text-transform: lowercase;
+    padding: 20px;
+    font-size: 1.3rem;
+    text-shadow: none;
   }
   button {
     background: none;

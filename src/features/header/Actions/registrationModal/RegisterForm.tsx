@@ -1,27 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./AuthModal.module.scss";
 import FormField from "./FormField";
 import AuthModalHeader from "./AuthModalHeader";
 import type { Status } from "./AuthModal";
-import { registrateUser } from "../../../api/auth/auth";
+import { checkUserName, registrateUser } from "../../../api/auth/auth";
 import { useDispatch } from "react-redux";
 import { safeUser } from "../../../../reduxStore/authSlice";
+import RecoveryData from "./RecoveryData";
 
 type RegisterFormType = {
   onClose: () => void;
   setStatus: (value: Status) => void;
+  username: string;
+  setUsername: (value: string) => void;
+  hash: string;
+  setHash: (value: string) => void;
 };
 
 function RegisterForm(
   {
     onClose,
     setStatus,
+    username, 
+    setUsername,
+    hash,
+    setHash
   }: RegisterFormType /*{ setSubmitted }: RegisterFormProps*/,
 ) {
-  const [username, setUsername] = useState("");
+  
   const [pass, setPass] = useState("");
   const [passRepeat, setPassRepeat] = useState("");
-  const [hash, setHash] = useState("");
+  const [isUniqueUsername, setIsUniqueUserName] = useState(true);
 
   const usernameOk = username.length >= 2;
   const passOk = pass.length >= 6;
@@ -31,11 +40,17 @@ function RegisterForm(
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     if (!canSubmit) return;
-    /*setSubmitted(true);*/
   }
 
   const dispatch = useDispatch();
-  
+
+  useEffect(() => {
+    const timeout = setTimeout(async () => {
+      const response = await checkUserName(username);
+      setIsUniqueUserName(response.isUnique)
+    }, 400);
+    return () => clearTimeout(timeout);
+  }, [username])
 
   async function registrate() {
     const response = await registrateUser(username, pass);
@@ -45,7 +60,9 @@ function RegisterForm(
     console.log(response);
     setHash(hash);
     dispatch(safeUser(token));
+
   }
+
   return (
     <>
       {hash.length < 1 ? (
@@ -55,15 +72,18 @@ function RegisterForm(
             <FormField
               label="Username"
               className={styles.modal__row}
-              error={
-                username && !usernameOk ? "Введите корректное имя." : undefined
+              error={username && username.length < 2
+                ? "Der Benutzername ist zu kurz."
+                : username.length >= 2 && !isUniqueUsername
+                  ? "Dieser Benutzername ist nicht verfügbar."
+                  : ""
               }
             >
               <input
                 className={styles.modal__input}
                 type="text"
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
+                onChange={(e) => { setUsername(e.target.value) }}
                 placeholder="Имя"
               />
             </FormField>
@@ -115,44 +135,8 @@ function RegisterForm(
             </div>
           </form>
         </>
-      ) : (
-        <>
-          <div>
-            <p style={{ color: "red" }}>
-              Achtung: Dieser Code wird nur einmal angezeigt.
-            </p>
-            <p style={{ fontSize: "14px" }}>
-              Speichern Sie diesen Code zusammen mit Ihrem Benutzernamen an
-              einem sicheren Ort. Falls Sie Ihr Passwort vergessen, ist eine
-              Wiederherstellung Ihres Kontos nur mit diesen beiden Angaben
-              möglich. Andernfalls müssten Sie ein neues Konto erstellen und Ihr
-              bisheriger Lernfortschritt würde verloren gehen.
-            </p>
-
-            <p style={{ color: "red" }}>
-              Внимание: этот код будет показан только один раз.
-            </p>
-            <p style={{ fontSize: "14px" }}>
-              Сохраните этот код вместе со своим именем пользователя в надежном
-              месте. Если вы забудете пароль, восстановить аккаунт можно будет
-              только с помощью этих двух данных. Иначе придется создать новый
-              аккаунт, и весь прогресс будет потерян.
-            </p>
-            <div
-              style={{
-                padding: "20px",
-                border: "1px solid  #D3D3D3",
-                backgroundColor: "#e9e9e9",
-                textAlign: "center",
-                fontSize: "20px",
-                fontFamily: "sans-serif"
-              }}
-            >
-              {hash}
-            </div>
-          </div>
-        </>
-      )}
+      ) : <RecoveryData username={username} hash={hash} />
+      }
     </>
   );
 }

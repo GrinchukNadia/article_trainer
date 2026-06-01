@@ -2,15 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet } from "react-router-dom";
 import AuthModal from "./header/Actions/registrationModal/AuthModal";
 import AppHeader from "./header/AppHeader";
-import dataCard from "./data/Data";
 import { useDispatch } from "react-redux";
-import {
-  initWords,
-  initWordsProgressArr,
-  computeQueue,
-  computeWeakQueue,
-} from "../reduxStore/srsSlice";
-import { seed, shuffle } from "../shared/utils/shuffle";
 import {
   startActiveSession,
   stopActiveSession,
@@ -19,18 +11,10 @@ import {
 
 export default function AppLayout() {
   const [authOpen, setAuthOpen] = useState(false);
-
   const dispatch = useDispatch();
-
 
   useEffect(() => {
     try {
-      const cardsArr = Array.isArray(dataCard) ? dataCard : [];
-      const shuffledcardsArr = shuffle(cardsArr, seed);
-      dispatch(initWords(shuffledcardsArr));
-      dispatch(initWordsProgressArr());
-      dispatch(computeQueue());
-      dispatch(computeWeakQueue());
     } catch (e) {
       console.log(e);
     }
@@ -72,6 +56,16 @@ export default function AppLayout() {
       <main>
         <Outlet />
       </main>
+      {/* <div style={{width: "100vw", height: "100vh", position: "absolute", top: 0, left: 0, backgroundColor: "#fd552b", padding: " 30px 60px", fontSize: "1.6rem", fontWeight: "light"}}>
+      <p>Nach dem Schließen können der Benutzername und der Wiederherstellungscode nicht erneut angezeigt werden.</p>
+
+      <button style={{border: "none", fontSize: "2rem", padding: "6px 16px", margin: "20px"}} 
+      // onClick={() => setStatus("code")}
+      >Zurück</button>
+      <button  style={{border: "none", fontSize: "2rem", padding: "6px 16px", marginRight: "20px"}}
+      // onClick={() => setStatus("success")}
+      >Ich habe den Code und den Benutzernamen gespeichert</button>
+    </div> */}
 
       {authOpen && <AuthModal onClose={() => setAuthOpen(false)} />}
     </div>

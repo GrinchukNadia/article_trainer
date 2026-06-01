@@ -20,8 +20,8 @@ function Burger({ onClose, onOpenAuth }:BurgerProps) {
       <NavLink onClick={onClose} to="" className={styles.tabs__btn}>
         Лексика
       </NavLink>
-      <NavLink onClick={onClose} to="grammar" className={styles.tabs__btn}>
-        Грамматика
+      <NavLink onClick={onClose} to="practice" className={styles.tabs__btn}>
+        Практика
       </NavLink>
       <NavLink onClick={onClose} to="stats" className={styles.tabs__btn}>
         Статистика

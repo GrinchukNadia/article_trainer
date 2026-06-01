@@ -9,24 +9,24 @@ export type ActivityDay = {
   activeMs: number;
 };
 export type ActivityState = {
-  lastActiveDate: string | null;
+  // lastActiveDate: string | null;
   currentStreak: number;
-  bestStreak: number;
-  totalActiveDays: number;
+  // bestStreak: number;
+  // totalActiveDays: number;
 
-  byDay: Record<string, ActivityDay>;
+  // byDay: Record<string, ActivityDay>;
 
   lastActiveStartedAt: number | null;
   isActive: boolean;
 };
 
 const initialState: ActivityState = {
-  lastActiveDate: null,
+  // lastActiveDate: null,
   currentStreak: 0,
-  bestStreak: 0,
-  totalActiveDays: 0,
+  // bestStreak: 0,
+  // totalActiveDays: 0,
 
-  byDay: {},
+  // byDay: {},
 
   lastActiveStartedAt: null,
   isActive: false,
@@ -36,46 +36,47 @@ export const activitySlice = createSlice({
   name: "activity",
   initialState: initialState,
   reducers: {
-    registrateActivity: (state) => {
-      const today = format(new Date(), "yyyy-MM-dd");
+    registrateActivity: (state, action) => {
+      state.currentStreak = action.payload;
+      // const today = format(new Date(), "yyyy-MM-dd");
 
-      if (!state.lastActiveDate) {
-        state.lastActiveDate = format(new Date(), "yyyy-MM-dd");
-        state.currentStreak = 1;
-        state.bestStreak = 1;
-        state.totalActiveDays = 1;
+      // if (!state.lastActiveDate) {
+      //   state.lastActiveDate = format(new Date(), "yyyy-MM-dd");
+      //   state.currentStreak = 1;
+      //   state.bestStreak = 1;
+      //   state.totalActiveDays = 1;
 
-        ensureDay(state, today);
-        cleanupOldDays(state);
-        return;
-      }
-      const lastActiveDate = state.lastActiveDate;
-      const wasActiveYesterday =
-        differenceInCalendarDays(new Date(today), new Date(lastActiveDate ?? today)) ===
-        1;
+      //   ensureDay(state, today);
+      //   cleanupOldDays(state);
+      //   return;
+      // }
+      // const lastActiveDate = state.lastActiveDate;
+      // const wasActiveYesterday =
+      //   differenceInCalendarDays(new Date(today), new Date(lastActiveDate ?? today)) ===
+      //   1;
 
-      if (lastActiveDate === today) {
-        ensureDay(state, today);
-        cleanupOldDays(state);
-        return;
-      };
+      // if (lastActiveDate === today) {
+      //   ensureDay(state, today);
+      //   cleanupOldDays(state);
+      //   return;
+      // };
 
-      if (wasActiveYesterday) {
-        state.lastActiveDate = today;
-        state.currentStreak += 1;
-        state.bestStreak =
-          state.currentStreak > state.bestStreak
-            ? state.currentStreak
-            : state.bestStreak;
-        state.totalActiveDays += 1;
-      } else {
-        state.lastActiveDate = today;
-        state.currentStreak = 1;
-        state.totalActiveDays += 1;
-      }
+      // if (wasActiveYesterday) {
+      //   state.lastActiveDate = today;
+      //   state.currentStreak += 1;
+      //   state.bestStreak =
+      //     state.currentStreak > state.bestStreak
+      //       ? state.currentStreak
+      //       : state.bestStreak;
+      //   state.totalActiveDays += 1;
+      // } else {
+      //   state.lastActiveDate = today;
+      //   state.currentStreak = 1;
+      //   state.totalActiveDays += 1;
+      // }
 
-      ensureDay(state, today);
-      cleanupOldDays(state);
+      // ensureDay(state, today);
+      // cleanupOldDays(state);
     },
     startActiveSession: (state) => {
       if(!state.isActive) {

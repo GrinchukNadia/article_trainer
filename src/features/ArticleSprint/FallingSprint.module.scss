@@ -8,6 +8,7 @@
     overflow: hidden;
   }
   &_word {
+    color: #fff;
     font-size: 4rem;
     width: fit-content;
     flex-grow: 2;
@@ -34,5 +35,6 @@
   }
   &_hint {
     font-size: 1.2rem;
+    color: #fff;
   }
 }

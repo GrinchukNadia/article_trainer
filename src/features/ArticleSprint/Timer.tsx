@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styles from "./Timer.module.scss";
 
 type ProgressCircleProps = {
@@ -8,6 +9,7 @@ type ProgressCircleProps = {
   trackColor?: string;
   progressColor?: string;
   textColor?: string;
+  setPhase: (phase: string) => void;
 };
 
 function Timer({
@@ -18,6 +20,7 @@ function Timer({
   trackColor = "rgb(255, 255, 255)",
   progressColor = "rgba(10, 59, 41, 1)",
   textColor = "rgb(255, 255, 255)",
+  setPhase
 }: ProgressCircleProps) {
     const center = size / 2;
     const radius = center - parseFloat(strokeWidth) / 2;
@@ -25,7 +28,21 @@ function Timer({
     const progress = value / max;
     const dashOffset = circumference * (1 - progress);
 
-    const safeValue = Math.min(Math.max(value, 0), max);
+    const [safeValue, setSafeValue] = useState(60);
+
+    useEffect(() => {
+      if(safeValue <= 0) {
+        setPhase("finished");
+        return
+      };
+
+      const id = setInterval(() => {
+        setSafeValue(prev => prev - 1);
+      }, 1000);
+
+      return() => clearInterval(id);
+    }, [safeValue]);
+
   return (
     <div className={styles.timer}>
       <svg width={size} height={size} viewBox="0 0 80 80">

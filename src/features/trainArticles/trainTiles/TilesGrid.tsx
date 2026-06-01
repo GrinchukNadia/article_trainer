@@ -3,12 +3,12 @@ import styles from "./TilesGrid.module.scss";
 import type { ModalKey } from "../trainModals/modals";
 import { useSearchParams } from "react-router-dom";
 
-import brocken_tab from "../../../assets/18_00_07.png"
-import w from "../../../assets/19_48_58.png"
-import wings from "../../../assets/p16_58_19.png"
-import r from "../../../assets/19_13_13.png"
-import candles from "../../../assets/16_51_57.png"
-import cats from "../../../assets/12_24_07.png"
+import brocken_tab from "../../../assets/img/18_00_07.png"
+import w from "../../../assets/img/19_48_58.png"
+import wings from "../../../assets/img/p16_58_19.png"
+import r from "../../../assets/img/19_13_13.png"
+import candles from "../../../assets/img/16_51_57.png"
+import cats from "../../../assets/img/12_24_07.png"
 
 
 type TILES_TYPES = {
@@ -39,7 +39,7 @@ export default function TilesGrid() {
       description: "Тренировка неопределённых артиклей",
       url: w,
       size: "small",
-      disabled: false,
+      disabled: true,
     },
     {
       key: "grammar",
@@ -48,7 +48,7 @@ export default function TilesGrid() {
       description: "Изучай грамматику с уже знакомыми словами",
       url: wings,
       size: "small",
-      disabled: false,
+      disabled: true,
     },
     {
       key: "mistakeReview",
@@ -84,7 +84,7 @@ export default function TilesGrid() {
         <Tile
           key={t.key}
           area={t.area}
-          onClick={t.disabled ? ()=>{} : () => setSearchParams({ modal: t.key } )}
+          onClick={t.disabled ? () => { } : () => setSearchParams({ modal: t.key })}
           title={t.title}
           description={t.description}
           url={t.url}
