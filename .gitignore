@@ -13,7 +13,6 @@ dist
 dist-ssr
 *.local
 
-img
 pixel_art
 
 src/features/data/Data_lesson01.tsx
@@ -29,3 +28,8 @@ src/features/data/Data_v1.ts
 *.njsproj
 *.sln
 *.sw?
+
+src/assets/img/rest
+src/assets/img/Neuer Ordner
+src/features/data
+
