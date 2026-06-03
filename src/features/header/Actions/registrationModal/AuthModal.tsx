@@ -58,10 +58,10 @@ function AuthModal({ onClose }: AuthModalProps) {
           </button>
         );
       case "code":
-        return (
-          <button className={styles.modal__actions} type="button" onClick={() => setStatus("check")}>
-            Lernen 
-          </button>
+        return (<></>
+          // <button className={styles.modal__actions} type="button" onClick={() => setStatus("check")}>
+          //   Lernen 
+          // </button>
         );
       default:
         return null;
@@ -70,7 +70,7 @@ function AuthModal({ onClose }: AuthModalProps) {
 
   return (
     <div className={styles.modal}>
-      <div className={styles.modal__overlay} onClick={onClose} />
+      <div className={styles.modal__overlay} onClick={() => status === "code" ? setStatus("check") : () =>onClose()} />
       <div style={{ zIndex: 1 }}>
         <div className={styles.modal__dialog}>
           {modal(status)}

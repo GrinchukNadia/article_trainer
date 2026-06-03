@@ -54,7 +54,7 @@ function RecoveryData({ username, hash }:RecoveryDataType) {
           <div style={{ cursor: "pointer" }}
             onClick={() => downloadRecoveryPdf({ username: username, recoveryCode: hash })}
           >
-            <div>скачать</div>
+            <div style={{fontSize: "14px"}}>Download</div>
             <PixelIconDownload />
           </div>
         </div>

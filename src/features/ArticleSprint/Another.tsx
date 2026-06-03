@@ -8,12 +8,9 @@ import {
 
 
 function AnotherGame({ close }: any) {
-   const [phase, setPhase] = useState("idle");
-    const [frame, setFrame] = useState(0);
+   const [phase] = useState("idle");
+    const [frame, setFrame] = useState(6);
  
-
-  
-
 
   useEffect(() => {
     if (phase !== "idle") return;

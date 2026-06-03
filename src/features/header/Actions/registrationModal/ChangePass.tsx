@@ -4,7 +4,7 @@ import FormField from "./FormField";
 import AuthModalHeader from "./AuthModalHeader";
 import type { Status } from "./AuthModal";
 import { changePasswordRequest } from "../../../api/auth/auth";
-import {  validateInput } from "./validation";
+import axios from "axios";
 
 
 type ChangePassProps = {
@@ -33,13 +33,17 @@ function ChangePass(
 
   async function changePassword() {
     try {
-      const response = await changePasswordRequest(username, recoveryCode, passRepeat);
-
+      await changePasswordRequest(username, recoveryCode, passRepeat);
       setStatus("login");
       setChangePassIsSuccess(true);
-      console.log(response);
-    } catch (e: any) {
-      setErrorMessage(e.message)
+    } catch (e) {
+      if(axios.isAxiosError(e)) {
+        if(e.response?.status === 400) {
+          setErrorMessage("Benutzername oder Hashcode ist falsch. Bitte versuchen es erneut.");
+        }
+      } else {
+        setErrorMessage("Serverfehler")
+      }
     }
   }
 

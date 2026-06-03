@@ -15,33 +15,25 @@ function DaysStreak() {
   const dispatch = useDispatch();
 
 
+  //вынести в отдельный хук useLoadStreak();
   useEffect(() => {
-    if (!token) return;
-
     const loadStreak = async () => {
       try {
-        const data = await getStreak(token);
+        const data = await getStreak();
         dispatch(registrateActivity(data));
       } catch (error) {
         console.error("Failed to load streak", error)
       }
     };
-
     loadStreak();
-  }, [token, dispatch])
+  }, [dispatch])
 
 
   return (
-    <>
-    {token ? (
     <div style={{ display: "flex", alignItems: "end" }}>
       <span style={{ marginRight: " 6px" }}>{token ? pluralizeDay(streak) : pluralizeDay(0)}</span>
       <img style={{ height: "31px" }} src={fireImg} alt="fire" />
-    </div>
-    ) : (<></>)
-    }
-    </>
-    
+    </div> 
   );
 }
 

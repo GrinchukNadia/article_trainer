@@ -1,31 +1,31 @@
-import { API_BASE_URL } from "../url/url";
+import { apiClient } from "../client";
 
-export async function getStreak (token: string | null) {
-    const responce = await fetch(`${API_BASE_URL}/statistic/days`, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    })
-    return responce.json();
+// -----------------------------------------------------------------------
+export async function getStreak(): Promise<number> {
+    const { data } = await apiClient.get<number>("/statistic/days")
+    return data;
 }
 
-export async function getStats (token: string | null) {
-    const responce = await fetch(`${API_BASE_URL}/statistic`, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    })
-    return responce.json();
+// -----------------------------------------------------------------------
+export type DifficultWords = {
+    article: string,
+    lemma: string,
+    translation: string,
+    wrongCount: number
+}
+type GetStatsResponse = {
+    difficultWords: DifficultWords[],
+    learnedWords: number,
+    dueToday: number,
+    bestStreak: number
+}
+export async function getStats():Promise<GetStatsResponse> {
+    const { data } = await apiClient.get<GetStatsResponse>("/statistic")
+    return data;
 }
 
-export async function getDailyActivity (token: string | null) {
-    const responce = await fetch(`${API_BASE_URL}/statistic/weekly-activity`, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    })
-    return responce.json();
+// -----------------------------------------------------------------------
+export async function getDailyActivity():Promise<number[]> {
+    const {data} = await apiClient.get<number[]>("/statistic/weekly-activity")
+    return data;
 }

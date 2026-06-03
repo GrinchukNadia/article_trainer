@@ -1,12 +1,10 @@
-import { API_BASE_URL } from "../url/url";
+import { apiClient } from "../client";
 
-export async function getWordsSprint(token: string | null){
-    const responce = await fetch(`${API_BASE_URL}/games/sprint`, {
-        method: "GET",
-         headers: {
-      Authorization: `Bearer ${token}`,
-    },
-    })
-
-    return await responce.json();
+type GetWordsSprintResponse = {
+    word: string,
+    article: string
+}
+export async function getWordsSprint():Promise<GetWordsSprintResponse[]>{
+    const {data} = await apiClient.get<GetWordsSprintResponse[]>("/games/sprint");
+    return data;
 }

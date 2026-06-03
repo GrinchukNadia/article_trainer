@@ -1,11 +1,8 @@
-import { useSelector } from "react-redux";
-import type { RootState } from "../../reduxStore/store";
-// import { selectBoxWords } from "../../shared/utils/selectBoxWords";
-// import { selectTopWeakWords } from "../../reduxStore/srsSlice";
 import styles from "./Stats.module.scss";
 import WeekActivityDiagram from "./WeekActivityDiagram";
 import { useEffect, useState } from "react";
 import { getDailyActivity, getStats } from "../api/stats/stats";
+import type { DifficultWords } from "../api/stats/stats";
 
 type WeakWord = {
   article: string,
@@ -15,25 +12,23 @@ type WeakWord = {
 }
 
 function Stats() {
-  const [topWeakWords, setTopWeakWords] = useState([]);
+  const [topWeakWords, setTopWeakWords] = useState<DifficultWords[]>([]);
   const [learnedWords, setLearnedWords] = useState(0);
   const [bestSreak, setBestStreak] = useState(0);
   const [todayRepeatWords, setTodayRepeatWords] = useState(0);
-
   const [dailyActivity, setDailyActivity] = useState([0, 0, 0, 0, 0, 0, 0]);
-  const token = useSelector((state: RootState) => state.auth.token);
 
   useEffect(() => {
     const loadStats = async() => {
       try{
-        const statistic = await getStats(token);
+        const {difficultWords, learnedWords, dueToday, bestStreak} = await getStats();
 
-        const dailyActivityData = await getDailyActivity(token);
+        const dailyActivityData = await getDailyActivity();
 
-        setTopWeakWords(statistic.difficultWords);
-        setLearnedWords(statistic.learnedWords)
-        setTodayRepeatWords(statistic.dueToday);
-        setBestStreak(statistic.bestStreak);
+        setTopWeakWords(difficultWords);
+        setLearnedWords(learnedWords)
+        setTodayRepeatWords(dueToday);
+        setBestStreak(bestStreak);
 
         setDailyActivity(dailyActivityData);
       } catch(error) {
@@ -42,19 +37,8 @@ function Stats() {
     }
 
     loadStats();
-  }, [token])
-  // const learnedWords = useSelector((state: RootState) =>
-  //   selectBoxWords(state, 5)
-  // ).length;
+  }, [])
 
-  // const topWeakWords = useSelector(selectTopWeakWords);
-
-  // const bestSreak = useSelector(
-  //   (state: RootState) => state.activity.bestStreak
-  // );
-  // const todayRepeatWords = useSelector(
-    // (state: RootState) => state.srs.queue.weakIds.length
-  // );
   return (
     <section className={styles.stats}>
       <div className={styles.card}>

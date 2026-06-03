@@ -1,6 +1,5 @@
 import board from "../../assets/img/board_middle.png";
 import wall from "../../assets/img/wallpaper_flower.png";
-import cat_sprite from "../../assets/img/cat_sprite.png";
 import windowImg from "../../assets/img/window_day.png";
 import paint from "../../assets/img/paint1.png";
 import aquarium from "../../assets/img/aquarium.png";
@@ -14,61 +13,34 @@ import notebook from "../../assets/img/notebook.png";
 import lamp from "../../assets/img/lamp.png";
 import flower_pot from "../../assets/img/flower_pot.png";
 import FishCard from "./FishCard";
-// import clsx from "clsx";
 import styles from "./Another.module.scss";
 import { useEffect, useRef, useState } from "react";
+import { articles, CAT_ANIMATION, pointerPosition, VIEWPORT } from "./FeedCat/FeedCatContent.constants";
+import { INITIAL_FISHES } from "./FeedCat/feedCatData";
+import { type ActiveFish, type Article, type FeedCatContentProps, type Fish, type Result } from "./FeedCat/Types";
+import { ArticleOrder } from "./FeedCat/ArticlesOrder";
+import { CatSprite } from "./FeedCat/CatSprite";
+// import clsx from "clsx";
 
-type FeedCatContentType = {
-    frame: any,
-    setFrame: any,
-    close: any
+
+function mixRandomArticles(articles:Article[], ammount:number) {
+    const result = [...articles];
+    for (let i = 0; i < ammount - articles.length; i++) {
+        const randomNum = Math.floor(Math.random() * 3);
+        result.push(articles[randomNum])
+    }
+    return result.sort(() => Math.random() - 0.5);
 }
 
-export function FeedCatContent({ frame, setFrame, close }: FeedCatContentType) {
-    const pointerPosition = [352, 485, 612, 744, 879];
-    const articles = ["die", "der", "das"];
-    const [orderArticles] = useState(() => {
-        const result = [...articles];
-        for (let i = 0; i < 2; i++) {
-            const randomNum = Math.floor(Math.random() * 3);
-            result.push(articles[randomNum])
-        }
-        return result.sort(() => Math.random() - 0.5);
-    });
-    const [currentArticle, setCurrentArticle] = useState(0)
-    const [fishes, setFishes] = useState([
-        { id: "1", text: "Tag", article: "der" },
-        { id: "2", text: "Katze", article: "die" },
-        { id: "3", text: "Schwimmbad", article: "das" },
-        { id: "4", text: "Haus", article: "das" },
-        { id: "5", text: "Blume", article: "die" },
-        { id: "6", text: "Sehenswürdigkeit", article: "die" },
-        { id: "7", text: "Hund", article: "der" },
-        { id: "8", text: "Man", article: "der" },
-        { id: "9", text: "Salz", article: "das" },
-        { id: "10", text: "Milch", article: "die" },
-        { id: "11", text: "Gemüse", article: "das" },
-        { id: "12", text: "Hund", article: "der" },
-    ])
+export function FeedCatContent({ frame, setFrame, close }: FeedCatContentProps) {
 
-    const [results, setResults] = useState<
-        ("correct" | "wrong" | null)[]
-    >([]);
-
+    const [orderArticles] = useState(mixRandomArticles(articles, 5));
+    const [currentArticleIndex, setCurrentArticleIndex] = useState<number>(0);
+    const [fishes, setFishes] = useState(INITIAL_FISHES)
+    const [results, setResults] = useState<Result[]>([]);
     const [isOverCat, setIsOverCat] = useState<boolean | undefined>(false);
     const catRef = useRef<HTMLDivElement | null>(null);
-    const FRAME_WIDTH = 350;
-    const FRAME_HEIGHT = 290;
-    const FRAMES = 11;
-
-    const [activeFish, setActiveFish] = useState<null | {
-        id: string;
-        scale: number;
-        text: string;
-        article: string,
-        x: number;
-        y: number;
-    }>(null);
+    const [activeFish, setActiveFish] = useState<ActiveFish>(null);
 
     function aboveTarget(e: React.PointerEvent) {
         if (!catRef.current) return;
@@ -87,7 +59,7 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentType) {
         setFrame(isOverCat ? 8 : 6)
     }, [isOverCat, activeFish, setFrame])
 
-    function startDrag(fish: any, e: React.PointerEvent) {
+    function startDrag(fish: Fish, e: React.PointerEvent) {
         setActiveFish({
             id: fish.id,
             scale: 1,
@@ -127,13 +99,13 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentType) {
         if (!activeFish) return;
         // тут проверяешь: попала ли рыбка в рот кота
         if (aboveTarget(e)) {
-            const isCorrect = activeFish.article === orderArticles[currentArticle];
+            const isCorrect = activeFish.article === orderArticles[currentArticleIndex];
 
 
             animateCat(
                 isCorrect
-                    ? [8, 7, 6, 10]
-                    : [8, 7, 6, 9]
+                    ? CAT_ANIMATION.eatingThenHappy
+                    : CAT_ANIMATION.eatingThenAngry
                 , 150);
 
             setTimeout(() => {
@@ -142,11 +114,11 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentType) {
 
             setResults(prev => [...prev, isCorrect ? "correct" : "wrong"]);
 
-            setCurrentArticle(prev => prev + 1);
+            setCurrentArticleIndex(prev => prev + 1);
             setFishes(prev => prev.filter(fish => fish.id !== activeFish.id));
             //логика после того как рыбка была брошена над котом
         } else {
-            setActiveFish((prev: any) =>
+            setActiveFish((prev: ActiveFish) =>
                 prev ? { ...prev, scale: 1 } : null
             );
         }
@@ -172,17 +144,15 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentType) {
 
         const interval = setInterval(() => {
             if (Math.random() < 0.4) {
-                animateCat([1, 0, 3, 0, 1, 0], 450)
+                animateCat(CAT_ANIMATION.blinking, 450)
             } else {
-                animateCat([1, 0, 1, 0, 1, 0], 450);
+                animateCat(CAT_ANIMATION.waiting, 450);
             }
         }, 6 * 450);
 
         return () => clearInterval(interval);
     }, [standartAnimation]);
 
-    const VP_Width = 1260;
-    const VP_Height = 800;
 
 
     return (
@@ -192,30 +162,16 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentType) {
                 onPointerUp={endDrag}
                 className={styles.game}
 
-                style={{ backgroundImage: `url(${wall})`, minWidth: `${VP_Width}px`, height: `${VP_Height}px`, }}
+                style={{ backgroundImage: `url(${wall})`, minWidth: `${VIEWPORT.width}px`, height: `${VIEWPORT.height}px`, }}
             >
                 <div className={styles.wall}>
                     <div className={styles.heart} style={{ backgroundImage: `url(${heart})` }}></div>
                     <div className={styles.coin} style={{ backgroundImage: `url(${coin})` }}></div>
                     <div className={styles.blur_panel} style={{ top: "20px", left: "40px" }}></div>
                     <div className={styles.blur_panel} style={{ top: "97px", left: "40px" }}></div>
-                    <div className={styles.pointer} style={{ left: `${pointerPosition[currentArticle]}px` }}></div>
+                    <div className={styles.pointer} style={{ left: `${pointerPosition[currentArticleIndex]}px` }}></div>
 
-                    <div className={styles.order}>
-                        <div className={styles.order_left}></div>
-                        <div className={styles.order_midle}>
-                            {orderArticles.map((article: string) => <div className={styles.article}>{article}</div>)}
-                        </div>
-                        <div className={styles.order_right}></div>
-                    </div>
-
-                    {results.map((result, index) => (
-                        <div
-                            className={result === "correct" ? styles.correct : styles.wrong}
-                            style={{ left: `${pointerPosition[index]}px` }}></div>
-                    )
-
-                    )}
+                    <ArticleOrder articles={orderArticles} results={results} />
 
 
                     <div
@@ -230,17 +186,8 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentType) {
                     <div className={styles.shelf} style={{ backgroundImage: `url(${shelf})` }}></div>
                     <div className={styles.floor} style={{ backgroundImage: `url(${floor})` }}></div>
 
-                    <div
-                        ref={catRef}
-                        className={styles.cat}
-                        style={{
-                            width: `${FRAME_WIDTH}px`,
-                            height: `${FRAME_HEIGHT}px`,
-                            backgroundImage: `url(${cat_sprite})`,
-                            backgroundSize: `${FRAME_WIDTH * FRAMES}px ${FRAME_HEIGHT}px`,
-                            backgroundPosition: `-${frame * FRAME_WIDTH}px 0px`,
-                        }}>
-                    </div>
+                    <CatSprite frame={frame} ref={catRef}/>
+
                     {correctMessage ?
                         <div className={styles.message}>
                             <div className={styles.messageLeft}></div>
@@ -262,7 +209,7 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentType) {
                     <div className={styles.fishLoop}>
                         {[...fishes.slice(0, 7), ...fishes.slice(0, 7)].map((fish, index) => (
                             <FishCard
-                                onPointerDown={(e: any) => {
+                                onPointerDown={(e: React.PointerEvent) => {
                                     e.currentTarget.setPointerCapture(e.pointerId);
                                     e.stopPropagation();
                                     startDrag(fish, e);

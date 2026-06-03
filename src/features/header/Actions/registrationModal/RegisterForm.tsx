@@ -28,6 +28,7 @@ function RegisterForm(
   }: RegisterFormType /*{ setSubmitted }: RegisterFormProps*/,
 ) {
   
+  const dispatch = useDispatch();
   const [pass, setPass] = useState("");
   const [passRepeat, setPassRepeat] = useState("");
   const [isUniqueUsername, setIsUniqueUserName] = useState(true);
@@ -42,25 +43,28 @@ function RegisterForm(
     if (!canSubmit) return;
   }
 
-  const dispatch = useDispatch();
 
   useEffect(() => {
+    if(!username.trim()) {
+      setIsUniqueUserName(true);
+      return;
+    }
+
     const timeout = setTimeout(async () => {
-      const response = await checkUserName(username);
-      setIsUniqueUserName(response.isUnique)
+      try {
+        const response = await checkUserName(username);
+      setIsUniqueUserName(response.isUnique);
+      } catch (error) {
+        console.error(error)
+      }
     }, 400);
     return () => clearTimeout(timeout);
   }, [username])
 
   async function registrate() {
     const response = await registrateUser(username, pass);
-    const token = response.token;
-
-    const hash = response.recoveryCode;
-    console.log(response);
-    setHash(hash);
-    dispatch(safeUser(token));
-
+    setHash(response.recoveryCode);
+    dispatch(safeUser(response.token));
   }
 
   return (

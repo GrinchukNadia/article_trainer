@@ -1,0 +1,11 @@
+.cat {
+  z-index: 4;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  bottom: 69px;
+  left: 38%;
+  transform-origin: bottom center;
+  cursor: pointer;
+  filter: drop-shadow(9px 13px 16px rgba(0, 0, 0, 0.49));
+}

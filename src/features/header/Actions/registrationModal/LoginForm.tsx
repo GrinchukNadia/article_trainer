@@ -4,7 +4,7 @@ import FormField from "./FormField";
 import AuthModalHeader from "./AuthModalHeader";
 import { useDispatch } from "react-redux";
 import { safeUser } from "../../../../reduxStore/authSlice";
-import { changePasswordRequest, loginUser } from "../../../api/auth/auth";
+import { loginUser } from "../../../api/auth/auth";
 import type { Status } from "./AuthModal";
 
 
@@ -15,17 +15,11 @@ type LoginFormProps = {
   setChangePassIsSuccess: (value: boolean) => void;
 };
 
-function LoginForm(
-  {
-    onClose, setStatus, changePassIsSuccess, setChangePassIsSuccess
-  }: LoginFormProps
-) {
+function LoginForm({onClose, setStatus, changePassIsSuccess, setChangePassIsSuccess}: LoginFormProps) {
+  const dispatch = useDispatch();
   const [pass, setPass] = useState("");
   const [username, setUsername] = useState("");
-  const [hash, setHash] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const dispatch = useDispatch();
 
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -33,18 +27,12 @@ function LoginForm(
 
   async function login() {
     try {
-      const response = await loginUser(username, pass);
-      const token = response.token;
-
-      // console.log(token);
-      // console.log(Boolean(token));
-
-      setHash(hash);
+      const {token}  = await loginUser(username, pass);
       dispatch(safeUser(token));
       setStatus("success");
       setChangePassIsSuccess(false);
-    } catch (e: any) {
-      setErrorMessage(e.message);
+    } catch {
+      setErrorMessage("Benutzername oder Passwort ist falsch");
     }
   }
 

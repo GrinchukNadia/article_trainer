@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../../reduxStore/store";
-import { handleAnswerArticle, load } from "../../../api/srs/wordsToLearn";
+import { handleAnswerArticle, getWordsToPractice } from "../../../api/srs/wordsToLearn";
 import type {
   Anim,
   CardAction,
@@ -52,32 +52,20 @@ function reducer(state: State, action: CardAction) {
 }
 
 export function useCardTrain() {
+  const reduxDispatch = useDispatch();
   const [state, dispatch] = useReducer(reducer, initial);
   const [words, setWords] = useState<CardItem[]>([]);
   const [index, setIndex] = useState(0);
-  const token = useSelector((reduxState: RootState) => {
-    return reduxState.auth.token;
-  });
-  const reduxDispatch = useDispatch();
 
-  // const loadStreak = useCallback(async() => {
-  //   if(!token) return;
-
-  //   const newStreak = await getStreak(token);
-  //   reduxDispatch(registrateActivity(newStreak));
-  // }, [token, reduxDispatch])
 
   // Load a new batch of words(10) from the backend and restart the card session.
   const loadNext = useCallback(async () => {
-    if (!token) return;
-
-    const words = await load(token);
-    setWords(words);
-
+    const response = await getWordsToPractice();
+    setWords(response);
     // Reset UI state when a new batch is loaded.
     dispatch({ type: "RESET_CARD" });
     setIndex(0);
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     loadNext();
@@ -123,11 +111,8 @@ export function useCardTrain() {
 
       // Prevent multiple requests to the backend.
       if (state.selectedArticles.includes(choice)) return;
-      // console.log(state.selectedArticles, choice);
 
-      // Send the selected article to the backend.
-      // The backend checks the answer and updates the user's progress.
-      const result = await handleAnswerArticle(token, choice, current.wordId);
+      const result = await handleAnswerArticle(choice, current.wordId);
       dispatch({ type: "SET_SELECTED_ARTICLES", answer: choice });
 
       //get streak updated

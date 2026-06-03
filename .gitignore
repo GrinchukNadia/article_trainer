@@ -12,6 +12,7 @@ notes
 dist
 dist-ssr
 *.local
+.vite
 
 pixel_art
 

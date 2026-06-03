@@ -1,36 +1,28 @@
-import { API_BASE_URL } from "../url/url";
+import type { Gender } from "../../trainArticles/trainings/wordCards/cardTrain.types";
+import { apiClient } from "../client";
 
-export async function getWordsToPractice(token: string | null) {
-  const responce = await fetch(`${API_BASE_URL}/srs/words`, {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  });
-
-  return await responce.json();
+//------------------------------------------------------------------------------------
+type GetWordsResponse = {
+  wordId: number,
+  lemma: string,
+  translation: string
+}
+export async function getWordsToPractice():Promise<GetWordsResponse[]> {
+  const { data } = await apiClient.get<GetWordsResponse[]>("/srs/words");
+  return data;
 }
 
-export async function load(token: string | null) {
-  if (!token) return;
-  const words = await getWordsToPractice(token);
-  return words;
+//------------------------------------------------------------------------------------
+type ArticleAnswerResponse = {
+  correct: boolean,
+  gender: Gender[],
+  reviewCount: number,
+  wrongCount: number
 }
-
-export async function handleAnswerArticle( token: string | null, choice: string, wordId: number) {
-  if(!token) return;
-
-  const responce = await fetch(`${API_BASE_URL}/srs/answer`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Authorization": `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      answer: choice,
-      wordId: wordId
-    })
+export async function handleAnswerArticle( answer: string, wordId: number):Promise<ArticleAnswerResponse> {
+  const {data} = await apiClient.post<ArticleAnswerResponse>("/srs/answer", {
+    answer,
+    wordId
   })
-
-  return await responce.json();
+  return data;
 }

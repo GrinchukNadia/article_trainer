@@ -7,8 +7,6 @@ import {
   type Dispatch,
   type SetStateAction,
 } from "react";
-import { useSelector } from "react-redux";
-import type { RootState } from "../../reduxStore/store";
 import styles from "./FallingSprint.module.scss";
 import clsx from "clsx";
 import { getWordsSprint } from "../api/games/sprint";
@@ -34,24 +32,14 @@ const FAST_SPEED = 40; // ускорение при стрелке вниз
 export function FallingSprint({setAnswered, setCorrect, setWrong}: setStatistic) {
   const [words, setWords] = useState<SprintWord[]>([]);
 
-  const token = useSelector((reduxState: RootState) => {
-    return reduxState.auth.token;
-  });
-
-
   const loadSprint = useCallback(async () => {
-    if (!token) return;
-
-    const words = await getWordsSprint(token);
-
+    const words = await getWordsSprint();
     setWords(words);
-    console.log(words);
-
-  }, [token]);
+  }, []);
 
   useEffect(() => {
     loadSprint()
-  }, [token])
+  }, [loadSprint])
 
   
   // 👇 Локальное состояние для "тетрис-движения"
