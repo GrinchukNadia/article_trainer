@@ -22,7 +22,6 @@ const controls: ControlItem[] = [
 
 
 export default function Controls({ handleAnswer, selectedArticles, answered }: ControlsProps) {
-  console.log(answered)
   return (
     <>
       {controls.map((c) => (

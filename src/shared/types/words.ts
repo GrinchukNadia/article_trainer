@@ -42,4 +42,3 @@ export type WordsProgress = {
   lastReviewed?: string;
   mastered: boolean;
 };
-

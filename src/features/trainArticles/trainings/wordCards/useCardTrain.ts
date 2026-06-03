@@ -1,6 +1,4 @@
 import { useCallback, useEffect, useReducer, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { RootState } from "../../../../reduxStore/store";
 import { handleAnswerArticle, getWordsToPractice } from "../../../api/srs/wordsToLearn";
 import type {
   Anim,
@@ -10,8 +8,6 @@ import type {
   Gender,
   State,
 } from "./cardTrain.types";
-import { registrateActivity } from "../../../../reduxStore/activitySlice";
-import { getStreak } from "../../../api/stats/stats";
 
 const initial: State = {
   translation: ". . . . . . . .",
@@ -52,7 +48,6 @@ function reducer(state: State, action: CardAction) {
 }
 
 export function useCardTrain() {
-  const reduxDispatch = useDispatch();
   const [state, dispatch] = useReducer(reducer, initial);
   const [words, setWords] = useState<CardItem[]>([]);
   const [index, setIndex] = useState(0);
@@ -115,10 +110,6 @@ export function useCardTrain() {
       const result = await handleAnswerArticle(choice, current.wordId);
       dispatch({ type: "SET_SELECTED_ARTICLES", answer: choice });
 
-      //get streak updated
-      const newStreak = await getStreak(token);
-      reduxDispatch(registrateActivity(newStreak));
-
 
       if (!result.correct && !state.answered) {
         const animationNames: Record<Gender, Anim> = {
@@ -149,7 +140,7 @@ export function useCardTrain() {
         dispatch({ type: "SET_TRANSLATION", text: current.translation });
       }
     },
-    [current, state.animating, state.answered, state.selectedArticles, token],
+    [current, state.animating, state.answered, state.selectedArticles],
   );
 
   return {
@@ -159,7 +150,6 @@ export function useCardTrain() {
     loadNext,
     onAnimationEnd,
     onAnimationStart,
-    handleAnswer,
-    token
-  };
+    handleAnswer
+  }
 }

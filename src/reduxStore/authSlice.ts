@@ -27,7 +27,6 @@ export const authSlice = createSlice({
 });
 
 export const { safeUser, removeUser } = authSlice.actions;
-// export default activitySlice.reducer;
 
 // persist local storage------------------------------------------------------------------------------
 const userPersistConfig = {

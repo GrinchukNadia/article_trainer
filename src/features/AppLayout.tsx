@@ -56,17 +56,6 @@ export default function AppLayout() {
       <main>
         <Outlet />
       </main>
-      {/* <div style={{width: "100vw", height: "100vh", position: "absolute", top: 0, left: 0, backgroundColor: "#fd552b", padding: " 30px 60px", fontSize: "1.6rem", fontWeight: "light"}}>
-      <p>Nach dem Schließen können der Benutzername und der Wiederherstellungscode nicht erneut angezeigt werden.</p>
-
-      <button style={{border: "none", fontSize: "2rem", padding: "6px 16px", margin: "20px"}} 
-      // onClick={() => setStatus("code")}
-      >Zurück</button>
-      <button  style={{border: "none", fontSize: "2rem", padding: "6px 16px", marginRight: "20px"}}
-      // onClick={() => setStatus("success")}
-      >Ich habe den Code und den Benutzernamen gespeichert</button>
-    </div> */}
-
       {authOpen && <AuthModal onClose={() => setAuthOpen(false)} />}
     </div>
   );

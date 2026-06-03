@@ -16,7 +16,8 @@
   color: #1a1a1a;
 
   border: 2px solid #0f101d;
-  box-shadow: 0 0 0 4px #1d1f38, 4px 4px 0 4px #0b0b14; /* имитация толстых пиксельных рамок */
+  /* имитация толстой пиксельной рамки */
+  box-shadow: 0 0 0 4px #1d1f38, 4px 4px 0 4px #0b0b14; 
   border-color: transparent;
 
   text-transform: uppercase;
@@ -33,7 +34,7 @@
 
   &:hover {
     background: $color5;
-    transform: translate(-0.5px, -0.5px); /* кнопка слегка поднимается */
+    transform: translate(-0.5px, -0.5px);
   }
 
   &[aria-current="page"] {

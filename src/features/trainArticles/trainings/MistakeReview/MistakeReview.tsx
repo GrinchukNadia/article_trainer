@@ -1,10 +1,7 @@
-// import { useDispatch, useSelector } from "react-redux";
 import CloseTrain from "../../../trainArticles/shared/CloseTrain";
 import Card from "../wordCards/Card";
 import { useCardTrain } from "../wordCards/useCardTrain";
 import styles from "./Mistakes.module.scss";
-// import { computeWeakQueue } from "../../../../reduxStore/srsSlice";
-// import type { RootState } from "../../../../reduxStore/store";
 
 function MistakeReview({ close }: { close?: () => void }) {
   const {
@@ -17,16 +14,10 @@ function MistakeReview({ close }: { close?: () => void }) {
   } = useCardTrain();
 
   // -----------------------------повторение логики из CardBody-----------------------------------------------------------------
-
-  // const dispatch = useDispatch();
-  // const weakWords = useSelector((state: RootState) => state.srs.queue.weakIds);
-
-
   if (!current) {
 
-    if( false
-      // weakWords.length === 0 
-    ) {
+    //временно отключаем функционал 
+    if( false) {
       return (<div className={styles.noMistakes}>
         <div className="container">
           <div>
@@ -43,11 +34,9 @@ function MistakeReview({ close }: { close?: () => void }) {
         | React.MouseEvent<HTMLButtonElement>
     ) => {
       if (e.type === "click") {
-        // dispatch(computeWeakQueue());
         return;
       }
       if ("key" in e && e.key === "Enter") {
-        // dispatch(computeWeakQueue());
       }
     };
 
@@ -96,8 +85,6 @@ function MistakeReview({ close }: { close?: () => void }) {
         key={index}
         animation={state.animation}
         word={current.lemma}
-        // id={"hund"}
-        // link={current.media.image}
         translation={state.translation}
         article={state.article}
         className={state.cardClass}
@@ -105,6 +92,8 @@ function MistakeReview({ close }: { close?: () => void }) {
         onAnimationEnd={onAnimationEnd}
         handleAnswer={handleAnswer}
         current={current}
+        selectedArticles={state.selectedArticles}
+        answered={state.answered}
       />
     </div>
   );

@@ -2,25 +2,24 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../reduxStore/store";
 import { pluralizeDay } from "../../../shared/utils/pluralizeDays";
 import fireImg from "../../../assets/img/fire.png";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getStreak } from "../../api/stats/stats";
-import { registrateActivity } from "../../../reduxStore/activitySlice";
 
 function DaysStreak() {
 
   const token = useSelector(
     (state: RootState) => state.auth.token
   );
-  const streak = useSelector((state: RootState) => state.activity.currentStreak);
+  const [streak, setStreak] = useState(0);
   const dispatch = useDispatch();
 
 
-  //вынести в отдельный хук useLoadStreak();
+  //в будущем вынести в отдельный хук useLoadStreak();
   useEffect(() => {
     const loadStreak = async () => {
       try {
         const data = await getStreak();
-        dispatch(registrateActivity(data));
+        setStreak(data);
       } catch (error) {
         console.error("Failed to load streak", error)
       }

@@ -5,6 +5,8 @@ import styles from "./CardBody.module.scss";
 import { useEffect } from "react";
 import ArrowDown from "../../../../assets/svg/ArrowDown";
 import clsx from "clsx";
+import { useSelector } from "react-redux";
+import type { RootState } from "../../../../reduxStore/store";
 
 export default function CardBody({ close }: { close?: () => void }) {
   const {
@@ -14,10 +16,10 @@ export default function CardBody({ close }: { close?: () => void }) {
     loadNext,
     onAnimationStart,
     onAnimationEnd,
-    handleAnswer,
-    token
+    handleAnswer
   } = useCardTrain();
 
+  const token = useSelector((state: RootState) => state.auth.token)
 
   useEffect(() => {
     if (current) return;
