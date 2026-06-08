@@ -1,0 +1,43 @@
+.fishLoop {
+    display: flex;
+    // gap: 40px;
+    width: max-content;
+    margin-top: 25px;
+
+
+    animation: moveFishLoop 10s linear infinite;
+}
+
+@keyframes moveFishLoop {
+    from {
+        transform: translateX(-50%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+.board {
+    background-image: url(../../../assets/img/board_middle2.png);
+    position: relative;
+    background-repeat: repeat-x;
+    background-size: 409px auto;
+    height: 20%;
+    width: 100%;
+    max-width: 1260px;
+    // overflow-x: hidden;
+    // overflow-y: visible;
+    image-rendering: pixelated;
+    touch-action: none;
+}
+
+.resultButton {
+    z-index: 7;
+    position: absolute;
+    inset: 0;
+    border: 1px solid;
+    padding: 8px;
+    font-size: 35px;
+    cursor: pointer;
+}

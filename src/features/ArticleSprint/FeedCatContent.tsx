@@ -1,29 +1,27 @@
-import board from "../../assets/img/board_middle.png";
 import wall from "../../assets/img/wallpaper_flower.png";
 import windowImg from "../../assets/img/window_day.png";
 import paint from "../../assets/img/paint1.png";
 import aquarium from "../../assets/img/aquarium.png";
 import hanged_plant from "../../assets/img/hanged_plant.png";
 import shelf from "../../assets/img/shelf.png";
-import coin from "../../assets/img/coin.png";
-import heart from "../../assets/img/heart.png";
-import close_img from "../../assets/img/close_img.png";
 import floor from "../../assets/img/floor.png";
 import notebook from "../../assets/img/notebook.png";
 import lamp from "../../assets/img/lamp.png";
 import flower_pot from "../../assets/img/flower_pot.png";
-import FishCard from "./FishCard";
 import styles from "./Another.module.scss";
-import { useEffect, useRef, useState } from "react";
-import { articles, CAT_ANIMATION, pointerPosition, VIEWPORT } from "./FeedCat/FeedCatContent.constants";
-import { INITIAL_FISHES } from "./FeedCat/feedCatData";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { articles, CAT_ANIMATION, VIEWPORT } from "./FeedCat/FeedCatContent.constants";
+// import { INITIAL_FISHES } from "./FeedCat/feedCatData";
 import { type ActiveFish, type Article, type FeedCatContentProps, type Fish, type Result } from "./FeedCat/Types";
 import { ArticleOrder } from "./FeedCat/ArticlesOrder";
 import { CatSprite } from "./FeedCat/CatSprite";
+import { FishBoard } from "./FeedCat/FishBoard";
+import { HUD } from "./FeedCat/HUD";
+import { getWordsFeedCat, sendResultFeedCat, type FeedCatResponse } from "../api/games/feedCat";
 // import clsx from "clsx";
 
 
-function mixRandomArticles(articles:Article[], ammount:number) {
+function mixRandomArticles(articles: Article[], ammount: number) {
     const result = [...articles];
     for (let i = 0; i < ammount - articles.length; i++) {
         const randomNum = Math.floor(Math.random() * 3);
@@ -34,13 +32,41 @@ function mixRandomArticles(articles:Article[], ammount:number) {
 
 export function FeedCatContent({ frame, setFrame, close }: FeedCatContentProps) {
 
-    const [orderArticles] = useState(mixRandomArticles(articles, 5));
+    const [orderArticles, setOrderArticles] = useState(mixRandomArticles(articles, 5));
     const [currentArticleIndex, setCurrentArticleIndex] = useState<number>(0);
-    const [fishes, setFishes] = useState(INITIAL_FISHES)
+    const [fishes, setFishes] = useState<Fish[]>([]);
+    const [profile, setProfile] = useState<FeedCatResponse["profile"] | null>(null);
     const [results, setResults] = useState<Result[]>([]);
+    const [allAnswered, setAllAnswered] = useState(false);
     const [isOverCat, setIsOverCat] = useState<boolean | undefined>(false);
     const catRef = useRef<HTMLDivElement | null>(null);
     const [activeFish, setActiveFish] = useState<ActiveFish>(null);
+    const [answeredIds, setAnsweredIds] = useState<number[]>([]);
+    const [countWrongAnswers, setCountWrongAnswers] = useState(0);
+
+    const loadSprint = useCallback(async () => {
+        const {profile, words} = await getWordsFeedCat();
+        setProfile(profile);
+        setFishes(words);
+    }, []);
+
+    async function handleRoundEnd (wrongIds: number[], wrongAnswers: number) {
+        const {profile, words} = await sendResultFeedCat(wrongIds, wrongAnswers);
+        setProfile(profile);
+        setFishes(words);
+        setAllAnswered(false);
+        setStandartAnimation(true);
+        setCorrectMessage(false);
+        setFrame(6);
+        setOrderArticles(mixRandomArticles(articles, 5));
+        setResults([]);
+        setCurrentArticleIndex(0);
+    }
+
+    useEffect(() => {
+        loadSprint()
+    }, [loadSprint])
+
 
     function aboveTarget(e: React.PointerEvent) {
         if (!catRef.current) return;
@@ -64,12 +90,17 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentProps) 
             id: fish.id,
             scale: 1,
             article: fish.article,
-            text: fish.text,
+            word: fish.word,
             x: e.clientX,
             y: e.clientY,
         });
         setStandartAnimation(false);
         setCorrectMessage(false);
+    }
+    function onFishPointerDown(e: React.PointerEvent, fish: Fish) {
+        e.currentTarget.setPointerCapture(e.pointerId);
+        e.stopPropagation();
+        startDrag(fish, e);
     }
 
     function moveDrag(e: React.PointerEvent) {
@@ -86,10 +117,7 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentProps) 
                 }
                 : null
         );
-
         setIsOverCat(overCat);
-
-
     }
 
     const [correctMessage, setCorrectMessage] = useState(false);
@@ -101,7 +129,6 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentProps) 
         if (aboveTarget(e)) {
             const isCorrect = activeFish.article === orderArticles[currentArticleIndex];
 
-
             animateCat(
                 isCorrect
                     ? CAT_ANIMATION.eatingThenHappy
@@ -112,35 +139,52 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentProps) 
                 setCorrectMessage(true);
             }, 600);
 
+            setCountWrongAnswers((prev) => isCorrect ? prev: prev + 1)
             setResults(prev => [...prev, isCorrect ? "correct" : "wrong"]);
-
             setCurrentArticleIndex(prev => prev + 1);
             setFishes(prev => prev.filter(fish => fish.id !== activeFish.id));
+            setAnsweredIds(prev => [...prev, activeFish.id]);
+            setTimeout(() => {
+                results.length > 3 && setAllAnswered(true);
+            }, 600)
             //логика после того как рыбка была брошена над котом
         } else {
             setActiveFish((prev: ActiveFish) =>
                 prev ? { ...prev, scale: 1 } : null
             );
         }
-        setCorrectAnswer(`${activeFish.article} ${activeFish.text}`)
+        setCorrectAnswer(`${activeFish.article} ${activeFish.word}`)
         setActiveFish(null);
         setIsOverCat(false);
     }
 
+    const animationTimeouts = useRef<ReturnType<typeof setTimeout>[]>([]);
+    function clearCatAnimation() {
+        animationTimeouts.current.forEach(clearTimeout);
+        animationTimeouts.current = [];
+    }
+
     function animateCat(frames: number[], interval: number) {
+        clearCatAnimation();
 
         frames.forEach((frameNumber, index) => {
-            setTimeout(() => {
+            const timeoutId = setTimeout(() => {
                 setFrame(frameNumber);
             }, index * interval);
+
+            animationTimeouts.current.push(timeoutId);
         });
     }
+    useEffect(() => {
+        return () => {
+            clearCatAnimation();
+        };
+    }, []);
 
     const [standartAnimation, setStandartAnimation] = useState(true);
 
     useEffect(() => {
         if (!standartAnimation) return;
-
 
         const interval = setInterval(() => {
             if (Math.random() < 0.4) {
@@ -161,24 +205,15 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentProps) 
                 onPointerMove={moveDrag}
                 onPointerUp={endDrag}
                 className={styles.game}
-
                 style={{ backgroundImage: `url(${wall})`, minWidth: `${VIEWPORT.width}px`, height: `${VIEWPORT.height}px`, }}
             >
                 <div className={styles.wall}>
-                    <div className={styles.heart} style={{ backgroundImage: `url(${heart})` }}></div>
-                    <div className={styles.coin} style={{ backgroundImage: `url(${coin})` }}></div>
-                    <div className={styles.blur_panel} style={{ top: "20px", left: "40px" }}></div>
-                    <div className={styles.blur_panel} style={{ top: "97px", left: "40px" }}></div>
-                    <div className={styles.pointer} style={{ left: `${pointerPosition[currentArticleIndex]}px` }}></div>
-
-                    <ArticleOrder articles={orderArticles} results={results} />
-
-
-                    <div
-                        onClick={close}
-                        className={styles.close}
-                        style={{ backgroundImage: `url(${close_img})` }}
-                    ></div>
+                    <HUD profile={profile} />
+                    <ArticleOrder 
+                        articles={orderArticles} 
+                        results={results} 
+                        currentArticleIndex={currentArticleIndex} />
+                    <div onClick={close} className={styles.close}></div>
 
                     <div className={styles.windowImg} style={{ backgroundImage: `url(${windowImg})` }}></div>
                     <div className={styles.paint} style={{ backgroundImage: `url(${paint})` }}></div>
@@ -186,7 +221,7 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentProps) 
                     <div className={styles.shelf} style={{ backgroundImage: `url(${shelf})` }}></div>
                     <div className={styles.floor} style={{ backgroundImage: `url(${floor})` }}></div>
 
-                    <CatSprite frame={frame} ref={catRef}/>
+                    <CatSprite frame={frame} ref={catRef} />
 
                     {correctMessage ?
                         <div className={styles.message}>
@@ -195,6 +230,7 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentProps) 
                             <div className={styles.messageRight}></div>
                         </div>
                         : ""}
+
                     <div className={styles.notebook} style={{ backgroundImage: `url(${notebook})` }}></div>
                     <div className={styles.flower_pot} style={{ backgroundImage: `url(${flower_pot})` }}></div>
                     <div className={styles.aquarium} style={{ backgroundImage: `url(${aquarium})` }}></div>
@@ -202,45 +238,15 @@ export function FeedCatContent({ frame, setFrame, close }: FeedCatContentProps) 
                     <div className={styles.lamp_light}></div>
                     <div className={styles.table}></div>
                 </div>
-                <div
-
-                    className={styles.board}
-                    style={{ backgroundImage: `url(${board})`, cursor: activeFish ? "grabbing" : "grab", }} >
-                    <div className={styles.fishLoop}>
-                        {[...fishes.slice(0, 7), ...fishes.slice(0, 7)].map((fish, index) => (
-                            <FishCard
-                                onPointerDown={(e: React.PointerEvent) => {
-                                    e.currentTarget.setPointerCapture(e.pointerId);
-                                    e.stopPropagation();
-                                    startDrag(fish, e);
-                                }}
-                                isDragging={fish.id === activeFish?.id}
-                                key={`${fish.id}-${index}`}
-                                id={`${fish.id}-${index}`}
-                                text={fish.text}
-                            />
-                        ))}
-                    </div>
-                    {activeFish && (
-                        <div
-                            className={styles.dragFish}
-                            style={{
-                                position: "fixed",
-                                zIndex: 9999,
-                                pointerEvents: "none",
-                                left: activeFish.x,
-                                top: activeFish.y,
-                                transform: "translate(-50%, -50%)",
-                            }}
-                        >
-                            <FishCard
-                                id={activeFish.id}
-                                text={activeFish.text}
-                                scale={activeFish.scale}
-                            />
-                        </div>
-                    )}
-                </div>
+                <FishBoard 
+                    fishes={fishes} 
+                    activeFish={activeFish} 
+                    onFishPointerDown={onFishPointerDown} 
+                    result={allAnswered}
+                    handleRoundEnd={handleRoundEnd}
+                    answeredIds={answeredIds}
+                    countWrongAnswers={countWrongAnswers}
+                />
             </div>
         </div >
     )

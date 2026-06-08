@@ -4,16 +4,19 @@ import { pointerPosition } from "./FeedCatContent.constants";
 
 type ArticleOrderProps = {
     articles: Article[];
-    results: Result[]
+    results: Result[];
+    currentArticleIndex: number;
 };
 
-export function ArticleOrder({ articles, results }: ArticleOrderProps) {
+export function ArticleOrder({ articles, results, currentArticleIndex }: ArticleOrderProps) {
     return (
         <>
+            <div className={styles.pointer} style={{ left: `${pointerPosition[currentArticleIndex]}px` }}></div>
+
             <div className={styles.order}>
                 <div className={styles.order_left}></div>
                 <div className={styles.order_midle}>
-                    {articles.map((article, index) => 
+                    {articles.map((article, index) =>
                         <div key={`${article}-${index}`} className={styles.article}>{article}</div>)}
                 </div>
                 <div className={styles.order_right}></div>
@@ -21,7 +24,7 @@ export function ArticleOrder({ articles, results }: ArticleOrderProps) {
 
             {results.map((result, index) => (
                 <div
-                     key={`${result}-${index}`} 
+                    key={`${result}-${index}`}
                     className={result === "correct" ? styles.correct : styles.wrong}
                     style={{ left: `${pointerPosition[index]}px` }}></div>
             ))}

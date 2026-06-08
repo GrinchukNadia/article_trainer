@@ -7,8 +7,8 @@ export type FeedCatContentProps = {
 export type Article = "die" | "der" | "das";
 
 export type Fish = {
-  id: string;
-  text: string;
+  id: number;
+  word: string;
   article: Article;
 };
 

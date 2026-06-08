@@ -1,5 +1,15 @@
+.pointer {
+  background-image: url(/article_trainer/src/assets/img/pointer.png);
+  z-index: 3;
+  background-size: cover;
+  width: 45px;
+  height: 37px;
+  position: absolute;
+  top: 126px;
+}
+
 .order {
-  margin-top: -325px;
+  margin-top: 34px;
   position: relative;
   display: inline-flex;
   filter: drop-shadow(9px 19px 44px rgba(0, 0, 0, 0.8));
@@ -8,13 +18,13 @@
   &_left {
     width: 55px;
     height: 121px;
-    background-image: url("../../../assets/img/order_border.png");
+    background-image: url(/article_trainer/src/assets/img/order_border.png);
 
   }
 
   &_midle {
     height: 121px;
-    background-image: url("../../../assets/img/order_border_middle.png");
+    background-image: url(/article_trainer/src/assets/img/order_border_middle.png);
     background-repeat: repeat-x;
 
     font-size: 45px;
@@ -27,7 +37,7 @@
   &_right {
     width: 55px;
     height: 121px;
-    background-image: url("../../../assets/img/order_border.png");
+    background-image: url(/article_trainer/src/assets/img/order_border.png);
     transform: rotateY(180deg);
   }
 }
@@ -54,14 +64,4 @@
   height: 25px;
   background-size: cover;
   background-image: url(/article_trainer/src/assets/img/wrong.png);
-}
-
-.pointer {
-  background-image: url(/article_trainer/src/assets/img/pointer.png);
-  z-index: 3;
-  background-size: cover;
-  width: 45px;
-  height: 37px;
-  position: absolute;
-  top: 126px;
 }

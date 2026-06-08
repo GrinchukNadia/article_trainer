@@ -1,0 +1,40 @@
+
+.fish {
+  // scale: 0.8;
+  // height: 56px;
+  // display: inline-flex;
+  margin: 0px 30px;
+  display: inline-flex;
+  pointer-events: auto;
+  user-select: none;
+  filter: drop-shadow(2px 9px 4px rgba(0, 0, 0, 0.35));
+
+  &_inner {
+    height: 115px;
+    background-size: cover;
+  }
+
+  &Left {
+    width: 77px;
+    background-image: url(/article_trainer/src/assets/img/fish_t.png);
+
+  }
+
+  &Middle {
+    font-size: 29px;
+    padding: 0 6px;
+    background-image: url(/article_trainer/src/assets/img/fish_m.png);
+    background-repeat: repeat-x;
+    background-size: contain;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  &Right {
+    width: 68px;
+    background-image: url(/article_trainer/src/assets/img/fish_h.png);
+  }
+}

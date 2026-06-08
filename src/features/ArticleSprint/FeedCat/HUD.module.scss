@@ -1,0 +1,36 @@
+.heart {
+    background: url(/article_trainer/src/assets/img/heart.png);
+    z-index: 2;
+    background-size: cover;
+    width: 51px;
+    height: 45px;
+    position: absolute;
+    top: 30px;
+    left: 50px;
+}
+
+.coin {
+    background: url(/article_trainer/src/assets/img/coin.png);
+    z-index: 2;
+    background-size: cover;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    left: 48px;
+    top: 103px;
+}
+
+.blur_panel {
+    left: 40px;
+    width: 175px;
+    height: 62px;
+    border-radius: 19px;
+    position: absolute;
+    background-color: #00000035;
+    backdrop-filter: blur(2px);
+    
+    top: 20px;
+    font-size: 48px;
+    text-align: right;
+    padding-right: 9px;
+}

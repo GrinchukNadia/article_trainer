@@ -19,22 +19,7 @@ function AnotherGame({ close }: any) {
 
   
   return (
-    <DndContext
-    onDragStart={() => setFrame(2)}
-      onDragEnd={(event) => {
-        const { active, over } = event;
-
-        console.log("тащили:", active.id);
-        console.log("бросили на:", over?.id);
-
-        if (over?.id === "cat") {
-          console.log("дали рыбку котику");
-        }
-        setFrame(0)
-      }}
-    >
       <FeedCatContent frame={frame} setFrame={setFrame} close={close}/>
-    </DndContext>
   );
 
 }
